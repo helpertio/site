@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ivan Tikhov</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at 30% 30%, #111827, #000000 70%);
+  color: white;
+}
+
+h1 {
+  font-size: 64px;
+  font-weight: 700;
+  letter-spacing: -2px;
+  background: linear-gradient(90deg, #ffffff, #8b9cff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 60px;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.btn {
+  padding: 14px 28px;
+  border-radius: 10px;
+  border: 1px solid #2d3748;
+  background: rgba(255,255,255,0.05);
+  color: #e5e7eb;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 1px;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(6px);
+}
+
+.btn:hover {
+  background: rgba(139,156,255,0.15);
+  border-color: #8b9cff;
+  transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+</style>
+</head>
+
+<body>
+  <h1>Ivan Tikhov</h1>
+
+  <div class="buttons">
+    <a class="btn" href="http://tikhov.org/ai-assist/">AI-ассистент</a>
+    <a class="btn" href="#">TBA</a>
+    <a class="btn" href="#">TBA</a>
+  </div>
+</body>
+</html>
