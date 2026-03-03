@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Бэклог фич — Personal AI Agent</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState } = React;
+
+    const features = [
+      {
+        id: 1, name: "Голосовой ввод", emoji: "🎙️", category: "Ядро", priority: "P0",
+        short: "Отправляю голосовое в Telegram — получаю текст, сохранённый в файл.",
+        userStory: "Как пользователь, я хочу отправить голосовое сообщение в Telegram-бота и получить его транскрибацию, сохранённую в папку входящих — чтобы не набирать текст руками и не терять мысли.",
+        tech: "1. Зарегистрировать Telegram-бота через @BotFather\n2. Webhook или polling на сервере/компьютере\n3. Скачивать .ogg файл голосового\n4. Прогнать через Whisper API (OpenAI) или Wispr\n5. Сохранять текст в /inputs/YYYY-MM-DD_HH-MM.txt\n6. Cron-задача архивирует файлы в /archive/YYYY-MM/ ежемесячно",
+      },
+      {
+        id: 2, name: "Исполнение команд", emoji: "⚙️", category: "Ядро", priority: "P0",
+        short: "Агент читает входящие файлы при запуске и выполняет инструкции.",
+        userStory: "Как пользователь, я хочу чтобы агент автоматически обрабатывал накопившиеся команды при включении компьютера — без ручного запуска.",
+        tech: "1. Скрипт в автозапуске (launchd на Mac / Task Scheduler на Windows)\n2. Парсинг текстовых файлов из /inputs/\n3. Классификатор команд (GPT): задача / идея / заметка / событие\n4. Маршрутизация к нужному модулю\n5. Перемещение обработанных файлов в /processed/",
+      },
+      {
+        id: 3, name: "Задачник", emoji: "✅", category: "Продуктивность", priority: "P0",
+        short: "Добавляю задачу голосом — она появляется в моём таск-менеджере с приоритетом.",
+        userStory: "Как пользователь, я хочу добавлять, закрывать и просматривать задачи голосом через Telegram — чтобы мой список задач всегда был актуальным без открытия приложений.",
+        tech: "1. Выбрать таск-менеджер: Todoist (API) или Notion (Database API)\n2. GPT извлекает из текста: название задачи, дедлайн, приоритет\n3. Через API создаёт задачу в нужном проекте\n4. Команда 'закрыть задачу X' → поиск по названию → mark complete\n5. Команда 'мои задачи' → fetch + форматированный ответ в Telegram",
+      },
+      {
+        id: 4, name: "Утренний / вечерний брифинг", emoji: "🌅", category: "Продуктивность", priority: "P0",
+        short: "Утром получаю план дня, вечером отчитываюсь что сделал.",
+        userStory: "Как пользователь, я хочу получать утром сводку задач на день и подтверждать что беру, а вечером — сообщение с вопросом что выполнено, чтобы поддерживать ритм и не терять задачи.",
+        tech: "1. Cron: утро 8:00, вечер 20:00\n2. Утро: fetch открытых задач → GPT сортирует по приоритету → отправить список с inline-кнопками ✅/➡️\n3. Пользователь жмёт кнопки → обновить статусы в таск-менеджере\n4. Вечер: отправить вопрос, ждать голосовой ответ → GPT парсит → обновить задачи",
+      },
+      {
+        id: 5, name: "Планирование в календаре", emoji: "📅", category: "Продуктивность", priority: "P1",
+        short: "Задача превращается в слот в календаре. Создаю события голосом.",
+        userStory: "Как пользователь, я хочу голосом создавать события в календаре и конвертировать задачи в временные слоты — чтобы мой день был реально запланирован, а не только в списке задач.",
+        tech: "1. Google Calendar API (OAuth2)\n2. GPT извлекает: название, дату, время, продолжительность\n3. Поиск свободного слота через freebusy API если время не указано\n4. Создание события через events.insert\n5. Еженедельный режим: каждое воскресенье агент предлагает задачи для планирования",
+      },
+      {
+        id: 6, name: "Трекер привычек", emoji: "🔁", category: "Продуктивность", priority: "P1",
+        short: "Напоминает о привычках утром. Отмечаю выполнение голосом или кнопкой.",
+        userStory: "Как пользователь, я хочу видеть свои привычки в утреннем брифинге и легко отмечать выполнение — чтобы не вести отдельный трекер вручную.",
+        tech: "1. Список привычек в config.json с расписанием\n2. Интегрируется в утренний брифинг как отдельный блок\n3. Inline-кнопки ✅ для каждой привычки\n4. Хранение в Google Sheets или Notion DB: дата + привычка + статус\n5. Еженедельный отчёт: % выполнения каждой привычки",
+      },
+      {
+        id: 7, name: "Досье на людей", emoji: "👤", category: "Отношения", priority: "P1",
+        short: "Говорю голосом о человеке — агент создаёт или обновляет его карточку.",
+        userStory: "Как пользователь, я хочу хранить информацию о важных людях (ДР, интересы, история) в структурированных карточках и обновлять их голосом — чтобы помнить детали и поддерживать отношения.",
+        tech: "1. Notion Database с полями: имя, ДР, категория (близкий/знакомый), теги интересов, заметки\n2. GPT извлекает сущность человека и тип обновления из голосового\n3. Поиск существующей карточки → update или create\n4. Команды: 'что я знаю о [имя]', 'добавь о [имя]'",
+      },
+      {
+        id: 8, name: "Напоминания о ДР", emoji: "🎂", category: "Отношения", priority: "P1",
+        short: "За неделю до ДР близких — напоминание с идеями подарка. В день ДР знакомых — готовое поздравление.",
+        userStory: "Как пользователь, я хочу получать своевременные напоминания о днях рождения с готовыми действиями — чтобы не забывать и не поздравлять второпях.",
+        tech: "1. Cron ежедневно проверяет карточки людей\n2. За 7 дней (близкие): отправить напоминание + GPT генерирует 3 идеи подарка по интересам\n3. В день ДР (знакомые): GPT генерирует текст поздравления в стиле человека\n4. Отметка 'поздравил' чтобы не дублировать",
+      },
+      {
+        id: 9, name: "Хранение идей", emoji: "💡", category: "База знаний", priority: "P1",
+        short: "Фиксирую идею голосом. Раз в неделю агент спрашивает: развиваем или архивируем?",
+        userStory: "Как пользователь, я хочу быстро фиксировать идеи голосом и периодически получать напоминания о них — чтобы хорошие идеи не терялись, а устаревшие уходили в архив осознанно.",
+        tech: "1. Отдельная Notion DB или папка /ideas/\n2. Поля: текст, дата, статус (активная/архив/в работе)\n3. GPT классифицирует: это задача или идея?\n4. Каждое воскресенье: fetch активных идей → отправить список → кнопки: 'развить', 'в задачи', 'архивировать'",
+      },
+      {
+        id: 10, name: "Дайджест входящих", emoji: "📥", category: "База знаний", priority: "P2",
+        short: "Скидываю статью или видео — получаю краткое саммари и рекомендацию: стоит ли читать.",
+        userStory: "Как пользователь, я хочу скидывать ссылки и файлы в Telegram и получать краткое саммари с оценкой — чтобы быстро решать что читать, а что пропустить.",
+        tech: "1. Определение типа контента: URL / PDF / YouTube\n2. YouTube: transcript API → GPT summary\n3. Статья: requests + BeautifulSoup → GPT summary\n4. PDF: PyPDF2 → GPT summary\n5. Ответ: 3-5 предложений + 'Стоит читать: да/нет + почему'\n6. Хранение в /inbox/ с метаданными",
+      },
+      {
+        id: 11, name: "Резюме по запросу", emoji: "📝", category: "База знаний", priority: "P2",
+        short: "Скидываю ссылку или файл — получаю краткое резюме прямо в Telegram.",
+        userStory: "Как пользователь, я хочу в любой момент скинуть ссылку или документ и сразу получить выжимку — без открытия статьи и лишних шагов.",
+        tech: "Аналогично дайджесту, но без сохранения и оценки. Просто: получил → распарсил → ответил в чат. Команда /summarize [url]",
+      },
+      {
+        id: 12, name: "Финансовый помощник", emoji: "💰", category: "Финансы", priority: "P2",
+        short: "Агрегирует расходы, категоризирует, показывает на дашборде. Добавляю траты голосом или фото чека.",
+        userStory: "Как пользователь, я хочу видеть свои расходы по категориям на простом дашборде и добавлять траты голосом или фото — чтобы вести бюджет без ручного ввода в таблицы.",
+        tech: "1. Приём CSV/Excel выгрузок из банков\n2. GPT категоризирует транзакции по заданным категориям\n3. Неизвестные переводы помечает флагом → запрашивает уточнение\n4. Голосовая трата: GPT извлекает сумму + категорию\n5. Фото чека: OCR (Tesseract или GPT Vision) → извлечь сумму\n6. Дашборд: простой HTML/JS сайт на GitHub Pages или Netlify",
+      },
+      {
+        id: 13, name: "Дневник тренировок", emoji: "🏋️", category: "Здоровье", priority: "P2",
+        short: "Отправляю голосом результаты тренировки — агент записывает. Если не отчитался по плану — напомнит.",
+        userStory: "Как пользователь, я хочу голосом логировать тренировки и видеть прогресс — чтобы отслеживать результаты без заполнения форм, и получать напоминание если забыл отчитаться.",
+        tech: "1. GPT извлекает: упражнения, веса, подходы, минуты\n2. Хранение в Google Sheets: дата | упражнение | вес | подходы | минуты\n3. Запланированные тренировки в config: день недели + тип\n4. Если прошло 3 часа после запланированного времени без записи → напоминание в Telegram\n5. Команда 'мой прогресс по [упражнение]' → график или таблица",
+      },
+    ];
+
+    const priorityMeta = {
+      P0: { label: "Сейчас", color: "#dc2626", bg: "#fef2f2" },
+      P1: { label: "Следующий этап", color: "#d97706", bg: "#fffbeb" },
+      P2: { label: "Потом", color: "#16a34a", bg: "#f0fdf4" },
+    };
+
+    const categories = ["Все", ...Array.from(new Set(features.map(f => f.category)))];
+
+    function AgentBacklog() {
+      const [activeCategory, setActiveCategory] = useState("Все");
+      const [expanded, setExpanded] = useState(null);
+      const [activeTab, setActiveTab] = useState({});
+
+      const filtered = activeCategory === "Все" ? features : features.filter(f => f.category === activeCategory);
+      const getTab = (id) => activeTab[id] || "user";
+      const setTab = (id, tab, e) => { e.stopPropagation(); setActiveTab(prev => ({ ...prev, [id]: tab })); };
+
+      return (
+        <div style={{ fontFamily: "'Inter', system-ui, sans-serif", background: "#f5f4f0", minHeight: "100vh", padding: "40px 20px" }}>
+          <style>{`
+            * { box-sizing: border-box; }
+            .card { border: 1px solid #e2e0d8; border-radius: 10px; margin-bottom: 8px; background: #fff; overflow: hidden; transition: box-shadow 0.15s; }
+            .card:hover { box-shadow: 0 2px 16px rgba(0,0,0,0.08); }
+            .row-main { display: grid; grid-template-columns: 36px 1fr auto 72px; gap: 16px; padding: 14px 18px; align-items: center; cursor: pointer; }
+            @media (max-width: 600px) { .row-main { grid-template-columns: 28px 1fr 64px; } .cat-tag { display: none; } }
+            .cat-btn { padding: 6px 16px; border-radius: 20px; border: 1.5px solid #ddd; background: #fff; color: #555; font-size: 12px; cursor: pointer; font-family: inherit; font-weight: 500; transition: all 0.15s; }
+            .cat-btn.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+            .tab-btn { padding: 6px 14px; border-radius: 6px; border: none; font-size: 12px; font-family: inherit; cursor: pointer; font-weight: 500; transition: all 0.15s; }
+            .tab-btn.active { background: #1a1a1a; color: #fff; }
+            .tab-btn:not(.active) { background: #f0eeea; color: #666; }
+            .tab-btn:not(.active):hover { background: #e5e3db; }
+            .p-tag { display: inline-block; padding: 3px 10px; border-radius: 5px; font-size: 11px; font-weight: 700; letter-spacing: 0.3px; }
+            .cat-tag { font-size: 11px; color: #999; background: #f5f4f0; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+          `}</style>
+
+          <div style={{ maxWidth: 820, margin: "0 auto" }}>
+            <div style={{ marginBottom: 36 }}>
+              <div style={{ fontSize: 11, color: "#bbb", marginBottom: 6, letterSpacing: 2, textTransform: "uppercase" }}>Personal AI Agent</div>
+              <h1 style={{ margin: 0, fontSize: 30, fontWeight: 700, color: "#111", letterSpacing: "-0.5px" }}>Бэклог фич</h1>
+              <p style={{ margin: "8px 0 0", color: "#999", fontSize: 13 }}>
+                {features.length} фич · нажми на строку → раскроются User Story и шаги реализации
+              </p>
+            </div>
+
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 24 }}>
+              {categories.map(cat => (
+                <button key={cat} className={`cat-btn ${activeCategory === cat ? "active" : ""}`} onClick={() => setActiveCategory(cat)}>{cat}</button>
+              ))}
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "36px 1fr auto 72px", gap: 16, padding: "0 18px 8px", fontSize: 11, color: "#bbb", fontWeight: 600, letterSpacing: 1, textTransform: "uppercase" }}>
+              <span></span><span>Фича</span><span>Категория</span><span>Приоритет</span>
+            </div>
+
+            {filtered.map(f => {
+              const pm = priorityMeta[f.priority];
+              const isOpen = expanded === f.id;
+              const tab = getTab(f.id);
+
+              return (
+                <div key={f.id} className="card">
+                  <div className="row-main" onClick={() => setExpanded(isOpen ? null : f.id)}>
+                    <span style={{ fontSize: 22 }}>{f.emoji}</span>
+                    <div>
+                      <div style={{ fontWeight: 600, fontSize: 14, color: "#111", lineHeight: 1.4 }}>{f.name}</div>
+                      <div style={{ fontSize: 12, color: "#888", marginTop: 3, lineHeight: 1.5 }}>{f.short}</div>
+                    </div>
+                    <span className="cat-tag">{f.category}</span>
+                    <span className="p-tag" style={{ color: pm.color, background: pm.bg }}>{f.priority}</span>
+                  </div>
+
+                  {isOpen && (
+                    <div style={{ borderTop: "1px solid #f0eeea", padding: "14px 18px 18px" }}>
+                      <div style={{ display: "flex", gap: 6, marginBottom: 14 }}>
+                        <button className={`tab-btn ${tab === "user" ? "active" : ""}`} onClick={(e) => setTab(f.id, "user", e)}>
+                          👤 Для пользователя
+                        </button>
+                        <button className={`tab-btn ${tab === "tech" ? "active" : ""}`} onClick={(e) => setTab(f.id, "tech", e)}>
+                          🔧 Техническая реализация
+                        </button>
+                      </div>
+
+                      <div style={{ background: "#fafaf8", borderRadius: 8, padding: "14px 16px" }}>
+                        {tab === "user" ? (
+                          <>
+                            <div style={{ fontSize: 10, fontWeight: 700, color: "#bbb", marginBottom: 10, letterSpacing: 1.5, textTransform: "uppercase" }}>User Story</div>
+                            <p style={{ margin: 0, fontSize: 14, color: "#333", lineHeight: 1.75 }}>{f.userStory}</p>
+                          </>
+                        ) : (
+                          <>
+                            <div style={{ fontSize: 10, fontWeight: 700, color: "#bbb", marginBottom: 10, letterSpacing: 1.5, textTransform: "uppercase" }}>Шаги реализации</div>
+                            <pre style={{ whiteSpace: "pre-wrap", fontFamily: "inherit", fontSize: 13, color: "#333", lineHeight: 1.8, margin: 0 }}>{f.tech}</pre>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+
+            <div style={{ marginTop: 32, display: "flex", gap: 20, flexWrap: "wrap" }}>
+              {Object.entries(priorityMeta).map(([p, m]) => (
+                <div key={p} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12, color: "#888" }}>
+                  <span className="p-tag" style={{ color: m.color, background: m.bg }}>{p}</span>
+                  <span>{m.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<AgentBacklog />);
+  </script>
+</body>
+</html>
