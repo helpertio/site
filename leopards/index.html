@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Леопарды 🐆</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #c8860a;
+      --dark: #1a1008;
+      --spot: #3b1f00;
+      --cream: #f5e6c8;
+      --orange: #e07b10;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--dark);
+      font-family: 'Nunito', sans-serif;
+      color: var(--cream);
+      min-height: 100vh;
+      overflow-x: hidden;
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E🐾%3C/text%3E%3C/svg%3E"), auto;
+    }
+
+    /* Solid leopard background */
+    body {
+      background-color: #6B3F00 !important;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+      text-align: center;
+    }
+
+    /* Header */
+    .paw-top {
+      font-size: 3rem;
+      animation: bounce 2s infinite;
+      display: inline-block;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, #f5c842, #e07b10, #c8860a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      margin: 10px 0 6px;
+      text-shadow: none;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #d4a55a;
+      margin-bottom: 40px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* Cards */
+    .friends-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: center;
+      margin-bottom: 48px;
+    }
+
+    .friend-card {
+      background: linear-gradient(145deg, #2d1800, #1a1008);
+      border: 2px solid var(--gold);
+      border-radius: 20px;
+      padding: 24px 28px;
+      width: 180px;
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .friend-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(200,134,10,0.15), transparent 70%);
+    }
+
+    .friend-card:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 16px 40px rgba(200, 134, 10, 0.35);
+    }
+
+    .friend-emoji {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .friend-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #f5c842;
+    }
+
+    .friend-title {
+      font-size: 0.8rem;
+      color: #a07840;
+      margin-top: 4px;
+    }
+
+    /* Hearts section */
+    .hearts-section {
+      margin-bottom: 48px;
+    }
+
+    .hearts-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    .hearts-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .heart-btn {
+      background: none;
+      border: 2px solid #8b4513;
+      border-radius: 50px;
+      padding: 12px 22px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+      color: white;
+    }
+
+    .heart-btn:hover {
+      background: rgba(200, 134, 10, 0.2);
+      border-color: var(--gold);
+      transform: scale(1.15);
+    }
+
+    .heart-btn:active {
+      transform: scale(0.92);
+    }
+
+    .heart-btn .count {
+      font-size: 0.85rem;
+      font-family: 'Nunito', sans-serif;
+      margin-left: 6px;
+      color: #f5c842;
+    }
+
+    /* Big roar button */
+    .roar-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 16px 44px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--dark);
+      background: linear-gradient(135deg, #f5c842, #e07b10);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 6px 24px rgba(200, 134, 10, 0.4);
+      transition: all 0.2s;
+      letter-spacing: 1px;
+    }
+
+    .roar-btn:hover {
+      transform: scale(1.06);
+      box-shadow: 0 10px 32px rgba(200, 134, 10, 0.6);
+    }
+
+    .roar-btn:active { transform: scale(0.97); }
+
+    /* Message popup */
+    .roar-msg {
+      margin-top: 20px;
+      min-height: 40px;
+      font-size: 1.4rem;
+      color: #f5c842;
+      font-family: 'Playfair Display', serif;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .roar-msg.show { opacity: 1; }
+
+    /* Floating emoji burst */
+    .burst {
+      position: fixed;
+      pointer-events: none;
+      font-size: 2rem;
+      z-index: 999;
+      animation: flyUp 1.2s ease-out forwards;
+    }
+
+    @keyframes flyUp {
+      0% { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(-120px) scale(1.5); }
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: #5a3a10;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="paw-top">🐆</div>
+  <h1>Леопарды</h1>
+  <p class="subtitle">Самая классная стая в интернете</p>
+
+  <div class="friends-grid">
+    <div class="friend-card">
+      <span class="friend-emoji">🐾</span>
+      <div class="friend-name">Макс</div>
+      <div class="friend-title">Альфа-леопард</div>
+    </div>
+    <div class="friend-card">
+      <span class="friend-emoji">✨</span>
+      <div class="friend-name">Кристина</div>
+      <div class="friend-title">Леопард с блёстками</div>
+    </div>
+    <div class="friend-card">
+      <span class="friend-emoji">🌙</span>
+      <div class="friend-name">Надя</div>
+      <div class="friend-title">Леопард в лунном свете</div>
+    </div>
+    <div class="friend-card">
+      <span class="friend-emoji">💻</span>
+      <div class="friend-name">Ваня</div>
+      <div class="friend-title">Леопард-вебмастер</div>
+    </div>
+  </div>
+
+  <div class="hearts-section">
+    <h2>Нажимай сердечки!</h2>
+    <div class="hearts-row">
+      <button class="heart-btn" onclick="addHeart(this, '❤️')">❤️ <span class="count">0</span></button>
+      <button class="heart-btn" onclick="addHeart(this, '🧡')">🧡 <span class="count">0</span></button>
+      <button class="heart-btn" onclick="addHeart(this, '💛')">💛 <span class="count">0</span></button>
+      <button class="heart-btn" onclick="addHeart(this, '🐾')">🐾 <span class="count">0</span></button>
+    </div>
+  </div>
+
+  <button class="roar-btn" onclick="roar()">✨ Фразочки</button>
+  <div class="roar-msg" id="roarMsg"></div>
+
+  <footer>сделано с любовью и леопардовым принтом 🐾</footer>
+</div>
+
+<script>
+  const roarPhrases = [
+    "Р-Р-Р-Р-Р! Леопарды захватили интернет! 🐾",
+    "Вся стая в сборе! Макс, Кристина, Надя, Ваня — рычим! 🐾",
+    "Леопарды не просят разрешения. Они просто берут. 👑",
+    "Самая стильная стая в сети! 🌟",
+    "РРРЫЫЫР значит «я вас люблю» на леопардовом! 🧡",
+    "Кто смеётся последним — тот не леопард! 😏",
+  ];
+  let roarIndex = 0;
+
+  function roar() {
+    const msg = document.getElementById('roarMsg');
+    msg.classList.remove('show');
+    setTimeout(() => {
+      msg.textContent = roarPhrases[roarIndex % roarPhrases.length];
+      msg.classList.add('show');
+      roarIndex++;
+    }, 100);
+    burst('🐾', event);
+  }
+
+  function addHeart(btn, emoji) {
+    const countEl = btn.querySelector('.count');
+    countEl.textContent = parseInt(countEl.textContent) + 1;
+    burst(emoji, event);
+  }
+
+  function burst(emoji, e) {
+    const el = document.createElement('div');
+    el.classList.add('burst');
+    el.textContent = emoji;
+    const x = e ? e.clientX : window.innerWidth / 2;
+    const y = e ? e.clientY : window.innerHeight / 2;
+    el.style.left = (x - 16) + 'px';
+    el.style.top = (y - 16) + 'px';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 1300);
+  }
+
+
+</script>
+</body>
+</html>
