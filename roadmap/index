@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roadmap — Помощник Гусь</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState } = React;
+
+    const LAST_UPDATED = "март 2026";
+
+    const stages = [
+      {
+        id: "done",
+        label: "Сделано",
+        color: "#16a34a",
+        bg: "#f0fdf4",
+        border: "#bbf7d0",
+        emoji: "✅",
+        items: [
+          { text: "Придумано название: Помощник Гусь 🪿" },
+          { text: "Зарегистрирован аккаунт на Hetzner (VPS, ждёт верификации)" },
+          { text: "Создан Telegram-бот через @BotFather, токен сохранён" },
+          { text: "Создан DeepSeek API ключ, баланс пополнен на $5" },
+          { text: "Понята архитектура: OpenClaw + DeepSeek + Telegram" },
+        ]
+      },
+      {
+        id: "stage0",
+        label: "Этап 0 — Пока ждём Hetzner",
+        color: "#d97706",
+        bg: "#fffbeb",
+        border: "#fde68a",
+        emoji: "🕐",
+        sublabel: "Всё делается локально, сервер не нужен",
+        items: [
+          { text: "Сгенерировать SSH-ключ: ssh-keygen -t ed25519 -C \"goose-hetzner\"", code: true },
+          { text: "Получить Gemini API ключ (бесплатно) → aistudio.google.com" },
+          { text: "Получить Tavily API ключ (1000 запросов/мес бесплатно) → app.tavily.com" },
+          { text: "Написать черновик AGENTS.md — правила поведения Гуся" },
+          { text: "Изучить ClawHub (магазин skills) → clawhub.com" },
+          { text: "Создать аккаунт Todoist и получить API токен" },
+        ]
+      },
+      {
+        id: "stage1",
+        label: "Этап 1 — Установка сервера",
+        color: "#2563eb",
+        bg: "#eff6ff",
+        border: "#bfdbfe",
+        emoji: "🔧",
+        sublabel: "После получения доступа к Hetzner VPS",
+        items: [
+          { text: "Настроить безопасность VPS (пользователь, SSH-ключ, UFW, fail2ban)" },
+          { text: "Установить Node.js 22 через nvm" },
+          { text: "Установить OpenClaw: npm install -g openclaw@latest", code: true },
+          { text: "Пройти wizard: выбрать DeepSeek + Telegram" },
+          { text: "Подключить Telegram-бот: openclaw pairing approve telegram <CODE>", code: true },
+          { text: "Загрузить AGENTS.md и SOUL.md на сервер" },
+          { text: "Настроить веб-поиск через Gemini API" },
+          { text: "Провести проверочные тесты (русский язык, голос, безопасность)" },
+        ]
+      },
+      {
+        id: "stage2",
+        label: "Этап 2 — P0 Фичи",
+        color: "#7c3aed",
+        bg: "#f5f3ff",
+        border: "#ddd6fe",
+        emoji: "📦",
+        sublabel: "Самые важные, делать первыми",
+        items: [
+          { emoji: "🎙️", text: "Голосовой ввод — отправляю голосовое, получаю текст" },
+          { emoji: "✅", text: "Задачник (Todoist) — добавляю задачу голосом" },
+          { emoji: "⚙️", text: "Классификация входящих — задача / идея / вопрос / событие" },
+          { emoji: "🌅", text: "Утренний брифинг 8:00 — план дня с кнопками" },
+          { emoji: "🌙", text: "Вечерний брифинг 20:00 — что сделал сегодня?" },
+        ]
+      },
+      {
+        id: "stage3",
+        label: "Этап 3 — P1 Фичи",
+        color: "#0891b2",
+        bg: "#ecfeff",
+        border: "#a5f3fc",
+        emoji: "📅",
+        sublabel: "Следующий этап после запуска ядра",
+        items: [
+          { emoji: "📅", text: "Планирование в Google Calendar — голосом создавать события" },
+          { emoji: "🔁", text: "Трекер привычек — напоминания + статистика в Google Sheets" },
+          { emoji: "👤", text: "Досье на людей — карточки с интересами и историей" },
+          { emoji: "🎂", text: "Напоминания о ДР — за 7 дней + идеи подарков" },
+          { emoji: "💡", text: "Хранение идей — фиксация голосом + еженедельный review" },
+        ]
+      },
+      {
+        id: "stage4",
+        label: "Этап 4 — P2 Фичи",
+        color: "#be185d",
+        bg: "#fdf2f8",
+        border: "#fbcfe8",
+        emoji: "🔮",
+        sublabel: "Потом, когда всё предыдущее работает",
+        items: [
+          { emoji: "📥", text: "Дайджест входящих — ссылка → саммари + стоит ли читать" },
+          { emoji: "📝", text: "Резюме по запросу — /summarize [url]" },
+          { emoji: "💰", text: "Финансовый помощник — расходы голосом + дашборд" },
+          { emoji: "🏋️", text: "Дневник тренировок — логировать голосом, напоминания при пропуске" },
+        ]
+      },
+    ];
+
+    const tokens = [
+      { name: "Telegram Bot Token", status: "ready", note: "@BotFather" },
+      { name: "DeepSeek API Key", status: "ready", note: "Баланс $5" },
+      { name: "Gemini API Key", status: "todo", note: "aistudio.google.com — бесплатно" },
+      { name: "Tavily API Key", status: "todo", note: "app.tavily.com — 1000/мес бесплатно" },
+      { name: "Todoist API Token", status: "todo", note: "todoist.com/app/settings" },
+      { name: "Google Calendar OAuth", status: "later", note: "Этап 3" },
+      { name: "Notion Integration", status: "later", note: "Этап 3" },
+    ];
+
+    const pitfalls = [
+      { problem: "Слишком автономный", symptom: "Делает без спроса", fix: "AGENTS.md: «сначала план, потом действие»" },
+      { problem: "Вопрос = команда", symptom: "Спросил — начал делать", fix: "AGENTS.md: «вопрос — это вопрос»" },
+      { problem: "Ghosting", symptom: "Нет ответа 2+ мин", fix: "Написать «ты тут?»" },
+      { problem: "Бесконечный цикл", symptom: "Бродит по файлам", fix: "openclaw restart" },
+      { problem: "Память не сохраняется", symptom: "Контекст теряется", fix: "Триггер «новый чат» → MEMORY.md" },
+    ];
+
+    const stageOrder = ["done", "stage0", "stage1", "stage2", "stage3", "stage4"];
+
+    function currentStageId() {
+      return "stage0"; // обновлять вручную
+    }
+
+    function Roadmap() {
+      const [expanded, setExpanded] = useState(new Set(["done", "stage0"]));
+      const [tab, setTab] = useState("roadmap");
+      const current = currentStageId();
+
+      const toggle = (id) => {
+        setExpanded(prev => {
+          const next = new Set(prev);
+          next.has(id) ? next.delete(id) : next.add(id);
+          return next;
+        });
+      };
+
+      return (
+        <div style={{ fontFamily: "'Inter', system-ui, sans-serif", background: "#f5f4f0", minHeight: "100vh", padding: "40px 20px" }}>
+          <style>{`
+            * { box-sizing: border-box; }
+            .stage-card { border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: box-shadow 0.15s; }
+            .stage-card:hover { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+            .stage-header { display: flex; align-items: center; gap: 12px; padding: 16px 20px; cursor: pointer; border: 1.5px solid transparent; border-radius: 12px; transition: all 0.15s; }
+            .stage-body { padding: 4px 20px 16px; }
+            .item-row { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; border-bottom: 1px solid rgba(0,0,0,0.04); font-size: 13.5px; color: #333; line-height: 1.5; }
+            .item-row:last-child { border-bottom: none; }
+            .code-tag { font-family: 'Courier New', monospace; font-size: 12px; background: rgba(0,0,0,0.06); padding: 2px 8px; border-radius: 4px; color: #444; }
+            .tab-btn { padding: 8px 20px; border-radius: 20px; border: 1.5px solid #ddd; background: #fff; color: #555; font-size: 13px; cursor: pointer; font-family: inherit; font-weight: 500; transition: all 0.15s; }
+            .tab-btn.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+            .token-row { display: grid; grid-template-columns: 1fr auto auto; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0eeea; font-size: 13px; }
+            .token-row:last-child { border-bottom: none; }
+            .pitfall-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f0eeea; font-size: 13px; }
+            .pitfall-row:last-child { border-bottom: none; }
+            @media (max-width: 600px) {
+              .pitfall-row { grid-template-columns: 1fr; gap: 4px; }
+              .token-row { grid-template-columns: 1fr auto; }
+            }
+            .current-badge { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 10px; background: #1a1a1a; color: #fff; letter-spacing: 0.5px; }
+            .arch-box { background: #1a1a1a; color: #a3e635; font-family: monospace; font-size: 12.5px; padding: 16px 20px; border-radius: 10px; line-height: 1.8; overflow-x: auto; }
+          `}</style>
+
+          <div style={{ maxWidth: 820, margin: "0 auto" }}>
+
+            {/* Header */}
+            <div style={{ marginBottom: 32 }}>
+              <div style={{ fontSize: 11, color: "#bbb", marginBottom: 6, letterSpacing: 2, textTransform: "uppercase" }}>Personal AI Agent</div>
+              <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+                <h1 style={{ margin: 0, fontSize: 30, fontWeight: 700, color: "#111", letterSpacing: "-0.5px" }}>
+                  🪿 Помощник Гусь
+                </h1>
+                <span style={{ fontSize: 12, color: "#999", background: "#f0eeea", padding: "4px 12px", borderRadius: 20 }}>
+                  Roadmap · обновлено {LAST_UPDATED}
+                </span>
+              </div>
+              <p style={{ margin: "8px 0 0", color: "#999", fontSize: 13 }}>
+                OpenClaw + DeepSeek API + Telegram · Hetzner VPS
+              </p>
+            </div>
+
+            {/* Tabs */}
+            <div style={{ display: "flex", gap: 8, marginBottom: 28 }}>
+              {[["roadmap", "🗺️ Roadmap"], ["tokens", "🔑 Токены"], ["pitfalls", "⚠️ Грабли"], ["arch", "🏗️ Архитектура"]].map(([id, label]) => (
+                <button key={id} className={`tab-btn ${tab === id ? "active" : ""}`} onClick={() => setTab(id)}>{label}</button>
+              ))}
+            </div>
+
+            {/* ROADMAP TAB */}
+            {tab === "roadmap" && (
+              <div>
+                {stages.map((stage) => {
+                  const isOpen = expanded.has(stage.id);
+                  const isCurrent = stage.id === current;
+                  return (
+                    <div key={stage.id} className="stage-card" style={{ background: stage.bg, border: `1.5px solid ${isOpen ? stage.border : "transparent"}` }}>
+                      <div className="stage-header" onClick={() => toggle(stage.id)} style={{ background: stage.bg }}>
+                        <span style={{ fontSize: 22 }}>{stage.emoji}</span>
+                        <div style={{ flex: 1 }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                            <span style={{ fontWeight: 700, fontSize: 15, color: stage.color }}>{stage.label}</span>
+                            {isCurrent && <span className="current-badge">Текущий</span>}
+                          </div>
+                          {stage.sublabel && <div style={{ fontSize: 12, color: "#888", marginTop: 2 }}>{stage.sublabel}</div>}
+                        </div>
+                        <span style={{ fontSize: 12, color: "#bbb" }}>{stage.items.length} задач{stage.items.length > 4 ? "" : ""}</span>
+                        <span style={{ color: "#bbb", fontSize: 18, marginLeft: 4 }}>{isOpen ? "▲" : "▼"}</span>
+                      </div>
+                      {isOpen && (
+                        <div className="stage-body">
+                          {stage.items.map((item, i) => (
+                            <div key={i} className="item-row">
+                              <span style={{ marginTop: 1, flexShrink: 0 }}>{stage.id === "done" ? "✓" : (item.emoji || "·")}</span>
+                              <span>
+                                {item.code
+                                  ? <span className="code-tag">{item.text}</span>
+                                  : item.text
+                                }
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* TOKENS TAB */}
+            {tab === "tokens" && (
+              <div style={{ background: "#fff", border: "1.5px solid #e2e0d8", borderRadius: 12, padding: "8px 20px" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr auto auto", gap: 12, padding: "8px 0 12px", borderBottom: "2px solid #f0eeea", fontSize: 11, fontWeight: 700, color: "#bbb", letterSpacing: 1, textTransform: "uppercase" }}>
+                  <span>Ключ / токен</span><span>Статус</span><span>Примечание</span>
+                </div>
+                {tokens.map((t, i) => (
+                  <div key={i} className="token-row">
+                    <span style={{ fontWeight: 500, color: "#222" }}>{t.name}</span>
+                    <span style={{
+                      padding: "3px 10px", borderRadius: 6, fontSize: 11, fontWeight: 700, whiteSpace: "nowrap",
+                      background: t.status === "ready" ? "#f0fdf4" : t.status === "todo" ? "#fffbeb" : "#f5f4f0",
+                      color: t.status === "ready" ? "#16a34a" : t.status === "todo" ? "#d97706" : "#aaa"
+                    }}>
+                      {t.status === "ready" ? "✅ Готов" : t.status === "todo" ? "🔲 Получить" : "⏳ Потом"}
+                    </span>
+                    <span style={{ fontSize: 12, color: "#888" }}>{t.note}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* PITFALLS TAB */}
+            {tab === "pitfalls" && (
+              <div style={{ background: "#fff", border: "1.5px solid #e2e0d8", borderRadius: 12, padding: "8px 20px" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12, padding: "8px 0 12px", borderBottom: "2px solid #f0eeea", fontSize: 11, fontWeight: 700, color: "#bbb", letterSpacing: 1, textTransform: "uppercase" }}>
+                  <span>Проблема</span><span>Симптом</span><span>Решение</span>
+                </div>
+                {pitfalls.map((p, i) => (
+                  <div key={i} className="pitfall-row">
+                    <span style={{ fontWeight: 600, color: "#dc2626" }}>{p.problem}</span>
+                    <span style={{ color: "#666" }}>{p.symptom}</span>
+                    <span style={{ color: "#333" }}>{p.fix}</span>
+                  </div>
+                ))}
+                <div style={{ marginTop: 16, padding: "12px 16px", background: "#fef2f2", borderRadius: 8, fontSize: 13, color: "#666" }}>
+                  💡 Самое важное: файл <code style={{ background: "rgba(0,0,0,0.06)", padding: "1px 6px", borderRadius: 4 }}>AGENTS.md</code> — прописать правила до первого запуска, иначе Гусь будет делать что захочет.
+                </div>
+              </div>
+            )}
+
+            {/* ARCH TAB */}
+            {tab === "arch" && (
+              <div>
+                <div className="arch-box">
+                  <div>Telegram (интерфейс)</div>
+                  <div style={{ paddingLeft: 8 }}>↕</div>
+                  <div>OpenClaw (оркестратор на Hetzner VPS)</div>
+                  <div style={{ paddingLeft: 16 }}>├── Gateway (демон, работает 24/7)</div>
+                  <div style={{ paddingLeft: 16 }}>├── Agent (вызывает LLM)</div>
+                  <div style={{ paddingLeft: 16 }}>├── Skills / Tools (Notion, Calendar...)</div>
+                  <div style={{ paddingLeft: 16 }}>└── Memory (AGENTS.md, MEMORY.md, USER.md)</div>
+                  <div style={{ paddingLeft: 8 }}>↕</div>
+                  <div>DeepSeek API (LLM — мозг ассистента)</div>
+                </div>
+
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginTop: 16 }}>
+                  {[
+                    { title: "OpenClaw — что это", text: "Оркестрационный слой с открытым кодом (MIT, 260k+ ⭐ на GitHub). Работает как демон systemd, принимает сообщения из Telegram, отправляет в LLM, выполняет задачи.", color: "#eff6ff", border: "#bfdbfe" },
+                    { title: "DeepSeek — зачем", text: "LLM-провайдер. Значительно дешевле GPT-4, качество сопоставимое. $5 на старте хватит надолго для личного использования.", color: "#f5f3ff", border: "#ddd6fe" },
+                    { title: "Telegram — почему", text: "Уже есть на телефоне. Поддерживает голосовые, файлы, inline-кнопки. OpenClaw нативно работает с Telegram из коробки.", color: "#f0fdf4", border: "#bbf7d0" },
+                    { title: "Hetzner — где", text: "VPS в Европе. €5/мес за 2 vCPU / 4 GB RAM хватает с запасом. OpenClaw лёгкий — вся нагрузка на стороне DeepSeek API.", color: "#fffbeb", border: "#fde68a" },
+                  ].map((card, i) => (
+                    <div key={i} style={{ background: card.color, border: `1.5px solid ${card.border}`, borderRadius: 10, padding: "14px 16px" }}>
+                      <div style={{ fontWeight: 700, fontSize: 13, color: "#111", marginBottom: 6 }}>{card.title}</div>
+                      <div style={{ fontSize: 13, color: "#555", lineHeight: 1.6 }}>{card.text}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div style={{ marginTop: 32, fontSize: 12, color: "#bbb", textAlign: "center" }}>
+              <a href="/ai-assist/" style={{ color: "#bbb", textDecoration: "none", marginRight: 16 }}>← Бэклог фич</a>
+              Помощник Гусь · обновлено {LAST_UPDATED}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<Roadmap />);
+  </script>
+</body>
+</html>
