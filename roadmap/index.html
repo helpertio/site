@@ -14,7 +14,7 @@
   <script type="text/babel">
     const { useState } = React;
 
-    const LAST_UPDATED = "март 2026";
+    const LAST_UPDATED = "5 марта 2026";
 
     const stages = [
       {
@@ -30,6 +30,13 @@
           { text: "Создан Telegram-бот через @BotFather, токен сохранён" },
           { text: "Создан DeepSeek API ключ, баланс пополнен на $5" },
           { text: "Понята архитектура: OpenClaw + DeepSeek + Telegram" },
+          { text: "Сгенерирован SSH-ключ ed25519 для Hetzner" },
+          { text: "Получен Gemini API ключ (бесплатно)" },
+          { text: "Написан AGENTS.md v1.2 — правила поведения Гуся" },
+          { text: "Написан USER.md v1 — контекст об Иване" },
+          { text: "Написан skill_tasks v1.1 — управление задачами через Google Sheets" },
+          { text: "Создана страница roadmap → tikhov.org/roadmap" },
+          { text: "Спроектирована система задач: категории, приоритеты, статусы, повторы" },
         ]
       },
       {
@@ -41,12 +48,11 @@
         emoji: "🕐",
         sublabel: "Всё делается локально, сервер не нужен",
         items: [
-          { text: "Сгенерировать SSH-ключ: ssh-keygen -t ed25519 -C \"goose-hetzner\"", code: true },
-          { text: "Получить Gemini API ключ (бесплатно) → aistudio.google.com" },
-          { text: "Получить Tavily API ключ (1000 запросов/мес бесплатно) → app.tavily.com" },
-          { text: "Написать черновик AGENTS.md — правила поведения Гуся" },
-          { text: "Изучить ClawHub (магазин skills) → clawhub.com" },
-          { text: "Создать аккаунт Todoist и получить API токен" },
+          { text: "Сохранить все файлы локально: mkdir ~/goose && ~/goose/skills/", code: true },
+          { text: "Обновить таблицу задач — добавить столбцы Категория / Приоритет / Повтор по новой структуре" },
+          { text: "Написать SOUL.md — характер и личность Гуся" },
+          { text: "Изучить ClawHub на предмет готовых skills → clawhub.com" },
+          { text: "Получить Google Sheets API доступ (OAuth) для будущей интеграции" },
         ]
       },
       {
@@ -56,32 +62,35 @@
         bg: "#eff6ff",
         border: "#bfdbfe",
         emoji: "🔧",
-        sublabel: "После получения доступа к Hetzner VPS",
+        sublabel: "После получения доступа к Hetzner VPS (план CX22, €3.79/мес)",
         items: [
-          { text: "Настроить безопасность VPS (пользователь, SSH-ключ, UFW, fail2ban)" },
+          { text: "Добавить SSH-ключ в панели Hetzner → Security → SSH Keys" },
+          { text: "Создать сервер CX22 (2 vCPU, 4 GB RAM, Ubuntu 24.04, Германия)" },
+          { text: "Настроить безопасность VPS (непривилегированный пользователь, UFW, fail2ban)" },
           { text: "Установить Node.js 22 через nvm" },
           { text: "Установить OpenClaw: npm install -g openclaw@latest", code: true },
           { text: "Пройти wizard: выбрать DeepSeek + Telegram" },
-          { text: "Подключить Telegram-бот: openclaw pairing approve telegram <CODE>", code: true },
-          { text: "Загрузить AGENTS.md и SOUL.md на сервер" },
+          { text: "Подключить Telegram-бот через QR или код" },
+          { text: "Загрузить AGENTS.md, USER.md, SOUL.md и skills/ на сервер" },
           { text: "Настроить веб-поиск через Gemini API" },
-          { text: "Провести проверочные тесты (русский язык, голос, безопасность)" },
+          { text: "Провести проверочные тесты (русский язык, голос, безопасность, prompt injection)" },
         ]
       },
       {
         id: "stage2",
-        label: "Этап 2 — P0 Фичи",
+        label: "Этап 2 — Ядро",
         color: "#7c3aed",
         bg: "#f5f3ff",
         border: "#ddd6fe",
         emoji: "📦",
-        sublabel: "Самые важные, делать первыми",
+        sublabel: "Базовые фичи, без которых нет смысла",
         items: [
-          { emoji: "🎙️", text: "Голосовой ввод — отправляю голосовое, получаю текст" },
-          { emoji: "✅", text: "Задачник (Todoist) — добавляю задачу голосом" },
-          { emoji: "⚙️", text: "Классификация входящих — задача / идея / вопрос / событие" },
-          { emoji: "🌅", text: "Утренний брифинг 8:00 — план дня с кнопками" },
-          { emoji: "🌙", text: "Вечерний брифинг 20:00 — что сделал сегодня?" },
+          { emoji: "🎙️", text: "Голосовой ввод — отправляю голосовое, получаю ответ" },
+          { emoji: "⚙️", text: "Классификация входящих — моя задача / задача для Гуся / идея / вопрос / событие" },
+          { emoji: "🌅", text: "Утренний брифинг 9:00 — список задач на сегодня + что добавить/убрать" },
+          { emoji: "🌙", text: "Вечерний брифинг 23:00 — что выполнено, что перенести, что отменить" },
+          { emoji: "📊", text: "Задачник через Google Sheets — читать, добавлять, обновлять статусы" },
+          { emoji: "📈", text: "Аналитика задач — статистика выполнения, еженедельный отчёт" },
         ]
       },
       {
@@ -93,11 +102,11 @@
         emoji: "📅",
         sublabel: "Следующий этап после запуска ядра",
         items: [
-          { emoji: "📅", text: "Планирование в Google Calendar — голосом создавать события" },
-          { emoji: "🔁", text: "Трекер привычек — напоминания + статистика в Google Sheets" },
-          { emoji: "👤", text: "Досье на людей — карточки с интересами и историей" },
+          { emoji: "📅", text: "Google Calendar — голосом создавать события, слоты из задач" },
+          { emoji: "👤", text: "Досье на людей — карточки с интересами, историей, ДР" },
           { emoji: "🎂", text: "Напоминания о ДР — за 7 дней + идеи подарков" },
           { emoji: "💡", text: "Хранение идей — фиксация голосом + еженедельный review" },
+          { emoji: "🔁", text: "Трекер привычек — напоминания + статистика" },
         ]
       },
       {
@@ -118,13 +127,11 @@
     ];
 
     const tokens = [
-      { name: "Telegram Bot Token", status: "ready", note: "@BotFather" },
+      { name: "Telegram Bot Token", status: "ready", note: "@help_me_Goose_bot" },
       { name: "DeepSeek API Key", status: "ready", note: "Баланс $5" },
-      { name: "Gemini API Key", status: "todo", note: "aistudio.google.com — бесплатно" },
-      { name: "Tavily API Key", status: "todo", note: "app.tavily.com — 1000/мес бесплатно" },
-      { name: "Todoist API Token", status: "todo", note: "todoist.com/app/settings" },
+      { name: "Gemini API Key", status: "ready", note: "aistudio.google.com" },
+      { name: "Google Sheets OAuth", status: "todo", note: "Для интеграции задачника — Этап 2" },
       { name: "Google Calendar OAuth", status: "later", note: "Этап 3" },
-      { name: "Notion Integration", status: "later", note: "Этап 3" },
     ];
 
     const pitfalls = [
