@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AmpCamp REUNION 2026 — Штаб</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #f5f0e8;
+  --bg-card: #fffcf5;
+  --bg-dark: #2c2a25;
+  --text: #2c2a25;
+  --text-muted: #7a7468;
+  --text-light: #a49e90;
+  --accent: #c45d3e;
+  --accent-soft: #f0d0c0;
+  --olive: #6b7c5e;
+  --olive-soft: #d4dbc8;
+  --sand: #d4c9a8;
+  --sand-soft: #ece6d4;
+  --border: #d8d0c0;
+  --radius: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =================== HEADER =================== */
+.header {
+  background: var(--bg-dark);
+  color: #f5f0e8;
+  padding: 20px 32px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.header-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 24px;
+  letter-spacing: 0.5px;
+}
+
+.header-title span {
+  color: var(--accent);
+}
+
+.header-meta {
+  font-size: 13px;
+  color: #a49e90;
+  display: flex;
+  gap: 20px;
+}
+
+.header-meta b { color: var(--accent-soft); }
+
+/* Nav tabs */
+.nav {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav::-webkit-scrollbar { display: none; }
+
+.nav-tab {
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #a49e90;
+  cursor: pointer;
+  border: none;
+  background: none;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.nav-tab:hover { color: #d4c9a8; }
+
+.nav-tab.active {
+  color: #f5f0e8;
+  border-bottom-color: var(--accent);
+}
+
+/* =================== MAIN =================== */
+.main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+
+.page { display: none; animation: fadeIn 0.3s ease; }
+.page.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =================== CARDS =================== */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 4px rgba(44,42,37,0.04);
+}
+
+.card-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.card-subtitle {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-light);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+/* =================== STATS GRID =================== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  text-align: center;
+}
+
+.stat-value {
+  font-family: 'DM Serif Display', serif;
+  font-size: 32px;
+  color: var(--accent);
+  line-height: 1.1;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+/* =================== SECTION HEADERS =================== */
+.section-header {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--sand);
+}
+
+.section-header span { color: var(--accent); }
+
+/* =================== TABLES =================== */
+.table-wrap {
+  overflow-x: auto;
+  margin: 12px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th {
+  text-align: left;
+  padding: 10px 14px;
+  background: var(--sand-soft);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  border-bottom: 2px solid var(--sand);
+}
+
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+tr:hover td { background: rgba(212,201,168,0.15); }
+
+/* =================== TAGS =================== */
+.tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  margin: 2px 4px 2px 0;
+}
+
+.tag-accent { background: var(--accent-soft); color: var(--accent); }
+.tag-olive { background: var(--olive-soft); color: var(--olive); }
+.tag-sand { background: var(--sand-soft); color: var(--text-muted); }
+
+/* =================== TIMELINE =================== */
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.timeline-day {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline-day::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+}
+
+.timeline-day:nth-child(1)::before { background: var(--sand); }
+.timeline-day:nth-child(2)::before { background: var(--olive); }
+.timeline-day:nth-child(3)::before { background: var(--accent); }
+.timeline-day:nth-child(4)::before { background: var(--text-light); }
+
+.timeline-day h4 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.timeline-day .emotion {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.timeline-day p {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* =================== ACCORDION =================== */
+.accordion-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
+.accordion-header {
+  padding: 14px 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 15px;
+  user-select: none;
+  transition: background 0.2s;
+}
+
+.accordion-header:hover { background: var(--sand-soft); }
+
+.accordion-header::after {
+  content: '▸';
+  transition: transform 0.2s;
+  color: var(--text-light);
+  font-size: 14px;
+}
+
+.accordion-item.open .accordion-header::after {
+  transform: rotate(90deg);
+}
+
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.accordion-body-inner {
+  padding: 0 20px 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.accordion-body-inner strong { color: var(--text); }
+
+.accordion-body-inner ul {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+.accordion-body-inner li { margin-bottom: 4px; }
+
+/* =================== PERSON CARDS =================== */
+.person-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.person-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.person-header {
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.person-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+}
+
+.person-tg {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--accent);
+}
+
+.person-role {
+  padding: 12px 20px;
+  font-size: 13px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.person-details {
+  padding: 0;
+}
+
+.person-detail-toggle {
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--olive);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  user-select: none;
+  transition: background 0.15s;
+}
+
+.person-detail-toggle:hover { background: var(--olive-soft); }
+
+.person-detail-toggle::after {
+  content: '+';
+  font-size: 16px;
+  color: var(--text-light);
+  transition: transform 0.2s;
+}
+
+.person-detail-toggle.open::after {
+  content: '−';
+}
+
+.person-detail-content {
+  display: none;
+  padding: 12px 20px 16px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  background: rgba(212,201,168,0.08);
+}
+
+.person-detail-content.open { display: block; }
+
+.person-detail-content strong { color: var(--text); }
+
+/* =================== LOCATION CARDS =================== */
+.loc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.loc-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.loc-card h4 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.loc-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* =================== CHECKLIST =================== */
+.checklist-item {
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  cursor: default;
+}
+
+.checklist-item.urgent { border-left: 3px solid var(--accent); }
+.checklist-item.waiting { border-left: 3px solid var(--sand); }
+.checklist-item.minor { border-left: 3px solid var(--olive-soft); }
+
+.check-icon {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border);
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.checklist-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.label-urgent { color: var(--accent); }
+.label-waiting { color: #b8a040; }
+.label-minor { color: var(--olive); }
+
+/* =================== SCHEDULE =================== */
+.schedule-day { margin-bottom: 28px; }
+
+.schedule-day h4 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px;
+  margin-bottom: 10px;
+  padding-left: 12px;
+  border-left: 3px solid var(--accent);
+}
+
+.schedule-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 12px;
+  padding: 6px 0;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(216,208,192,0.5);
+}
+
+.schedule-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: right;
+  padding-top: 1px;
+}
+
+.schedule-event { color: var(--text); }
+
+/* =================== TRACKS TABLE =================== */
+.tracks-table {
+  margin: 16px 0;
+}
+
+.track-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  align-items: baseline;
+}
+
+.track-name {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.track-owner {
+  color: var(--text-muted);
+}
+
+.track-owner b { color: var(--accent); }
+
+/* =================== QUOTE =================== */
+.quote {
+  background: var(--sand-soft);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 16px 0;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--text-muted);
+  border-left: 3px solid var(--sand);
+  line-height: 1.7;
+}
+
+/* =================== INSIGHT CARDS =================== */
+.insight-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 12px;
+}
+
+.insight-card h4 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.insight-card p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+
+/* =================== PHOTO GALLERY =================== */
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.photo-gallery img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.photo-gallery img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 24px rgba(44,42,37,0.15);
+}
+
+/* Lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.9);
+  z-index: 10000;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox.open { display: flex; }
+
+.lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+/* =================== IDEA CARDS =================== */
+.idea-card {
+  background: var(--bg-card);
+  border: 1px dashed var(--sand);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 12px;
+  text-align: center;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+/* =================== RESPONSIVE =================== */
+@media (max-width: 768px) {
+  .header { padding: 16px 16px 0; }
+  .header-top { flex-direction: column; gap: 6px; }
+  .header-meta { flex-wrap: wrap; gap: 10px; }
+  .main { padding: 20px 16px 60px; }
+  .timeline { grid-template-columns: 1fr 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .person-grid { grid-template-columns: 1fr; }
+  .schedule-item { grid-template-columns: 80px 1fr; }
+  .track-row { grid-template-columns: 1fr; gap: 2px; }
+  .nav-tab { padding: 10px 14px; font-size: 13px; }
+}
+
+@media (max-width: 480px) {
+  .timeline { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- =================== HEADER =================== -->
+<div class="header">
+  <div class="header-top">
+    <div class="header-title">AmpCamp <span>REUNION</span> 2026</div>
+    <div class="header-meta">
+      <span>📍 Mtserlebi Resort, Грузия</span>
+      <span>📅 28–31 мая</span>
+      <span>👥 <b>88</b> человек</span>
+    </div>
+  </div>
+  <nav class="nav">
+    <button class="nav-tab active" onclick="showPage('overview')">Обзор</button>
+    <button class="nav-tab" onclick="showPage('programme')">Программа</button>
+    <button class="nav-tab" onclick="showPage('locations')">Локации</button>
+    <button class="nav-tab" onclick="showPage('team')">Команда</button>
+    <button class="nav-tab" onclick="showPage('insights')">CampDev</button>
+    <button class="nav-tab" onclick="showPage('finance')">Финмодель</button>
+    <button class="nav-tab" onclick="showPage('ideas')">Идеи</button>
+    <button class="nav-tab" onclick="showPage('checklist')">Задачи</button>
+  </nav>
+</div>
+
+<div class="main">
+
+<!-- =================== PAGE: OVERVIEW =================== -->
+<div class="page active" id="page-overview">
+  <div class="section-header">Статус <span>кемпа</span></div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value" id="countdown">82</div>
+      <div class="stat-label">дня до кемпа</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">81</div>
+      <div class="stat-label">подтверждено</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">66</div>
+      <div class="stat-label">оплатили</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">€750</div>
+      <div class="stat-label">стоимость</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">~88</div>
+      <div class="stat-label">всего человек</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">AmpCamp Reunion Грузия 2026</div>
+    <p style="font-size:14px;color:var(--text-muted);line-height:1.8">
+      <strong>AmpCamp</strong> — сообщество, которое 1–2 раза в год собирается в красивом месте, чтобы получить опыт, который сложно получить в обычной жизни: настоящую близость, глубокие разговоры и человеческий контакт среди людей, которым не всё равно. Комьюнити строится на гуманистических ценностях, критическом мышлении и желании осознанно кутить.
+    </p>
+    <p style="font-size:14px;color:var(--text-muted);line-height:1.8;margin-top:10px">
+      REUNION 2026 — это «старичковый» кемп: собираем всех, кто уже был, чтобы объединиться снова.
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Ключевые параметры</div>
+    <div class="table-wrap">
+      <table>
+        <tr><td style="width:180px;font-weight:600">Даты</td><td>28–31 мая 2026 (чт–вс)</td></tr>
+        <tr><td style="font-weight:600">База</td><td>Mtserlebi Resort, Квишхети, Грузия</td></tr>
+        <tr><td style="font-weight:600">Трансфер</td><td>15:00 из Тбилиси и Кутаиси → прибытие ~18:00</td></tr>
+        <tr><td style="font-weight:600">В стоимость входит</td><td>Проживание + питание (завтрак, обед, ужин, ночной перекус, кофе-брейк) + трансфер</td></tr>
+        <tr><td style="font-weight:600">Размещение</td><td>2-, 3- и 4-местные номера</td></tr>
+        <tr><td style="font-weight:600">Коммуникации</td><td>Telegram: чат сообщества (~172 чел.) + чаты оргов</td></tr>
+        <tr><td style="font-weight:600">Данные</td><td>Google Sheets (финмодель + участники)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📸 База — Mtserlebi Resort</div>
+    <div class="photo-gallery">
+      <img src="photos/venue1.jpeg" alt="Поляна с гамаками и гирляндами" onclick="openLightbox(this)">
+      <img src="photos/venue2.jpeg" alt="Терраса с видом на горы" onclick="openLightbox(this)">
+      <img src="photos/venue3.jpeg" alt="Здание ночью" onclick="openLightbox(this)">
+      <img src="photos/venue4.jpeg" alt="Костровище" onclick="openLightbox(this)">
+      <img src="photos/venue5.jpeg" alt="Лекторий с закатом" onclick="openLightbox(this)">
+      <img src="photos/venue6.jpeg" alt="Ресторан" onclick="openLightbox(this)">
+      <img src="photos/venue7.jpeg" alt="Лаунж-зона" onclick="openLightbox(this)">
+      <img src="photos/venue8.jpeg" alt="Клуб с диванами" onclick="openLightbox(this)">
+      <img src="photos/venue9.jpeg" alt="Бассейн с жирафой" onclick="openLightbox(this)">
+      <img src="photos/venue10.jpeg" alt="Номер с видом" onclick="openLightbox(this)">
+      <img src="photos/venue11.jpeg" alt="Костёр с людьми" onclick="openLightbox(this)">
+    </div>
+  </div>
+</div>
+
+<!-- =================== PAGE: PROGRAMME =================== -->
+<div class="page" id="page-programme">
+  <div class="section-header">Программа и <span>арка</span></div>
+
+  <div class="card" style="border-left:3px solid var(--accent);margin-bottom:20px">
+    <div class="card-title" style="color:var(--accent)">🔥 Главный челлендж</div>
+    <p style="font-size:14px;color:var(--text-muted)">
+      Составить сетку форматов, собрать заявки от участников на ведение форматов и собрать финальную программу.
+      Программа должна создавать FOMO, управлять эмоциональным состоянием по дням и давать разнообразие треков.
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="card-subtitle">Эмоциональная арка</div>
+    <div class="timeline">
+      <div class="timeline-day">
+        <h4>Четверг</h4>
+        <div class="emotion">Тепло → Забота → «Тебя ждали»</div>
+        <p>Заезд, онбординг. Задача: все приехали, почувствовали себя дома, погрузились в контекст.</p>
+      </div>
+      <div class="timeline-day">
+        <h4>Пятница</h4>
+        <div class="emotion">Любопытство → Энтузиазм → Близость</div>
+        <p>Полный день. Задача: включение, интерес, первые связи, энергия.</p>
+      </div>
+      <div class="timeline-day">
+        <h4>Суббота</h4>
+        <div class="emotion">Усиление → Раскрытие → Катарсис</div>
+        <p>Кульминация. Задача: глубина, пиковые переживания, максимальное раскрытие.</p>
+      </div>
+      <div class="timeline-day">
+        <h4>Воскресенье</h4>
+        <div class="emotion">Успокоение → Ностальгия → «Это ценно»</div>
+        <p>Прощание. Задача: тёплое завершение, благодарность, что-то увезти с собой.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCHEDULE -->
+  <div class="card">
+    <div class="card-title">Типовое расписание</div>
+
+    <div class="schedule-day">
+      <h4>Четверг — Заезд</h4>
+      <div class="schedule-item"><span class="schedule-time">15:00</span><span class="schedule-event">Трансфер из Тбилиси и Кутаиси</span></div>
+      <div class="schedule-item"><span class="schedule-time">~18:00</span><span class="schedule-event">Приезд, заселение, экскурсии по базе</span></div>
+      <div class="schedule-item"><span class="schedule-time">19:00</span><span class="schedule-event">Ужин</span></div>
+      <div class="schedule-item"><span class="schedule-time">20:00</span><span class="schedule-event">Церемония открытия</span></div>
+      <div class="schedule-item"><span class="schedule-time">21:00+</span><span class="schedule-event">Вечерние форматы (1–2 параллельно)</span></div>
+      <div class="schedule-item"><span class="schedule-time">~23:00</span><span class="schedule-event">Вечерник</span></div>
+    </div>
+
+    <div class="schedule-day">
+      <h4>Пятница — Полный день</h4>
+      <div class="schedule-item"><span class="schedule-time">08:00</span><span class="schedule-event">Утреннее шоу / зарядка / йога</span></div>
+      <div class="schedule-item"><span class="schedule-time">09:00</span><span class="schedule-event">Завтрак</span></div>
+      <div class="schedule-item"><span class="schedule-time">10:00</span><span class="schedule-event">Общий сбор / введение в кемп</span></div>
+      <div class="schedule-item"><span class="schedule-time">10:30–12:00</span><span class="schedule-event">Форматы (2–3 параллельно)</span></div>
+      <div class="schedule-item"><span class="schedule-time">12:00</span><span class="schedule-event">Кофе-брейк</span></div>
+      <div class="schedule-item"><span class="schedule-time">12:30–14:00</span><span class="schedule-event">Форматы (2–3 параллельно)</span></div>
+      <div class="schedule-item"><span class="schedule-time">14:00</span><span class="schedule-event">Обед</span></div>
+      <div class="schedule-item"><span class="schedule-time">15:00</span><span class="schedule-event">Свободное время / спонтанные активности</span></div>
+      <div class="schedule-item"><span class="schedule-time">15:30–17:00</span><span class="schedule-event">Форматы (2–3 параллельно)</span></div>
+      <div class="schedule-item"><span class="schedule-time">17:00</span><span class="schedule-event">Полдник</span></div>
+      <div class="schedule-item"><span class="schedule-time">17:30–18:30</span><span class="schedule-event">Форматы</span></div>
+      <div class="schedule-item"><span class="schedule-time">18:30</span><span class="schedule-event">Lightning Talks / общий формат</span></div>
+      <div class="schedule-item"><span class="schedule-time">19:30</span><span class="schedule-event">Чек-ины в мини-группах</span></div>
+      <div class="schedule-item"><span class="schedule-time">20:00</span><span class="schedule-event">Ужин</span></div>
+      <div class="schedule-item"><span class="schedule-time">21:00</span><span class="schedule-event">Диванчики (параллельно)</span></div>
+      <div class="schedule-item"><span class="schedule-time">22:00+</span><span class="schedule-event">Вечерние форматы: джем, бассейн, вечеринка</span></div>
+    </div>
+
+    <div class="schedule-day">
+      <h4>Суббота — Кульминация</h4>
+      <div class="schedule-item"><span class="schedule-time">08:30</span><span class="schedule-event">Утреннее шоу / потягушки</span></div>
+      <div class="schedule-item"><span class="schedule-time">09:00</span><span class="schedule-event">Завтрак</span></div>
+      <div class="schedule-item"><span class="schedule-time">10:00–12:00</span><span class="schedule-event">Форматы: сближение + интеллект (параллельно)</span></div>
+      <div class="schedule-item"><span class="schedule-time">12:00</span><span class="schedule-event">Кофе-брейк</span></div>
+      <div class="schedule-item"><span class="schedule-time">12:30–14:00</span><span class="schedule-event">Общая игровая активность (напр. «Зов джунглей»)</span></div>
+      <div class="schedule-item"><span class="schedule-time">14:00</span><span class="schedule-event">Обед</span></div>
+      <div class="schedule-item"><span class="schedule-time">15:00–17:00</span><span class="schedule-event">Форматы + свободное время</span></div>
+      <div class="schedule-item"><span class="schedule-time">17:00</span><span class="schedule-event">Полдник + общая фотография</span></div>
+      <div class="schedule-item"><span class="schedule-time">17:30–19:00</span><span class="schedule-event">Форматы: глубокие + телесные + диванчики</span></div>
+      <div class="schedule-item"><span class="schedule-time">20:00</span><span class="schedule-event">Ужин</span></div>
+      <div class="schedule-item"><span class="schedule-time">21:00</span><span class="schedule-event">Чек-ины → Церемония закрытия (гранд-финал)</span></div>
+      <div class="schedule-item"><span class="schedule-time">22:00+</span><span class="schedule-event">Караоке / дискотека / свободные активности</span></div>
+    </div>
+
+    <div class="schedule-day">
+      <h4>Воскресенье — Прощание</h4>
+      <div class="schedule-item"><span class="schedule-time">08:30</span><span class="schedule-event">Утреннее шоу</span></div>
+      <div class="schedule-item"><span class="schedule-time">09:00–12:00</span><span class="schedule-event">Воскресный бранч, прощания, полароиды, стенды</span></div>
+      <div class="schedule-item"><span class="schedule-time">12:00</span><span class="schedule-event">Сборы</span></div>
+      <div class="schedule-item"><span class="schedule-time">13:00</span><span class="schedule-event">Отъезд автобуса</span></div>
+    </div>
+  </div>
+
+  <!-- TRACKS -->
+  <div class="card">
+    <div class="card-title">Треки и форматы</div>
+    <div class="tracks-table">
+      <div class="track-row"><span class="track-name">Сближение</span><span class="track-owner">Google Games, круги Котова, Authentic Relating, каддл-пати, овершеринг, чек-ины, нигуны</span></div>
+      <div class="track-row"><span class="track-name">Интеллектуальный</span><span class="track-owner">Лекции, дискуссии, диванчики, Lightning Talks, Мидраш-кафе</span></div>
+      <div class="track-row"><span class="track-name">Творческий</span><span class="track-owner">МК рисования, каллиграфия, вышивка, цианотипия, стихи</span></div>
+      <div class="track-row"><span class="track-name">Телесный</span><span class="track-owner">Йога, зарядка, крав-мага, connective movement, sound bath</span></div>
+      <div class="track-row"><span class="track-name">Игровой</span><span class="track-owner">«Зов джунглей», «Чёрное и белое», «Линия спектра»</span></div>
+      <div class="track-row"><span class="track-name">Фестивальный</span><span class="track-owner">Дискотека/рейв, бассейн, караоке, PowerPoint Karaoke</span></div>
+      <div class="track-row"><span class="track-name">Воркшопы</span><span class="track-owner">AI-агенты, импровизация, бачата, парфюмерия</span></div>
+      <div class="track-row"><span class="track-name">Станции</span><span class="track-owner">Деkomпрессия / уголок интроверта, Beauty Parlor, кальян</span></div>
+      <div class="track-row"><span class="track-name">Про Кемп</span><span class="track-owner">Введение, церемонии открытия/закрытия, утреннее шоу</span></div>
+      <div class="track-row"><span class="track-name">Фуд</span><span class="track-owner">Плов, совместная готовка, бранч</span></div>
+    </div>
+    <p style="font-size:13px;color:var(--text-light);margin-top:8px">
+      Длительность: 30 мин – 1.5 часа (обычно). Параллельно: 2–4 формата. Ведут сами участники.
+    </p>
+  </div>
+
+  <!-- TARGET STATES -->
+  <div class="card">
+    <div class="card-title">Целевые состояния участников</div>
+    <div class="quote">
+      <strong>К вечеру четверга:</strong> «Я дома, я в тепле. Кэмп начался, меня любят, я здесь и всё хорошо. Мне любопытно что будет дальше. Я вливаюсь в общую тусу и мне комфортно.»
+    </div>
+    <div class="quote">
+      <strong>К концу пятницы:</strong> «Чувство усталости и удовлетворённости от насыщенного дня. Я познакомился с большинством людей, с кем хотел, и сблизился с ними.»
+    </div>
+    <div class="quote">
+      <strong>После субботы:</strong> «Яркие впечатления и опыт, который ты прожил с другими людьми. Катарсис. Отпускание контроля. Ощущение единения, лёгкое безвремение.»
+    </div>
+    <div class="quote">
+      <strong>Воскресенье:</strong> «Лёгкая грусть. Приятное послевкусие. Чувство наполненности и завершённости. Мы есть друг у друга.»
+    </div>
+  </div>
+</div>
+
+<!-- =================== PAGE: LOCATIONS =================== -->
+<div class="page" id="page-locations">
+  <div class="section-header">Локации — <span>Mtserlebi Resort</span></div>
+
+  <div class="card" style="margin-bottom:20px">
+    <p style="font-size:14px;color:var(--text-muted)">
+      Квишхети, Грузия. Между Тбилиси и Кутаиси (~2.5 ч от каждого).
+      <a href="https://www.booking.com/hotel/ge/mtserlebi-mountain-resort-kvishkheti-getaway.html" target="_blank" style="color:var(--accent)">Booking →</a>
+    </p>
+  </div>
+
+  <div class="loc-grid">
+    <div class="loc-card">
+      <h4>Лекторий</h4>
+      <p>Светлое вытянутое помещение. 3 флипчарта, проектор. Вместит всех. Кофемашина в конце зала.</p>
+      <span class="tag tag-olive">Все участники</span>
+    </div>
+    <div class="loc-card">
+      <h4>Клуб</h4>
+      <p>Огромный, бетонные стены, ноль окон. Красные прожекторы, сцена, бар. Можно курить. Можно превращать в лекторий.</p>
+      <span class="tag tag-olive">Все участники</span>
+    </div>
+    <div class="loc-card">
+      <h4>Рестик (1 этаж)</h4>
+      <p>Свой бар, своя сцена. Можно выступать группой. Вмещает всех.</p>
+      <span class="tag tag-olive">Все участники</span>
+    </div>
+    <div class="loc-card">
+      <h4>Рестик (2 этаж)</h4>
+      <p>Шведский стол, огромный зал для завтраков. Посадку можно менять.</p>
+      <span class="tag tag-olive">Все участники</span>
+    </div>
+    <div class="loc-card">
+      <h4>Гигантская терраса (2 эт.)</h4>
+      <p>Веранда под навесом, вытянутая. Столики можно убрать. Можно курить.</p>
+      <span class="tag tag-olive">Все участники</span>
+    </div>
+    <div class="loc-card">
+      <h4>Большой бассейн</h4>
+      <p>Треугольный неглубокий (можно стоять). Шезлонги, декор, зонтики. 30–40 человек.</p>
+      <span class="tag tag-sand">30–40 чел.</span>
+    </div>
+    <div class="loc-card">
+      <h4>Executive Suite Room</h4>
+      <p>Уютная комната на 2 этаже. Гостиная, диван, ковёр. Ванная с реальной ванной.</p>
+      <span class="tag tag-sand">15–20 чел.</span>
+    </div>
+    <div class="loc-card">
+      <h4>Зона диванчиков у ресепшна</h4>
+      <p>Две зоны: вытянутая на 15–20 чел., квадратная на 10–15 чел.</p>
+      <span class="tag tag-sand">10–20 чел.</span>
+    </div>
+    <div class="loc-card">
+      <h4>Зона диванчиков у клуба</h4>
+      <p>2–4 дивана, макс. 10 чел. Нет перегородки с коридором.</p>
+      <span class="tag tag-accent">до 10 чел.</span>
+    </div>
+    <div class="loc-card">
+      <h4>Поляна + уличная сцена</h4>
+      <p>Сцены нет (нужно строить), но есть место. Поляна вмещает всех. Рядом виноградник.</p>
+      <span class="tag tag-olive">Все участники</span>
+    </div>
+    <div class="loc-card">
+      <h4>Газон у рестика</h4>
+      <p>Навес, беседка, рядом бассейн. Можно всех поместить кругом.</p>
+      <span class="tag tag-olive">Все участники</span>
+    </div>
+    <div class="loc-card">
+      <h4>Костёр</h4>
+      <p>Чилл-зона, живой огонь, ~10 сидячих мест. Рядом длинный аппендикс — можно устроить сеновал.</p>
+      <span class="tag tag-accent">~10 чел.</span>
+    </div>
+    <div class="loc-card">
+      <h4>Малый бассейн</h4>
+      <p>2 этаж, рядом сауна. Комфортно 10 чел. Шезлонги, закуток.</p>
+      <span class="tag tag-accent">~10 чел.</span>
+    </div>
+    <div class="loc-card">
+      <h4>Сауна</h4>
+      <p>Комфортно 10–15 человек за раз.</p>
+      <span class="tag tag-accent">10–15 чел.</span>
+    </div>
+    <div class="loc-card">
+      <h4>Игровой зал</h4>
+      <p>Пинг-понг, прозрачная стена к малому бассейну. Отдельно — зал с бильярдом.</p>
+      <span class="tag tag-sand">Средний</span>
+    </div>
+    <div class="loc-card">
+      <h4>Duplex</h4>
+      <p>Можно зарезервировать под интровертошную. Две кровати на двух этажах.</p>
+      <span class="tag tag-accent">Камерный</span>
+    </div>
+    <div class="loc-card">
+      <h4>Вертолётная площадка</h4>
+      <p>Бетонное покрытие, размер уточняется.</p>
+      <span class="tag tag-sand">Уточняется</span>
+    </div>
+  </div>
+</div>
+
+<!-- =================== PAGE: TEAM =================== -->
+<div class="page" id="page-team">
+  <div class="section-header">Команда <span>оргов</span></div>
+
+  <div class="person-grid">
+    <!-- IVAN -->
+    <div class="person-card">
+      <div class="person-header">
+        <span class="person-name">Иван</span>
+        <span class="person-tg">@tikhov</span>
+      </div>
+      <div class="person-role">
+        <strong>Лидер организации.</strong> Программа, стратегия, общая коммуникация. Москва.
+        <div style="margin-top:6px">
+          <span class="tag tag-accent">Сближение</span>
+          <span class="tag tag-sand">Про Кемп</span>
+        </div>
+      </div>
+      <div class="person-details">
+        <div class="person-detail-toggle" onclick="toggleDetail(this)">Инструкция к себе</div>
+        <div class="person-detail-content">
+          <strong>В стрессе:</strong> Спросить «чо как я». Можно что угодно и когда угодно. Ок напоминать, подгонять. Главный минус — проебывается. Не ок — агрессия (огрызнётся).<br><br>
+          <strong>Обратная связь:</strong> Как угодно. Главное — понятно. Прямо, при личном разговоре. Предпочитает диалог, а не одностороннее сообщение.<br><br>
+          <strong>Конфликты:</strong> Описать контекст, ощущения, пожелания. Предложить выходы. Оставаться в контакте. Всегда настроен на разрешение.
+        </div>
+      </div>
+    </div>
+
+    <!-- DASHA -->
+    <div class="person-card">
+      <div class="person-header">
+        <span class="person-name">Даша</span>
+        <span class="person-tg">@usefuldaria</span>
+      </div>
+      <div class="person-role">
+        <strong>COO программы.</strong> Проджект-менеджмент программы, дедлайны, артефакты, экзекьюшн + финансы. Тбилиси.
+        <div style="margin-top:6px">
+          <span class="tag tag-accent">Интеллектуальный</span>
+          <span class="tag tag-sand">Грант арт-объект</span>
+          <span class="tag tag-olive">Оформление</span>
+        </div>
+      </div>
+      <div class="person-details">
+        <div class="person-detail-toggle" onclick="toggleDetail(this)">Инструкция к себе</div>
+        <div class="person-detail-content">
+          <strong>В стрессе:</strong> Спрашивать да/нет. Не грузить подробностями. Плохо понимает намёки. Признательна за логично структурированное повествование.<br><br>
+          <strong>ОС:</strong> Я-сообщения. Формат: контекст→действия→следствие. Какой идеальной реакции ожидали.<br><br>
+          <strong>Конфликты:</strong> Хладнокровно. Определяем проблему → варианты решений → консенсус → разделяем роли. Не все конфликты готова решать.
+        </div>
+      </div>
+    </div>
+
+    <!-- YANA -->
+    <div class="person-card">
+      <div class="person-header">
+        <span class="person-name">Яна</span>
+        <span class="person-tg">@yanavigil</span>
+      </div>
+      <div class="person-role">
+        <strong>Программа и её части.</strong> Казахстан.
+        <div style="margin-top:6px">
+          <span class="tag tag-accent">Интеллектуальный</span>
+          <span class="tag tag-sand">Про Кемп</span>
+          <span class="tag tag-olive">Фуд-трек</span>
+        </div>
+      </div>
+      <div class="person-details">
+        <div class="person-detail-toggle" onclick="toggleDetail(this)">Инструкция к себе</div>
+        <div class="person-detail-content">
+          <strong>В стрессе:</strong> Очень плохо воспринимает давление, особенно эмоциональное. Не стоит предлагать отдохнуть или настойчиво спрашивать как себя чувствует.<br><br>
+          <strong>ОС:</strong> Чем более неочевидная — тем больше радует. Отлично относится к ОС про улучшения и точки роста.<br><br>
+          <strong>Конфликты:</strong> Максимально подробно рассказать чего хотите и чего ждёте в поиске совместного решения.
+        </div>
+      </div>
+    </div>
+
+    <!-- LIZA -->
+    <div class="person-card">
+      <div class="person-header">
+        <span class="person-name">Лиза</span>
+        <span class="person-tg">@lizhenginger</span>
+      </div>
+      <div class="person-role">
+        <strong>Команда земли.</strong> Логистика на месте: база, договор, оборудование, декор. Тбилиси.
+        <div style="margin-top:6px">
+          <span class="tag tag-accent">Творческий</span>
+          <span class="tag tag-sand">Вечеринки</span>
+          <span class="tag tag-olive">Открытие/закрытие</span>
+        </div>
+      </div>
+      <div class="person-details">
+        <div class="person-detail-toggle" onclick="toggleDetail(this)">Инструкция к себе</div>
+        <div class="person-detail-content">
+          <strong>В стрессе:</strong> Отъебаться от лишних задач. Покурить/попить чаю. Дать задачу где исполнитель. Не повышать голос, не давить.<br><br>
+          <strong>ОС:</strong> Сложно принимать негативную, но она помогает. Конструктивно, через «я» сообщения, нежно, конкретно.<br><br>
+          <strong>Конфликты:</strong> Вовремя дать ОС. Если наболело — можно личным и эмоциональным. Через я-формулировки.
+        </div>
+      </div>
+    </div>
+
+    <!-- MAXIM -->
+    <div class="person-card">
+      <div class="person-header">
+        <span class="person-name">Максим</span>
+        <span class="person-tg" style="color:var(--text-light)">TG уточняется</span>
+      </div>
+      <div class="person-role">
+        <strong>Команда Команды.</strong> Испания.
+        <div style="margin-top:6px">
+          <span class="tag tag-accent">Телесный</span>
+          <span class="tag tag-sand">Игровой</span>
+          <span class="tag tag-olive">Станции</span>
+        </div>
+      </div>
+      <div class="person-details">
+        <div class="person-detail-toggle" onclick="toggleDetail(this)">Инструкция к себе</div>
+        <div class="person-detail-content">
+          <strong>ОС:</strong> Когда ты — то я. Чем более неочевидная — тем больше радует. Отлично относится к ОС про точки роста.<br><br>
+          <strong>Конфликты:</strong> Как умеете (потом возьмём перерыв). Любит проораться. Прямо говорить лучше, чем намекать. Лучше просто спросить.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRACKS RESPONSIBILITY -->
+  <div class="card" style="margin-top:24px">
+    <div class="card-title">Треки → Ответственные</div>
+    <div class="tracks-table">
+      <div class="track-row"><span class="track-name">Интеллектуальный</span><span class="track-owner"><b>Яна</b> + Даша</span></div>
+      <div class="track-row"><span class="track-name">Сближение</span><span class="track-owner"><b>Иван</b> + Макс</span></div>
+      <div class="track-row"><span class="track-name">Про Кемп</span><span class="track-owner"><b>Яна</b> + Иван</span></div>
+      <div class="track-row"><span class="track-name">Телесный (велнес + секс)</span><span class="track-owner"><b>Макс</b></span></div>
+      <div class="track-row"><span class="track-name">Активно-игровой</span><span class="track-owner"><b>Макс</b> + Ваня</span></div>
+      <div class="track-row"><span class="track-name">Творческий</span><span class="track-owner"><b>Лиза</b></span></div>
+      <div class="track-row"><span class="track-name">Станции</span><span class="track-owner"><b>Макс</b> + Лиза</span></div>
+      <div class="track-row"><span class="track-name">Вечеринки-безумие</span><span class="track-owner"><b>Лиза</b> + Макс, Даша</span></div>
+      <div class="track-row"><span class="track-name">Фуд-трек</span><span class="track-owner"><b>Яна</b> + Лиза</span></div>
+      <div class="track-row"><span class="track-name">Открытие/закрытие</span><span class="track-owner"><b>Лиза</b></span></div>
+      <div class="track-row"><span class="track-name">Грант на арт-объект</span><span class="track-owner"><b>Яна</b> + Даша</span></div>
+      <div class="track-row"><span class="track-name">Обеспечение реализации</span><span class="track-owner"><b>Лиза</b> + Даша</span></div>
+      <div class="track-row"><span class="track-name">Оформление</span><span class="track-owner"><b>Лиза</b> + Даша</span></div>
+    </div>
+    <p style="font-size:13px;color:var(--text-light);margin-top:12px">
+      <strong>Общее:</strong> Финальный программный комитет — все вместе. Коммуникация — Иван. People book — отдельно.
+    </p>
+  </div>
+</div>
+
+<!-- =================== PAGE: INSIGHTS =================== -->
+<div class="page" id="page-insights">
+  <div class="section-header">CampDev <span>инсайты</span></div>
+
+  <div class="card" style="margin-bottom:20px">
+    <p style="font-size:14px;color:var(--text-muted)">
+      «Camper Development» — серия из ~12 глубинных интервью с участниками (январь 2026).
+      23 вопроса, 8 блоков. Проводились всей командой оргов. Ниже — синтез ключевых выводов.
+    </p>
+  </div>
+
+  <!-- Insight accordions -->
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">🏕️ Три столпа идентичности AmpCamp</div>
+    <div class="accordion-body"><div class="accordion-body-inner">
+      <strong>1. Люди:</strong> Отбор по ценностям (не по профессии). Умные, открытые, эмпатичные. Культура мейкерства — все контрибьюторы, не клиенты.<br><br>
+      <strong>2. Магия сближения:</strong> Глубокий человеческий контакт, атмосфера доверия, форматы создающие близость, невозможную в обычной жизни.<br><br>
+      <strong>3. Спроектированный опыт:</strong> Программа задизайнена — эмоциональная, интеллектуальная, двигательно-игровая, телесная. Не случайная подборка.
+    </div></div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">⭐ Пиковые моменты — что работает</div>
+    <div class="accordion-body"><div class="accordion-body-inner">
+      <ul>
+        <li><strong>Овершеринг / откровенный шеринг (6–12 чел.)</strong> — катарсический опыт, когда делятся сокровенным</li>
+        <li><strong>Неожиданные творческие открытия</strong> — МК по стихам → человек 3 года пишет стихи</li>
+        <li><strong>Каддл-пати</strong> — «опыт, которого не ожидал»</li>
+        <li><strong>Спонтанные глубокие разговоры</strong> — бабакемп, костёр, кальян под звёздами</li>
+        <li><strong>Моменты единения</strong> — нигуны, когда 10 человек ощущаются как 100</li>
+        <li><strong>Естественное застолье</strong> — неструктурированное сближение</li>
+      </ul>
+      <br>
+      <strong>Паттерн:</strong> лучшие моменты = глубина + неожиданность + человеческий контакт.
+    </div></div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">⚠️ Негативный опыт — чего избегать</div>
+    <div class="accordion-body"><div class="accordion-body-inner">
+      <ul>
+        <li><strong>Навязывание опыта/настроения</strong> — формат заставляет делать то, к чему не готов</li>
+        <li><strong>Плохо сделанное закрытие</strong> — не создана эмоциональная атмосфера</li>
+        <li><strong>Жёсткая модерация</strong> — ломает атмосферу, неестественно</li>
+        <li><strong>Потерянность</strong> — «не знаю куда себя пристроить», особенно после ужина</li>
+        <li><strong>Длинные шеринги оргов</strong> — «занудно»</li>
+        <li><strong>Перегруз без альтернатив</strong> — уголок интроверта не всем подходит</li>
+        <li><strong>Оргов не видно как участников</strong> — перегружены организацией</li>
+      </ul>
+    </div></div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">⏱️ Идеальный ритм дня</div>
+    <div class="accordion-body"><div class="accordion-body-inner">
+      <strong>Утро:</strong> Кофе сразу. Мягкое начало — зарядка/шоу. Потом интеллектуальный блок или сближение 1:1.<br><br>
+      <strong>Первая половина:</strong> Интеллектуальная нагрузка или сближение в малых группах.<br><br>
+      <strong>После обеда:</strong> Переключение — физическая активность, хайкинг, бассейн. Или спокойные воркшопы.<br><br>
+      <strong>Предвечер:</strong> Энерджайзер (Lightning Talks, PowerPoint Karaoke). Общий формат.<br><br>
+      <strong>Вечер:</strong> Свободный выбор — диванчики, музыка, вечеринка. Максимум параллельных опций.<br><br>
+      <strong>Ночь:</strong> Для желающих — разъеб. Для остальных — спать.
+    </div></div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">⚖️ Баланс форматов — что перекошено</div>
+    <div class="accordion-body"><div class="accordion-body-inner">
+      <ul>
+        <li>Не хватает <strong>качественного интеллектуального контента</strong></li>
+        <li>Не хватает <strong>форматов на глубокое сближение</strong></li>
+        <li>Бывает перекос в <strong>около-психологические форматы</strong></li>
+        <li>Запрос: <strong>больше видеть ЧЕЛОВЕКА за форматом</strong> — не тему, а личность ведущего</li>
+      </ul>
+      <br>
+      <strong>Предлагаемый баланс:</strong> ~30% сближение, ~20% интеллект, ~20% свободное время, ~15% телесное/игры, ~15% вечеринки/творчество.<br><br>
+      <strong>Спонтанность:</strong> До 25–50% программы может быть гибкой. Идея: «структурированное неструктурированное время» + букинг комнат участниками.
+    </div></div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">🤝 Сближение — что работает</div>
+    <div class="accordion-body"><div class="accordion-body-inner">
+      <strong>Лучшие форматы:</strong> Authentic Relating, круги Котова, «Я не знаю про тебя», каддл-пати, овершеринг (до 12 чел.), гугл-геймс, нотисинг, «зеркало».<br><br>
+      <strong>Важно:</strong> Качество модератора — ключевой фактор. Идеальный размер: группы до 5 чел., включая 1:1.<br><br>
+      <strong>Критика:</strong> «Кемп пропускает этап обнюхивания — людей сразу бросают в близость, а они ещё не решили, хотят ли.» Нужен постепенный вход.<br><br>
+      <strong>Группы:</strong> Перемешивание предпочтительнее фиксированных. Нужно минимум 30 мин focus time с одним человеком.<br><br>
+      <strong>Время еды — стратегическое:</strong> Нужно осознанно выбирать, с кем сидеть.
+    </div></div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">🚧 Границы и чувствительные форматы</div>
+    <div class="accordion-body"><div class="accordion-body-inner">
+      <strong>Алкоголь:</strong> Не форсировать, не начинать до конца активностей. Небольшие группы ок, большая пьяная группа — риск.<br><br>
+      <strong>Шум:</strong> Главная проблема — невозможность спать. Всегда иметь альтернативу.<br><br>
+      <strong>Нагота/каддлы:</strong> Ок при консенте и фасилитации. Для старичкового кемпа границы можно расширить.<br><br>
+      <strong>Ключевой принцип:</strong> Не запирать людей в этих активностях + всегда иметь альтернативу.
+    </div></div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">💰 Цена и что улучшить</div>
+    <div class="accordion-body"><div class="accordion-body-inner">
+      <strong>Цена:</strong> Единогласно — справедливо или «ценность сильно больше цены».<br><br>
+      <strong>Что сделает кемпы лучше:</strong>
+      <ul>
+        <li>Перемешивать людей, не давать создавать кружки</li>
+        <li>Усилить follow-up после кемпа (блокнот, 1–2 дня на контакты)</li>
+        <li>Делегировать задачи, чтобы орги были доступны</li>
+        <li>Готовить ведущих форматов</li>
+        <li>Анализировать фидбек, повторять то что зашло</li>
+        <li>«Мудтреки» — помочь определить настроение и выбрать трек</li>
+        <li>Глубокие уязвимые темы: дети, родители, секс, деньги, травмы</li>
+        <li>Наращивать свободное время от пятницы к субботе</li>
+        <li>Больше тактильности и экспериментов</li>
+      </ul>
+    </div></div>
+  </div>
+
+  <div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">🚀 Когда кемп начинается</div>
+    <div class="accordion-body"><div class="accordion-body-inner">
+      Для большинства: <strong>в автобусе по дороге</strong> — когда видишь людей, музыка, караоке, спонтанные активности.<br><br>
+      <strong>Инсайт для оргов:</strong> Опыт в трансфере можно и нужно дизайнить.
+    </div></div>
+  </div>
+</div>
+
+<!-- =================== PAGE: FINANCE =================== -->
+<div class="page" id="page-finance">
+  <div class="section-header">Фин<span>модель</span></div>
+
+  <div class="card">
+    <div class="card-title">Бюджет — план / факт</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Статья</th><th>Описание</th><th style="text-align:right">План (€)</th><th style="text-align:right">Факт (€)</th></tr>
+        </thead>
+        <tbody>
+          <tr style="background:var(--olive-soft)"><td colspan="4" style="font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:12px;padding:8px 14px">Доходы</td></tr>
+          <tr><td style="font-weight:600">Собрано билетов</td><td></td><td style="text-align:right">51 960</td><td style="text-align:right">56 430</td></tr>
+          <tr style="font-weight:700;background:var(--olive-soft)"><td>Итого доходы</td><td></td><td style="text-align:right">51 960</td><td style="text-align:right">56 430</td></tr>
+
+          <tr style="background:var(--accent-soft)"><td colspan="4" style="font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:12px;padding:8px 14px">Расходы</td></tr>
+          <tr><td>Проживание</td><td>Accommodation на базе</td><td style="text-align:right">28 875</td><td style="text-align:right;color:var(--text-light)">—</td></tr>
+          <tr><td>Трансфер</td><td>Транспорт участников</td><td style="text-align:right">2 475</td><td style="text-align:right;color:var(--text-light)">—</td></tr>
+          <tr><td>Еда/кофе</td><td>Доп. расходы помимо базы</td><td style="text-align:right">1 200</td><td style="text-align:right;color:var(--text-light)">—</td></tr>
+          <tr><td>Мерч</td><td>Мерч для участников</td><td style="text-align:right">2 200</td><td style="text-align:right;color:var(--text-light)">—</td></tr>
+          <tr><td>Фото/видео</td><td>Фотограф + видеограф</td><td style="text-align:right">2 200</td><td style="text-align:right;color:var(--text-light)">—</td></tr>
+          <tr><td>Оборудование</td><td>Проекторы, стулья и т.д.</td><td style="text-align:right">1 500</td><td style="text-align:right;color:var(--text-light)">—</td></tr>
+          <tr><td>Программа</td><td>Расходники на форматы</td><td style="text-align:right">880</td><td style="text-align:right;color:var(--text-light)">—</td></tr>
+          <tr><td>Декор</td><td>Оформление</td><td style="text-align:right">500</td><td style="text-align:right;color:var(--text-light)">—</td></tr>
+          <tr><td>Расходники</td><td>Канцелярия и т.д.</td><td style="text-align:right">500</td><td style="text-align:right;color:var(--text-light)">—</td></tr>
+          <tr><td>Компенсации</td><td>Помощь организаторам</td><td style="text-align:right">4 000</td><td style="text-align:right;color:var(--text-light)">—</td></tr>
+          <tr><td>Комиссии</td><td>Потери на переводах</td><td style="text-align:right">2 750</td><td style="text-align:right;color:var(--text-light)">—</td></tr>
+          <tr><td>Риски</td><td>Заначка на чёрный день</td><td style="text-align:right">3 500</td><td style="text-align:right;color:var(--text-light)">—</td></tr>
+          <tr><td>Прочее</td><td>IT, сервисы, такси</td><td style="text-align:right">1 380</td><td style="text-align:right;color:var(--text-light)">—</td></tr>
+          <tr><td>preCamp</td><td>Жильё и билеты оргов</td><td style="text-align:right;color:var(--text-light)">—</td><td style="text-align:right;color:var(--text-light)">—</td></tr>
+          <tr style="font-weight:700;background:var(--accent-soft)"><td>Итого расходы</td><td></td><td style="text-align:right">51 960</td><td style="text-align:right;color:var(--text-light)">—</td></tr>
+
+          <tr style="background:var(--sand-soft)"><td colspan="4" style="font-weight:700;text-transform:uppercase;letter-spacing:1px;font-size:12px;padding:8px 14px">Баланс</td></tr>
+          <tr style="font-weight:700;background:var(--sand-soft)"><td>Баланс</td><td></td><td style="text-align:right">0</td><td style="text-align:right;color:var(--text-light)">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px;color:var(--text-light);margin-top:8px">Факт расходов будет подтягиваться из Google Sheets.</p>
+  </div>
+</div>
+
+<!-- =================== PAGE: IDEAS =================== -->
+<div class="page" id="page-ideas">
+  <div class="section-header">Шикарные <span>идеи</span></div>
+
+  <div class="card" style="margin-bottom:20px">
+    <p style="font-size:14px;color:var(--text-muted)">
+      Брейншторм идей для форматов и активностей. Пока без деталей — обсудим и отберём.
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="card-subtitle">Шоу и ночные форматы</div>
+    <p style="font-size:14px;color:var(--text-muted);line-height:1.8">
+      Ночное нуарное радио-шоу (странные звуки, расследования в духе Каневского) · Ночной квест-игра, Яна ведёт репортаж · Блиц-вопросы и нано-интервью · Документалка · Квест-испорченный телефон + формат по сплетням + Night Late Show · Исповедальня + запись AI с транскрибацией · Прожектор Бреслава · «Что было дальше»
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="card-subtitle">Вечеринки и музыка</div>
+    <p style="font-size:14px;color:var(--text-muted);line-height:1.8">
+      Разъебная дискотека (что-то между рейвом) · Welcoming рейв · Дискотека по полчаса: 70-е, 80-е, 90-е, нулевые, десятые, двадцатые · Вместе кричать песни Кино и Король и Шут · Rap battle · Стендап · Прожарка · Кринж сессия · Караоке
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="card-subtitle">Сближение и шеринг</div>
+    <p style="font-size:14px;color:var(--text-muted);line-height:1.8">
+      Овершеринг (и то что не нравится Даше — аля 5 минут глаза в глаза) · Стереотипные сближения — наваливают с точки зрения стереотипов · Lightning Talks · Круги про сближение · Много перемешивания · Check Your Privilege — белопальтовая с реальным белым пальто · Писать валентинки · Школьный дневник · Белопальтовая сессия · Формат в полной темноте · Публичная сессия Hot or Not
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="card-subtitle">Вайбовые станции</div>
+    <p style="font-size:14px;color:var(--text-muted);line-height:1.8">
+      Закрываю глаза и представляю базу — тёплый свет от ламп, темно, ночь, типа-палатки, но не кринжовые. Внутри: фуд-станции, бьюти-салон, чайная, одежный своп, танцы, кальянная, ковёр-вертолёт с кальяном, стрельба из лука, кидание ножей · Дерево от Лизы · Путеводитель по кемпу · Станции
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="card-subtitle">Движ и телесное</div>
+    <p style="font-size:14px;color:var(--text-muted);line-height:1.8">
+      Совместные танцы · Шаманские танцы солнцестояния · Танцевальная 5-минутка · Аквааэробика · Водное поло · Курсы первой помощи · Токсикология · Мастеркласс по сексу · Каддл · Ножички как в детстве
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="card-subtitle">Творческое и театр</div>
+    <p style="font-size:14px;color:var(--text-muted);line-height:1.8">
+      Театральные выступления и импровизация · Стишки писали и выступали · Актёры говорят на выдуманном языке — озвучивают из зала · Glory Hole + CumShot (настойка) · Прищепки (раздаём или втихую начинаем активность) · Псевдозагадка (аля шутейка про девушку с синими волосами)
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="card-subtitle">Игры</div>
+    <p style="font-size:14px;color:var(--text-muted);line-height:1.8">
+      Покерный турнир · Мафия + Мафия в течение нескольких дней · Шпион · Баттл по анекдотам (Батя напился) · Машинки или кораблики на радиоуправлении · «5 мужиков по очереди отвечают на вопросы»
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="card-subtitle">Интеллектуальное</div>
+    <p style="font-size:14px;color:var(--text-muted);line-height:1.8">
+      AI воркшоп · Что-нибудь про власть · Ностальгическая сессия · Рыдательная сессия
+    </p>
+  </div>
+
+</div>
+
+<!-- Lightbox overlay -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<!-- =================== PAGE: CHECKLIST =================== -->
+<div class="page" id="page-checklist">
+  <div class="section-header">Задачи <span>команды</span></div>
+
+  <div class="card">
+    <div class="card-subtitle">Контракт</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Кто</th><th>Статус</th><th>Задача</th><th style="text-align:right">Дедлайн</th></tr></thead>
+      <tbody>
+        <tr><td>Ваня</td><td><span class="tag tag-sand">in prog</span></td><td>Ивану передать полученный от Максима контракт Оксане</td><td style="text-align:right">09.03</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <div class="card-subtitle">Кемпдев</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Кто</th><th>Статус</th><th>Задача</th><th style="text-align:right">Дедлайн</th></tr></thead>
+      <tbody>
+        <tr><td>Все</td><td><span class="tag tag-accent">in prog</span></td><td>К КОНЦУ ФЕВРАЛЯ ПРОВЕСТИ ВСЕ КАМПДЕВЫ И ВНЕСТИ В ТАБЛИЧКУ</td><td style="text-align:right">09.03</td></tr>
+        <tr><td>Яна</td><td><span class="tag tag-olive">to do</span></td><td>Прочитать Дашино предложение по обработке кастдев интервью и сделать комментарии</td><td style="text-align:right">09.03</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <div class="card-subtitle">Финмодель</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Кто</th><th>Статус</th><th>Задача</th><th style="text-align:right">Дедлайн</th></tr></thead>
+      <tbody>
+        <tr><td>Даша</td><td><span class="tag tag-olive">to do</span></td><td>Внести финмодель в таблицу с деньгами</td><td style="text-align:right">24.02</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <div class="card-subtitle">Команда и Ways of Working</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Кто</th><th>Статус</th><th>Задача</th><th style="text-align:right">Дедлайн</th></tr></thead>
+      <tbody>
+        <tr><td>Даша, Яна</td><td><span class="tag tag-olive">to do</span></td><td>Собрать страницу в ноушн про команду: инструкция ко мне</td><td style="text-align:right">24.02</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <div class="card-subtitle">Программа</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Кто</th><th>Статус</th><th>Задача</th><th style="text-align:right">Дедлайн</th></tr></thead>
+      <tbody>
+        <tr style="background:var(--accent-soft)"><td>Все</td><td><span class="tag tag-accent">актуально</span></td><td>Шизим про форматы</td><td style="text-align:right">—</td></tr>
+        <tr><td>Яна</td><td><span class="tag tag-olive">to do</span></td><td>Финализировать концепцию программы</td><td style="text-align:right;color:var(--accent);font-weight:600">04.03 ⚠️</td></tr>
+        <tr><td>Яна</td><td><span class="tag tag-olive">to do</span></td><td>Оформить (систематизировать) карту опыта участника</td><td style="text-align:right">11.03</td></tr>
+        <tr><td>Яна</td><td><span class="tag tag-olive">to do</span></td><td>Оформить распределение ответственности</td><td style="text-align:right">11.03</td></tr>
+        <tr><td>Даша</td><td><span class="tag tag-olive">to do</span></td><td>Бот для сбора заявок в таблицу</td><td style="text-align:right">08.03</td></tr>
+        <tr><td>Яна</td><td><span class="tag tag-olive">to do</span></td><td>Текст поста в канал для сбора входящих заявок + ссылка на бота</td><td style="text-align:right">08.03</td></tr>
+        <tr><td>Яна</td><td><span class="tag tag-olive">to do</span></td><td>Публикация поста в канал</td><td style="text-align:right">09.03</td></tr>
+        <tr><td>Даша</td><td><span class="tag tag-sand">in prog</span></td><td>Обновить таблицу с ответственными за холодные сообщения. Убрать тех, кто уже на связи. Раскидать людей по холодному опросу</td><td style="text-align:right">09.03</td></tr>
+        <tr><td>Все</td><td><span class="tag tag-olive">to do</span></td><td>Начать писать в холодную всем людям с вопросом об участии в программе</td><td style="text-align:right">14.03</td></tr>
+        <tr><td>Даша</td><td><span class="tag tag-olive">to do</span></td><td>Подготовить табличку для результатов холодного опроса</td><td style="text-align:right">13.03</td></tr>
+        <tr><td>Все</td><td><span class="tag tag-olive">to do</span></td><td>Собрать с ответственных за направления их видение</td><td style="text-align:right">16.03</td></tr>
+        <tr><td>Даша</td><td><span class="tag tag-olive">to do</span></td><td>Подготовить ноушн для обработки форматов</td><td style="text-align:right">16.03</td></tr>
+        <tr><td>Даша</td><td><span class="tag tag-olive">to do</span></td><td>Собрать видения форматов программы в эксель с картой опыта</td><td style="text-align:right">18.03</td></tr>
+        <tr><td>Все</td><td><span class="tag tag-olive">to do</span></td><td>Закончить писать в холодную всем людям</td><td style="text-align:right">23.03</td></tr>
+        <tr><td>Все</td><td><span class="tag tag-olive">to do</span></td><td>Обсуждение и выбор форматов из собранных предложений</td><td style="text-align:right">23.03</td></tr>
+        <tr><td>Даша</td><td><span class="tag tag-olive">to do</span></td><td>Подготовить вступительное сообщение для чатов с участниками: про процесс, ответственных и сроки</td><td style="text-align:right">24.03</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <div class="card-subtitle">Прекемп</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Кто</th><th>Статус</th><th>Задача</th><th style="text-align:right">Дедлайн</th></tr></thead>
+      <tbody>
+        <tr><td>Лиза</td><td><span class="tag tag-sand">in prog</span></td><td>Забукать машину для прекемпа</td><td style="text-align:right">02.03</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <div class="card-subtitle">Other</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Кто</th><th>Статус</th><th>Задача</th><th style="text-align:right">Дедлайн</th></tr></thead>
+      <tbody>
+        <tr><td>Все</td><td><span class="tag tag-olive">to do</span></td><td>Погенерить идеи на тему мерча (чо, как, когда, сколько, зачем) — назначить встречу</td><td style="text-align:right">24.02</td></tr>
+        <tr><td>Ваня</td><td><span class="tag tag-olive">to do</span></td><td>Пишет для Лизы пост для Тины про то что по номерам</td><td style="text-align:right">—</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleAccordion(header) {
+  const item = header.parentElement;
+  const body = item.querySelector('.accordion-body');
+  const isOpen = item.classList.contains('open');
+
+  if (isOpen) {
+    body.style.maxHeight = null;
+    item.classList.remove('open');
+  } else {
+    body.style.maxHeight = body.scrollHeight + 'px';
+    item.classList.add('open');
+  }
+}
+
+function toggleDetail(toggle) {
+  const content = toggle.nextElementSibling;
+  toggle.classList.toggle('open');
+  content.classList.toggle('open');
+}
+
+function openLightbox(img) {
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lightbox-img').src = img.src;
+  lb.classList.add('open');
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+}
+
+// Update days countdown
+const campDate = new Date('2026-05-28');
+const today = new Date();
+const diff = Math.ceil((campDate - today) / (1000 * 60 * 60 * 24));
+document.getElementById('countdown').textContent = diff;
+</script>
+
+</body>
+</html>
