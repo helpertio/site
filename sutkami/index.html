@@ -231,24 +231,42 @@
 
         /* Period selector */
         .period-selector {
+            margin-bottom: 1.5rem;
+        }
+
+        .period-row {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
             flex-wrap: wrap;
         }
 
-        .period-selector label {
-            font-size: 0.85rem;
+        .period-row .period-label {
+            font-size: 0.8rem;
             color: var(--text-muted);
+            min-width: 50px;
+            flex-shrink: 0;
         }
 
-        .period-selector select {
-            padding: 0.4rem 0.75rem;
+        .period-btn {
+            padding: 0.35rem 0.75rem;
             border: 1px solid var(--border);
-            border-radius: 8px;
-            font-size: 0.85rem;
             background: var(--card);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.15s;
+            color: var(--text);
+            white-space: nowrap;
+        }
+
+        .period-btn:hover { border-color: var(--green-accent); background: var(--green-light); }
+
+        .period-btn.active {
+            background: var(--green-dark);
+            color: white;
+            border-color: var(--green-dark);
         }
 
         /* Footer */
@@ -302,17 +320,30 @@
 <div class="container">
 
     <!-- Period selector -->
-    <div class="period-selector">
-        <label>Период:</label>
-        <select id="periodSelect">
-            <option value="all">Всё время (янв 2025 — фев 2026)</option>
-            <option value="2025">2025 год</option>
-            <option value="2026">2026 год</option>
-            <option value="q1-2025">Q1 2025</option>
-            <option value="q2-2025">Q2 2025</option>
-            <option value="q3-2025">Q3 2025</option>
-            <option value="q4-2025">Q4 2025</option>
-        </select>
+    <div class="period-selector" id="periodSelector">
+        <div class="period-row">
+            <span class="period-label">Период:</span>
+            <button class="period-btn active" data-period="all">Всё время</button>
+            <button class="period-btn" data-period="2025">2025</button>
+            <button class="period-btn" data-period="2026">2026</button>
+        </div>
+        <div class="period-row">
+            <span class="period-label">Месяц:</span>
+            <button class="period-btn" data-period="m-0">Янв 25</button>
+            <button class="period-btn" data-period="m-1">Фев 25</button>
+            <button class="period-btn" data-period="m-2">Мар 25</button>
+            <button class="period-btn" data-period="m-3">Апр 25</button>
+            <button class="period-btn" data-period="m-4">Май 25</button>
+            <button class="period-btn" data-period="m-5">Июн 25</button>
+            <button class="period-btn" data-period="m-6">Июл 25</button>
+            <button class="period-btn" data-period="m-7">Авг 25</button>
+            <button class="period-btn" data-period="m-8">Сен 25</button>
+            <button class="period-btn" data-period="m-9">Окт 25</button>
+            <button class="period-btn" data-period="m-10">Ноя 25</button>
+            <button class="period-btn" data-period="m-11">Дек 25</button>
+            <button class="period-btn" data-period="m-12">Янв 26</button>
+            <button class="period-btn" data-period="m-13">Фев 26</button>
+        </div>
     </div>
 
     <!-- KPI Cards -->
@@ -435,10 +466,7 @@ function getFilteredIndices(period) {
     if (period === 'all') return months.map((_, i) => i);
     if (period === '2025') return [0,1,2,3,4,5,6,7,8,9,10,11];
     if (period === '2026') return [12,13];
-    if (period === 'q1-2025') return [0,1,2];
-    if (period === 'q2-2025') return [3,4,5];
-    if (period === 'q3-2025') return [6,7,8];
-    if (period === 'q4-2025') return [9,10,11];
+    if (period.startsWith('m-')) return [parseInt(period.split('-')[1])];
     return months.map((_, i) => i);
 }
 
@@ -508,8 +536,9 @@ function renderKPIs(period) {
 
 // ============= TABLES =============
 function buildTableHTML(headers, rows, monthLabels, showTotal) {
+    const isSingle = monthLabels.length === 1;
     let html = '<thead><tr><th>' + headers[0] + '</th>';
-    if (showTotal) html += '<th>Итого</th>';
+    if (showTotal && !isSingle) html += '<th>Итого</th>';
     monthLabels.forEach(m => { html += `<th>${m}</th>`; });
     html += '</tr></thead><tbody>';
 
@@ -517,7 +546,7 @@ function buildTableHTML(headers, rows, monthLabels, showTotal) {
         const cls = row.cls ? ` class="${row.cls}"` : '';
         html += `<tr${cls}>`;
         html += `<td>${row.label}</td>`;
-        if (showTotal) html += `<td>${row.total !== undefined ? (row.raw ? row.total : fmt(row.total)) : '—'}</td>`;
+        if (showTotal && !isSingle) html += `<td>${row.total !== undefined ? (row.raw ? row.total : fmt(row.total)) : '—'}</td>`;
         row.values.forEach(v => {
             let val;
             if (v === 0 || v === null || v === undefined) val = '—';
@@ -700,8 +729,11 @@ function render() {
     renderChart(currentChart, currentPeriod);
 }
 
-document.getElementById('periodSelect').addEventListener('change', (e) => {
-    currentPeriod = e.target.value;
+document.getElementById('periodSelector').addEventListener('click', (e) => {
+    if (!e.target.classList.contains('period-btn')) return;
+    document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    currentPeriod = e.target.dataset.period;
     render();
 });
 
