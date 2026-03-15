@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7-я линия ВО — Отчёт собственнику</title>
+    <style>
+        :root {
+            --green-dark: #1a5632;
+            --green-mid: #2d7a4f;
+            --green-light: #e8f5ee;
+            --green-accent: #34a853;
+            --bg: #f7f9fb;
+            --card: #ffffff;
+            --text: #1a1a2e;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --red: #ef4444;
+            --red-light: #fef2f2;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+            color: white;
+            padding: 2rem 1.5rem 1.5rem;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .header p {
+            opacity: 0.85;
+            font-size: 0.95rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .kpi-card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 1.25rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
+        }
+
+        .kpi-card .label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-card .value {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--green-dark);
+        }
+
+        .kpi-card .sub {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* Chart */
+        .chart-section {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
+        }
+
+        .chart-section h2 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 320px;
+        }
+
+        canvas { width: 100% !important; }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            background: var(--card);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            color: var(--text);
+        }
+
+        .tab-btn:hover { border-color: var(--green-accent); }
+
+        .tab-btn.active {
+            background: var(--green-dark);
+            color: white;
+            border-color: var(--green-dark);
+        }
+
+        /* Tables */
+        .table-section {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
+            overflow-x: auto;
+        }
+
+        .table-section h2 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        th {
+            background: var(--green-dark);
+            color: white;
+            padding: 0.6rem 0.75rem;
+            text-align: right;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+
+        th:first-child { text-align: left; border-radius: 8px 0 0 0; }
+        th:last-child { border-radius: 0 8px 0 0; }
+
+        td {
+            padding: 0.5rem 0.75rem;
+            text-align: right;
+            border-bottom: 1px solid var(--border);
+        }
+
+        td:first-child {
+            text-align: left;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        tr:hover { background: var(--green-light); }
+
+        .row-header {
+            background: #f0fdf4;
+            font-weight: 700 !important;
+        }
+
+        .row-header td { font-weight: 700; color: var(--green-dark); }
+
+        .row-total {
+            background: var(--green-dark) !important;
+        }
+
+        .row-total td {
+            color: white !important;
+            font-weight: 700;
+            border-bottom: none;
+        }
+
+        .row-total:hover { background: var(--green-mid) !important; }
+
+        .row-sub td:first-child { padding-left: 1.5rem; color: var(--text-muted); font-weight: 400; }
+
+        .neg { color: var(--red); }
+
+        /* Tooltip */
+        .tooltip-box {
+            display: none;
+            position: fixed;
+            background: var(--text);
+            color: white;
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        /* Period selector */
+        .period-selector {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .period-selector label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .period-selector select {
+            padding: 0.4rem 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            background: var(--card);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .kpi-card .value { font-size: 1.3rem; }
+            .header h1 { font-size: 1.3rem; }
+            .container { padding: 1rem; }
+            .chart-container { height: 250px; }
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--green-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.15rem 0.5rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .badge-green { background: #dcfce7; color: #166534; }
+        .badge-red { background: #fef2f2; color: #991b1b; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-inner">
+        <h1>7-я линия ВО — Отчёт собственнику</h1>
+        <p>Посуточная аренда &middot; Управление С.УТКАМИ</p>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- Period selector -->
+    <div class="period-selector">
+        <label>Период:</label>
+        <select id="periodSelect">
+            <option value="all">Всё время (янв 2025 — фев 2026)</option>
+            <option value="2025">2025 год</option>
+            <option value="2026">2026 год</option>
+            <option value="q1-2025">Q1 2025</option>
+            <option value="q2-2025">Q2 2025</option>
+            <option value="q3-2025">Q3 2025</option>
+            <option value="q4-2025">Q4 2025</option>
+        </select>
+    </div>
+
+    <!-- KPI Cards -->
+    <div class="kpi-grid" id="kpiGrid">
+        <!-- Filled by JS -->
+    </div>
+
+    <!-- Revenue & Profit Chart -->
+    <div class="chart-section">
+        <div class="tabs" id="chartTabs">
+            <button class="tab-btn active" data-chart="revenue">Выручка и прибыль</button>
+            <button class="tab-btn" data-chart="occupancy">Заселение</button>
+            <button class="tab-btn" data-chart="avgprice">Ср. цена / ночь</button>
+            <button class="tab-btn" data-chart="costs">Структура расходов</button>
+        </div>
+        <div class="chart-container">
+            <canvas id="mainChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Revenue Table -->
+    <div class="table-section">
+        <h2>Выручка</h2>
+        <table id="revenueTable"></table>
+    </div>
+
+    <!-- Costs Table -->
+    <div class="table-section">
+        <h2>Себестоимость</h2>
+        <table id="costsTable"></table>
+    </div>
+
+    <!-- Profit Table -->
+    <div class="table-section">
+        <h2>Прибыль</h2>
+        <table id="profitTable"></table>
+    </div>
+
+    <!-- Settlement Table -->
+    <div class="table-section">
+        <h2>Взаиморасчёты</h2>
+        <table id="settlementTable"></table>
+    </div>
+</div>
+
+<div class="footer">
+    Данные актуальны на март 2026 &middot; С.УТКАМИ
+</div>
+
+<div class="tooltip-box" id="tooltip"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script>
+// ============= DATA =============
+const months = [
+    'Янв 25','Фев 25','Мар 25','Апр 25','Май 25','Июн 25',
+    'Июл 25','Авг 25','Сен 25','Окт 25','Ноя 25','Дек 25',
+    'Янв 26','Фев 26'
+];
+
+const monthKeys = [
+    '01.2025','02.2025','03.2025','04.2025','05.2025','06.2025',
+    '07.2025','08.2025','09.2025','10.2025','11.2025','12.2025',
+    '01.2026','02.2026'
+];
+
+const data = {
+    revenue:    [107513, 70010, 76192, 94302, 153791, 185747, 170092, 167400, 102889, 75351, 61130, 64300, 79981, 47090],
+    nights:     [29, 25, 26, 25, 30, 25, 27, 27, 23, 16, 16, 17, 20, 16],
+    occupancy:  [94, 89, 84, 83, 97, 83, 87, 87, 77, 52, 53, 55, 65, 57],
+    avgPrice:   [3707, 2800, 2930, 3772, 5126, 7430, 6300, 6200, 4473, 4709, 3821, 3782, 3999, 2943],
+
+    // Costs breakdown
+    commission: [17991, 12303, 11325, 12672, 16342, 25835, 16363, 28371, 9871, 4375, 11307, 3842, 9394, 8801],
+    acquiring:  [0, 0, 0, 1000, 1684, 1959, 1883, 1703, 1139, 869, 610, 741, 1115, 605],
+    utilities:  [9714, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    advertising:[2826, 2206, 3038, 995, 903, 2200, 1514, 1572, 2120, 2119, 491, 2121, 96, 180],
+    laundry:    [2500, 4200, 7800, 4650, 2400, 1900, 3200, 4100, 3700, 1600, 2700, 1500, 4050, 3450],
+    couriers:   [0, 0, 0, 2500, 3000, 2000, 3000, 4500, 2500, 4000, 2000, 2000, 3750, 3750],
+    repairs:    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 800, 0, 0],
+    supplies:   [5880, 1780, 3908, 3690, 1420, 980, 2590, 2919, 3550, 5590, 80, 3020, 620, 3503],
+
+    // Profit
+    totalCosts: [38911, 20489, 26071, 25507, 25749, 34874, 28550, 43165, 22880, 19353, 17188, 13224, 19025, 20288],
+    profit:     [68602, 49521, 50121, 68795, 128042, 150873, 141542, 124235, 80009, 55998, 43942, 51076, 60956, 26802],
+    agentIncome:[20581, 14856, 15036, 20639, 38413, 45262, 42463, 37271, 24003, 16799, 13183, 15323, 18287, 8041],
+    ownerIncome:[48022, 34664, 35085, 48157, 89629, 105611, 99080, 86965, 56006, 39199, 30759, 35753, 42669, 18761],
+
+    // Settlements
+    ownerToCompany:  [0, 1680, 0, 7682, 0, 0, 0, 0, 2500, 4300, 0, 2100, 914, 402],
+    companyToOwner:  [9714, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    toTransfer:      [57735, 32984, 35085, 40475, 89629, 105611, 99080, 86965, 53506, 34899, 30759, 33653, 41755, 18359],
+
+    // Settlement details
+    settlRepair:     [0, 0, 0, 0, 0, 0, 0, 0, 2500, 2200, 0, 0, 0, 0],
+    settlCouriers:   [0, 0, 0, 0, 0, 0, 0, 0, 0, 500, 0, 500, 0, 0],
+    settlCleaning:   [0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 1200, 0, 0],
+    settlLaundry:    [0, 0, 0, 0, 0, 0, 0, 0, 0, 600, 0, 400, 0, 0],
+    settlSupplies:   [0, 0, 0, 0, 450, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    settlNDS:        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 914, 402],
+    settlOther:      [0, 1680, 0, 7232, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+
+    // Courier/laundry counts
+    courierTrips:    [0, 0, 0, 5, 6, 4, 6, 9, 5, 8, 4, 4, 5, 5],
+    laundryItems:    [0, 0, 0, 40, 24, 18, 32, 41, 37, 22, 27, 19, 27, 23],
+};
+
+// Totals
+const totals = {
+    revenue: 1455788, nights: 322, occupancy: 76, avgPrice: 4521,
+    totalCosts: 355273, profit: 1100514, agentIncome: 330154, ownerIncome: 770360,
+    toTransfer: 760495,
+    commission: 188791, acquiring: 13309, utilities: 9714, advertising: 22380,
+    laundry: 47750, couriers: 33000, repairs: 800, supplies: 39530,
+    ownerToCompany: 19578, companyToOwner: 9714,
+};
+
+// ============= PERIOD FILTER =============
+function getFilteredIndices(period) {
+    if (period === 'all') return months.map((_, i) => i);
+    if (period === '2025') return [0,1,2,3,4,5,6,7,8,9,10,11];
+    if (period === '2026') return [12,13];
+    if (period === 'q1-2025') return [0,1,2];
+    if (period === 'q2-2025') return [3,4,5];
+    if (period === 'q3-2025') return [6,7,8];
+    if (period === 'q4-2025') return [9,10,11];
+    return months.map((_, i) => i);
+}
+
+function sumFiltered(arr, indices) {
+    return indices.reduce((s, i) => s + (arr[i] || 0), 0);
+}
+
+function avgFiltered(arr, indices) {
+    const vals = indices.map(i => arr[i]).filter(v => v > 0);
+    return vals.length ? Math.round(vals.reduce((a,b) => a+b, 0) / vals.length) : 0;
+}
+
+// ============= FORMAT =============
+function fmt(n) {
+    if (n === null || n === undefined || n === '') return '—';
+    return Number(n).toLocaleString('ru-RU');
+}
+
+function fmtPct(n) {
+    return n + '%';
+}
+
+// ============= KPI =============
+function renderKPIs(period) {
+    const idx = getFilteredIndices(period);
+    const rev = sumFiltered(data.revenue, idx);
+    const owner = sumFiltered(data.ownerIncome, idx);
+    const costs = sumFiltered(data.totalCosts, idx);
+    const occ = avgFiltered(data.occupancy, idx);
+    const price = avgFiltered(data.avgPrice, idx);
+    const transfer = sumFiltered(data.toTransfer, idx);
+
+    const grid = document.getElementById('kpiGrid');
+    grid.innerHTML = `
+        <div class="kpi-card">
+            <div class="label">Выручка</div>
+            <div class="value">${fmt(rev)}</div>
+            <div class="sub">руб.</div>
+        </div>
+        <div class="kpi-card">
+            <div class="label">Доход собственника</div>
+            <div class="value">${fmt(owner)}</div>
+            <div class="sub">руб.</div>
+        </div>
+        <div class="kpi-card">
+            <div class="label">К переводу</div>
+            <div class="value">${fmt(transfer)}</div>
+            <div class="sub">руб.</div>
+        </div>
+        <div class="kpi-card">
+            <div class="label">Ср. заселение</div>
+            <div class="value">${occ}%</div>
+            <div class="sub">за период</div>
+        </div>
+        <div class="kpi-card">
+            <div class="label">Ср. цена / ночь</div>
+            <div class="value">${fmt(price)}</div>
+            <div class="sub">руб.</div>
+        </div>
+        <div class="kpi-card">
+            <div class="label">Себестоимость</div>
+            <div class="value">${fmt(costs)}</div>
+            <div class="sub">${Math.round(costs / rev * 100)}% от выручки</div>
+        </div>
+    `;
+}
+
+// ============= TABLES =============
+function buildTableHTML(headers, rows, monthLabels, showTotal) {
+    let html = '<thead><tr><th>' + headers[0] + '</th>';
+    if (showTotal) html += '<th>Итого</th>';
+    monthLabels.forEach(m => { html += `<th>${m}</th>`; });
+    html += '</tr></thead><tbody>';
+
+    rows.forEach(row => {
+        const cls = row.cls ? ` class="${row.cls}"` : '';
+        html += `<tr${cls}>`;
+        html += `<td>${row.label}</td>`;
+        if (showTotal) html += `<td>${row.total !== undefined ? fmt(row.total) : '—'}</td>`;
+        row.values.forEach(v => {
+            const val = v === 0 || v === null || v === undefined ? '—' : fmt(v);
+            html += `<td>${val}</td>`;
+        });
+        html += '</tr>';
+    });
+
+    html += '</tbody>';
+    return html;
+}
+
+function renderTables(period) {
+    const idx = getFilteredIndices(period);
+    const ml = idx.map(i => months[i]);
+    const f = (arr) => idx.map(i => arr[i]);
+    const s = (arr) => sumFiltered(arr, idx);
+
+    // Revenue table
+    document.getElementById('revenueTable').innerHTML = buildTableHTML(
+        ['Показатель'], [
+            { label: 'Выручка', values: f(data.revenue), total: s(data.revenue), cls: 'row-total' },
+            { label: 'Кол-во ночей', values: f(data.nights), total: s(data.nights) },
+            { label: 'Заселение, %', values: f(data.occupancy).map(v => v ? v + '%' : null), total: avgFiltered(data.occupancy, idx) + '%' },
+            { label: 'Ср. цена / ночь', values: f(data.avgPrice), total: Math.round(s(data.revenue) / s(data.nights)) },
+            { label: 'Выездов курьеров', values: f(data.courierTrips), total: s(data.courierTrips) },
+            { label: 'Комплектов белья', values: f(data.laundryItems), total: s(data.laundryItems) },
+        ], ml, true
+    );
+
+    // Costs table
+    document.getElementById('costsTable').innerHTML = buildTableHTML(
+        ['Статья расходов'], [
+            { label: 'Себестоимость', values: f(data.totalCosts), total: s(data.totalCosts), cls: 'row-total' },
+            { label: 'Комиссии агентские', values: f(data.commission), total: s(data.commission), cls: 'row-sub' },
+            { label: 'Эквайринг', values: f(data.acquiring), total: s(data.acquiring), cls: 'row-sub' },
+            { label: 'Коммунальные', values: f(data.utilities), total: s(data.utilities), cls: 'row-sub' },
+            { label: 'Реклама', values: f(data.advertising), total: s(data.advertising), cls: 'row-sub' },
+            { label: 'Прачка', values: f(data.laundry), total: s(data.laundry), cls: 'row-sub' },
+            { label: 'Курьеры', values: f(data.couriers), total: s(data.couriers), cls: 'row-sub' },
+            { label: 'Мелкий ремонт', values: f(data.repairs), total: s(data.repairs), cls: 'row-sub' },
+            { label: 'Расходники', values: f(data.supplies), total: s(data.supplies), cls: 'row-sub' },
+        ], ml, true
+    );
+
+    // Profit table
+    document.getElementById('profitTable').innerHTML = buildTableHTML(
+        ['Показатель'], [
+            { label: 'Прибыль', values: f(data.profit), total: s(data.profit), cls: 'row-total' },
+            { label: 'Доход агента', values: f(data.agentIncome), total: s(data.agentIncome), cls: 'row-sub' },
+            { label: 'Доход собственника', values: f(data.ownerIncome), total: s(data.ownerIncome), cls: 'row-header' },
+        ], ml, true
+    );
+
+    // Settlement table
+    document.getElementById('settlementTable').innerHTML = buildTableHTML(
+        ['Статья'], [
+            { label: 'Собственник → Компании', values: f(data.ownerToCompany), total: s(data.ownerToCompany), cls: 'row-header' },
+            { label: 'Ремонт', values: f(data.settlRepair), total: s(data.settlRepair), cls: 'row-sub' },
+            { label: 'Курьеры', values: f(data.settlCouriers), total: s(data.settlCouriers), cls: 'row-sub' },
+            { label: 'Уборка', values: f(data.settlCleaning), total: s(data.settlCleaning), cls: 'row-sub' },
+            { label: 'Стирка', values: f(data.settlLaundry), total: s(data.settlLaundry), cls: 'row-sub' },
+            { label: 'Расходники', values: f(data.settlSupplies), total: s(data.settlSupplies), cls: 'row-sub' },
+            { label: 'НДС (5% от дохода агента)', values: f(data.settlNDS), total: s(data.settlNDS), cls: 'row-sub' },
+            { label: 'Прочее', values: f(data.settlOther), total: s(data.settlOther), cls: 'row-sub' },
+            { label: 'Компания → Собственнику', values: f(data.companyToOwner), total: s(data.companyToOwner), cls: 'row-header' },
+            { label: 'К переводу', values: f(data.toTransfer), total: s(data.toTransfer), cls: 'row-total' },
+        ], ml, true
+    );
+}
+
+// ============= CHARTS =============
+let chartInstance = null;
+
+function renderChart(type, period) {
+    const idx = getFilteredIndices(period);
+    const ml = idx.map(i => months[i]);
+    const f = (arr) => idx.map(i => arr[i]);
+    const ctx = document.getElementById('mainChart').getContext('2d');
+
+    if (chartInstance) chartInstance.destroy();
+
+    const configs = {
+        revenue: {
+            type: 'bar',
+            data: {
+                labels: ml,
+                datasets: [
+                    { label: 'Выручка', data: f(data.revenue), backgroundColor: 'rgba(26,86,50,0.7)', borderRadius: 4, order: 2 },
+                    { label: 'Себестоимость', data: f(data.totalCosts), backgroundColor: 'rgba(239,68,68,0.5)', borderRadius: 4, order: 2 },
+                    { label: 'Доход собственника', data: f(data.ownerIncome), type: 'line', borderColor: '#34a853', backgroundColor: 'rgba(52,168,83,0.1)', borderWidth: 2.5, pointRadius: 4, pointBackgroundColor: '#34a853', fill: true, order: 1 },
+                ]
+            },
+            options: chartOpts('руб.')
+        },
+        occupancy: {
+            type: 'bar',
+            data: {
+                labels: ml,
+                datasets: [{
+                    label: 'Заселение %',
+                    data: f(data.occupancy),
+                    backgroundColor: f(data.occupancy).map(v => v >= 80 ? 'rgba(52,168,83,0.7)' : v >= 60 ? 'rgba(251,191,36,0.7)' : 'rgba(239,68,68,0.6)'),
+                    borderRadius: 4
+                }]
+            },
+            options: { ...chartOpts('%'), scales: { ...chartOpts('%').scales, y: { ...chartOpts('%').scales.y, max: 100 } } }
+        },
+        avgprice: {
+            type: 'line',
+            data: {
+                labels: ml,
+                datasets: [{
+                    label: 'Ср. цена / ночь',
+                    data: f(data.avgPrice),
+                    borderColor: '#1a5632',
+                    backgroundColor: 'rgba(26,86,50,0.1)',
+                    borderWidth: 2.5,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#1a5632',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: chartOpts('руб.')
+        },
+        costs: {
+            type: 'bar',
+            data: {
+                labels: ml,
+                datasets: [
+                    { label: 'Комиссии', data: f(data.commission), backgroundColor: '#1a5632' },
+                    { label: 'Прачка', data: f(data.laundry), backgroundColor: '#2d7a4f' },
+                    { label: 'Курьеры', data: f(data.couriers), backgroundColor: '#34a853' },
+                    { label: 'Реклама', data: f(data.advertising), backgroundColor: '#6dd698' },
+                    { label: 'Расходники', data: f(data.supplies), backgroundColor: '#a7f3d0' },
+                    { label: 'Эквайринг', data: f(data.acquiring), backgroundColor: '#d1fae5' },
+                ]
+            },
+            options: { ...chartOpts('руб.'), scales: { ...chartOpts('руб.').scales, x: { stacked: true }, y: { ...chartOpts('руб.').scales.y, stacked: true } } }
+        }
+    };
+
+    chartInstance = new Chart(ctx, configs[type]);
+}
+
+function chartOpts(unit) {
+    return {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    label: (ctx) => `${ctx.dataset.label}: ${Number(ctx.raw).toLocaleString('ru-RU')} ${unit}`
+                }
+            },
+            legend: { position: 'bottom', labels: { boxWidth: 12, padding: 16 } }
+        },
+        scales: {
+            y: {
+                ticks: {
+                    callback: (v) => v.toLocaleString('ru-RU')
+                },
+                grid: { color: '#f0f0f0' }
+            },
+            x: { grid: { display: false } }
+        }
+    };
+}
+
+// ============= INIT =============
+let currentChart = 'revenue';
+let currentPeriod = 'all';
+
+function render() {
+    renderKPIs(currentPeriod);
+    renderTables(currentPeriod);
+    renderChart(currentChart, currentPeriod);
+}
+
+document.getElementById('periodSelect').addEventListener('change', (e) => {
+    currentPeriod = e.target.value;
+    render();
+});
+
+document.getElementById('chartTabs').addEventListener('click', (e) => {
+    if (!e.target.classList.contains('tab-btn')) return;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    currentChart = e.target.dataset.chart;
+    renderChart(currentChart, currentPeriod);
+});
+
+render();
+</script>
+</body>
+</html>
