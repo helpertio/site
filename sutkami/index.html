@@ -517,9 +517,12 @@ function buildTableHTML(headers, rows, monthLabels, showTotal) {
         const cls = row.cls ? ` class="${row.cls}"` : '';
         html += `<tr${cls}>`;
         html += `<td>${row.label}</td>`;
-        if (showTotal) html += `<td>${row.total !== undefined ? fmt(row.total) : '—'}</td>`;
+        if (showTotal) html += `<td>${row.total !== undefined ? (row.raw ? row.total : fmt(row.total)) : '—'}</td>`;
         row.values.forEach(v => {
-            const val = v === 0 || v === null || v === undefined ? '—' : fmt(v);
+            let val;
+            if (v === 0 || v === null || v === undefined) val = '—';
+            else if (row.raw) val = v;
+            else val = fmt(v);
             html += `<td>${val}</td>`;
         });
         html += '</tr>';
@@ -540,7 +543,7 @@ function renderTables(period) {
         ['Показатель'], [
             { label: 'Выручка', values: f(data.revenue), total: s(data.revenue), cls: 'row-total' },
             { label: 'Кол-во ночей', values: f(data.nights), total: s(data.nights) },
-            { label: 'Заселение, %', values: f(data.occupancy).map(v => v ? v + '%' : null), total: avgFiltered(data.occupancy, idx) + '%' },
+            { label: 'Заселение, %', values: f(data.occupancy).map(v => v ? v + '%' : null), total: avgFiltered(data.occupancy, idx) + '%', raw: true },
             { label: 'Ср. цена / ночь', values: f(data.avgPrice), total: Math.round(s(data.revenue) / s(data.nights)) },
             { label: 'Выездов курьеров', values: f(data.courierTrips), total: s(data.courierTrips) },
             { label: 'Комплектов белья', values: f(data.laundryItems), total: s(data.laundryItems) },
