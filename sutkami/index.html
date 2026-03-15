@@ -16,7 +16,8 @@
             --text-muted: #6b7280;
             --border: #e5e7eb;
             --red: #ef4444;
-            --red-light: #fef2f2;
+            --amber: #f59e0b;
+            --blue: #3b82f6;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,210 +36,35 @@
         }
 
         .header-inner {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         .header h1 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.2rem;
         }
 
         .header p {
             opacity: 0.85;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 1.5rem;
         }
 
-        /* KPI Cards */
-        .kpi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .kpi-card {
-            background: var(--card);
-            border-radius: 12px;
-            padding: 1.25rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-            border: 1px solid var(--border);
-        }
-
-        .kpi-card .label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-        }
-
-        .kpi-card .value {
-            font-size: 1.7rem;
-            font-weight: 700;
-            color: var(--green-dark);
-        }
-
-        .kpi-card .sub {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 0.25rem;
-        }
-
-        /* Chart */
-        .chart-section {
-            background: var(--card);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-            border: 1px solid var(--border);
-        }
-
-        .chart-section h2 {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            color: var(--text);
-        }
-
-        .chart-container {
-            position: relative;
-            width: 100%;
-            height: 320px;
-        }
-
-        canvas { width: 100% !important; }
-
-        /* Tabs */
-        .tabs {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--border);
-            background: var(--card);
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.2s;
-            color: var(--text);
-        }
-
-        .tab-btn:hover { border-color: var(--green-accent); }
-
-        .tab-btn.active {
-            background: var(--green-dark);
-            color: white;
-            border-color: var(--green-dark);
-        }
-
-        /* Tables */
-        .table-section {
-            background: var(--card);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-            border: 1px solid var(--border);
-            overflow-x: auto;
-        }
-
-        .table-section h2 {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-            white-space: nowrap;
-        }
-
-        th {
-            background: var(--green-dark);
-            color: white;
-            padding: 0.6rem 0.75rem;
-            text-align: right;
-            font-weight: 600;
-            position: sticky;
-            top: 0;
-        }
-
-        th:first-child { text-align: left; border-radius: 8px 0 0 0; }
-        th:last-child { border-radius: 0 8px 0 0; }
-
-        td {
-            padding: 0.5rem 0.75rem;
-            text-align: right;
-            border-bottom: 1px solid var(--border);
-        }
-
-        td:first-child {
-            text-align: left;
-            font-weight: 500;
-            color: var(--text);
-        }
-
-        tr:hover { background: var(--green-light); }
-
-        .row-header {
-            background: #f0fdf4;
-            font-weight: 700 !important;
-        }
-
-        .row-header td { font-weight: 700; color: var(--green-dark); }
-
-        .row-total {
-            background: var(--green-dark) !important;
-        }
-
-        .row-total td {
-            color: white !important;
-            font-weight: 700;
-            border-bottom: none;
-        }
-
-        .row-total:hover { background: var(--green-mid) !important; }
-
-        .row-sub td:first-child { padding-left: 1.5rem; color: var(--text-muted); font-weight: 400; }
-
-        .neg { color: var(--red); }
-
-        /* Tooltip */
-        .tooltip-box {
-            display: none;
-            position: fixed;
-            background: var(--text);
-            color: white;
-            padding: 0.5rem 0.75rem;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            pointer-events: none;
-            z-index: 100;
-        }
-
         /* Period selector */
-        .period-selector {
-            margin-bottom: 1.5rem;
-        }
+        .period-selector { margin-bottom: 1.5rem; }
 
         .period-row {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.5rem;
+            gap: 0.4rem;
+            margin-bottom: 0.4rem;
             flex-wrap: wrap;
         }
 
@@ -250,12 +76,12 @@
         }
 
         .period-btn {
-            padding: 0.35rem 0.75rem;
+            padding: 0.3rem 0.7rem;
             border: 1px solid var(--border);
             background: var(--card);
             border-radius: 6px;
             cursor: pointer;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             transition: all 0.15s;
             color: var(--text);
             white-space: nowrap;
@@ -269,43 +95,511 @@
             border-color: var(--green-dark);
         }
 
+        /* ============= HERO SECTION ============= */
+        .hero {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border: 1px solid var(--border);
+        }
+
+        .hero-main {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-income {
+            flex: 1;
+            min-width: 260px;
+        }
+
+        .hero-income .hero-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.3rem;
+        }
+
+        .hero-income .hero-value {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--green-dark);
+            line-height: 1.1;
+        }
+
+        .hero-income .hero-value span {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .hero-transfer {
+            margin-top: 0.6rem;
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .hero-transfer strong {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .hero-delta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin-top: 0.5rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .hero-delta.up { background: #dcfce7; color: #166534; }
+        .hero-delta.down { background: #fef2f2; color: #991b1b; }
+
+        /* Funnel flow */
+        .hero-funnel {
+            flex: 1.2;
+            min-width: 300px;
+        }
+
+        .funnel-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .funnel-bar-wrap {
+            flex: 1;
+            height: 32px;
+            background: #f3f4f6;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .funnel-bar {
+            height: 100%;
+            border-radius: 8px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: white;
+            white-space: nowrap;
+        }
+
+        .funnel-label {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            width: 85px;
+            flex-shrink: 0;
+            text-align: right;
+        }
+
+        .funnel-amount {
+            font-size: 0.78rem;
+            font-weight: 600;
+            width: 80px;
+            flex-shrink: 0;
+            text-align: right;
+        }
+
+        /* ============= WATERFALL ============= */
+        .card {
+            background: var(--card);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            border: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 320px;
+        }
+
+        canvas { width: 100% !important; }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.4rem 0.9rem;
+            border: 1px solid var(--border);
+            background: var(--card);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.82rem;
+            transition: all 0.2s;
+            color: var(--text);
+        }
+
+        .tab-btn:hover { border-color: var(--green-accent); }
+
+        .tab-btn.active {
+            background: var(--green-dark);
+            color: white;
+            border-color: var(--green-dark);
+        }
+
+        /* ============= KPI mini cards ============= */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .kpi-card {
+            background: var(--card);
+            border-radius: 10px;
+            padding: 1rem 1.1rem;
+            border: 1px solid var(--border);
+        }
+
+        .kpi-card .label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.3rem;
+        }
+
+        .kpi-card .value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--green-dark);
+        }
+
+        .kpi-card .sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.15rem;
+        }
+
+        /* ============= EXPENSES donut + cards ============= */
+        .expenses-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 1.5rem;
+            align-items: start;
+        }
+
+        .donut-wrap {
+            position: relative;
+            width: 260px;
+            height: 260px;
+            margin: 0 auto;
+        }
+
+        .donut-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .donut-center .total {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--green-dark);
+        }
+
+        .donut-center .label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .expense-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 0.6rem;
+        }
+
+        .expense-card {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.7rem 0.9rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .expense-card:hover {
+            border-color: var(--green-accent);
+            box-shadow: 0 2px 8px rgba(26,86,50,0.08);
+        }
+
+        .expense-card.expanded {
+            border-color: var(--green-accent);
+            background: var(--green-light);
+        }
+
+        .expense-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .expense-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .expense-name {
+            font-size: 0.8rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .expense-amount {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .expense-pct {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        .expense-sparkline {
+            width: 60px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .expense-detail {
+            display: none;
+            grid-column: 1 / -1;
+            padding: 0.7rem 0.9rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: #fafbfc;
+            font-size: 0.78rem;
+        }
+
+        .expense-detail.show { display: block; }
+
+        .expense-detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 0.3rem 0.8rem;
+        }
+
+        .expense-detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.15rem 0;
+        }
+
+        .expense-detail-item .month { color: var(--text-muted); }
+        .expense-detail-item .val { font-weight: 600; }
+
+        /* ============= ADJUSTMENTS ============= */
+        .adjustments {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 14px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .adjustments-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .adj-list {
+            list-style: none;
+        }
+
+        .adj-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.35rem 0;
+            border-bottom: 1px solid #fde68a50;
+            font-size: 0.85rem;
+        }
+
+        .adj-item:last-child { border-bottom: none; }
+        .adj-item .adj-name { color: #78350f; }
+        .adj-item .adj-val { font-weight: 600; color: #92400e; }
+
+        .adj-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 0.6rem;
+            margin-top: 0.4rem;
+            border-top: 2px solid #fde68a;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #78350f;
+        }
+
+        /* ============= COLLAPSIBLE TABLE ============= */
+        .collapsible-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            padding: 1rem 1.5rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            margin-bottom: 1.5rem;
+            transition: all 0.2s;
+        }
+
+        .collapsible-header:hover { border-color: var(--green-accent); }
+
+        .collapsible-header h2 {
+            font-size: 1rem;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .collapsible-arrow {
+            transition: transform 0.3s;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        .collapsible-header.open .collapsible-arrow { transform: rotate(180deg); }
+
+        .collapsible-header.open {
+            border-radius: 14px 14px 0 0;
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+
+        .collapsible-body {
+            display: none;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 14px 14px;
+            padding: 0 1.5rem 1.5rem;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .collapsible-body.open { display: block; }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        th {
+            background: var(--green-dark);
+            color: white;
+            padding: 0.5rem 0.6rem;
+            text-align: right;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+
+        th:first-child { text-align: left; border-radius: 8px 0 0 0; }
+        th:last-child { border-radius: 0 8px 0 0; }
+
+        td {
+            padding: 0.4rem 0.6rem;
+            text-align: right;
+            border-bottom: 1px solid var(--border);
+        }
+
+        td:first-child {
+            text-align: left;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        tr:hover { background: var(--green-light); }
+
+        .row-header { background: #f0fdf4; font-weight: 700 !important; }
+        .row-header td { font-weight: 700; color: var(--green-dark); }
+
+        .row-total { background: var(--green-dark) !important; }
+        .row-total td { color: white !important; font-weight: 700; border-bottom: none; }
+        .row-total:hover { background: var(--green-mid) !important; }
+
+        .row-sub td:first-child { padding-left: 1.5rem; color: var(--text-muted); font-weight: 400; }
+
+        .table-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin: 1.2rem 0 0.5rem;
+        }
+
         /* Footer */
         .footer {
             text-align: center;
             padding: 2rem;
             color: var(--text-muted);
-            font-size: 0.8rem;
+            font-size: 0.78rem;
         }
 
         /* Responsive */
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
             .kpi-grid { grid-template-columns: repeat(2, 1fr); }
-            .kpi-card .value { font-size: 1.3rem; }
-            .header h1 { font-size: 1.3rem; }
+            .expenses-layout { grid-template-columns: 1fr; }
+            .donut-wrap { width: 220px; height: 220px; }
+            .hero-value { font-size: 2.2rem !important; }
+            .hero-funnel { min-width: 0 !important; }
+            .funnel-label { width: 70px; }
+            .funnel-amount { width: 65px; font-size: 0.72rem; }
+        }
+
+        @media (max-width: 480px) {
             .container { padding: 1rem; }
+            .hero { padding: 1.25rem; }
+            .kpi-card .value { font-size: 1.2rem; }
             .chart-container { height: 250px; }
+            .header h1 { font-size: 1.2rem; }
+            .expense-cards { grid-template-columns: 1fr; }
         }
-
-        .section-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--green-dark);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 0.15rem 0.5rem;
-            border-radius: 999px;
-            font-size: 0.7rem;
-            font-weight: 600;
-        }
-
-        .badge-green { background: #dcfce7; color: #166534; }
-        .badge-red { background: #fef2f2; color: #991b1b; }
     </style>
 </head>
 <body>
@@ -346,15 +640,15 @@
         </div>
     </div>
 
-    <!-- KPI Cards -->
-    <div class="kpi-grid" id="kpiGrid">
-        <!-- Filled by JS -->
-    </div>
+    <!-- HERO: Owner income -->
+    <div class="hero" id="heroSection"></div>
 
-    <!-- Revenue & Profit Chart -->
-    <div class="chart-section">
+    <!-- Operations chart -->
+    <div class="card">
+        <div class="card-title">Операционные показатели</div>
+        <div class="kpi-grid" id="kpiGrid"></div>
         <div class="tabs" id="chartTabs">
-            <button class="tab-btn active" data-chart="revenue">Выручка и прибыль</button>
+            <button class="tab-btn active" data-chart="revenue">Выручка и доход</button>
             <button class="tab-btn" data-chart="occupancy">Заселение</button>
             <button class="tab-btn" data-chart="avgprice">Ср. цена / ночь</button>
             <button class="tab-btn" data-chart="costs">Структура расходов</button>
@@ -364,27 +658,37 @@
         </div>
     </div>
 
-    <!-- Revenue Table -->
-    <div class="table-section">
-        <h2>Выручка</h2>
+    <!-- Expenses breakdown -->
+    <div class="card" id="expensesSection">
+        <div class="card-title">Расходы — куда уходят деньги</div>
+        <div class="expenses-layout">
+            <div class="donut-wrap">
+                <canvas id="donutChart"></canvas>
+                <div class="donut-center">
+                    <div class="total" id="donutTotal"></div>
+                    <div class="label">расходы</div>
+                </div>
+            </div>
+            <div class="expense-cards" id="expenseCards"></div>
+        </div>
+    </div>
+
+    <!-- Adjustments -->
+    <div id="adjustmentsSection"></div>
+
+    <!-- Collapsible detailed tables -->
+    <div class="collapsible-header" id="detailToggle">
+        <h2>Детальные данные</h2>
+        <span class="collapsible-arrow">&#9660;</span>
+    </div>
+    <div class="collapsible-body" id="detailBody">
+        <div class="table-label">Выручка</div>
         <table id="revenueTable"></table>
-    </div>
-
-    <!-- Costs Table -->
-    <div class="table-section">
-        <h2>Себестоимость</h2>
+        <div class="table-label">Себестоимость</div>
         <table id="costsTable"></table>
-    </div>
-
-    <!-- Profit Table -->
-    <div class="table-section">
-        <h2>Прибыль</h2>
+        <div class="table-label">Прибыль</div>
         <table id="profitTable"></table>
-    </div>
-
-    <!-- Settlement Table -->
-    <div class="table-section">
-        <h2>Взаиморасчёты</h2>
+        <div class="table-label">Взаиморасчёты</div>
         <table id="settlementTable"></table>
     </div>
 </div>
@@ -392,8 +696,6 @@
 <div class="footer">
     Данные актуальны на март 2026 &middot; С.УТКАМИ
 </div>
-
-<div class="tooltip-box" id="tooltip"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <script>
@@ -404,19 +706,12 @@ const months = [
     'Янв 26','Фев 26'
 ];
 
-const monthKeys = [
-    '01.2025','02.2025','03.2025','04.2025','05.2025','06.2025',
-    '07.2025','08.2025','09.2025','10.2025','11.2025','12.2025',
-    '01.2026','02.2026'
-];
-
 const data = {
     revenue:    [107513, 70010, 76192, 94302, 153791, 185747, 170092, 167400, 102889, 75351, 61130, 64300, 79981, 47090],
     nights:     [29, 25, 26, 25, 30, 25, 27, 27, 23, 16, 16, 17, 20, 16],
     occupancy:  [94, 89, 84, 83, 97, 83, 87, 87, 77, 52, 53, 55, 65, 57],
     avgPrice:   [3707, 2800, 2930, 3772, 5126, 7430, 6300, 6200, 4473, 4709, 3821, 3782, 3999, 2943],
 
-    // Costs breakdown
     commission: [17991, 12303, 11325, 12672, 16342, 25835, 16363, 28371, 9871, 4375, 11307, 3842, 9394, 8801],
     acquiring:  [0, 0, 0, 1000, 1684, 1959, 1883, 1703, 1139, 869, 610, 741, 1115, 605],
     utilities:  [9714, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -426,18 +721,15 @@ const data = {
     repairs:    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 800, 0, 0],
     supplies:   [5880, 1780, 3908, 3690, 1420, 980, 2590, 2919, 3550, 5590, 80, 3020, 620, 3503],
 
-    // Profit
     totalCosts: [38911, 20489, 26071, 25507, 25749, 34874, 28550, 43165, 22880, 19353, 17188, 13224, 19025, 20288],
     profit:     [68602, 49521, 50121, 68795, 128042, 150873, 141542, 124235, 80009, 55998, 43942, 51076, 60956, 26802],
     agentIncome:[20581, 14856, 15036, 20639, 38413, 45262, 42463, 37271, 24003, 16799, 13183, 15323, 18287, 8041],
     ownerIncome:[48022, 34664, 35085, 48157, 89629, 105611, 99080, 86965, 56006, 39199, 30759, 35753, 42669, 18761],
 
-    // Settlements
     ownerToCompany:  [0, 1680, 0, 7682, 0, 0, 0, 0, 2500, 4300, 0, 2100, 914, 402],
     companyToOwner:  [9714, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     toTransfer:      [57735, 32984, 35085, 40475, 89629, 105611, 99080, 86965, 53506, 34899, 30759, 33653, 41755, 18359],
 
-    // Settlement details
     settlRepair:     [0, 0, 0, 0, 0, 0, 0, 0, 2500, 2200, 0, 0, 0, 0],
     settlCouriers:   [0, 0, 0, 0, 0, 0, 0, 0, 0, 500, 0, 500, 0, 0],
     settlCleaning:   [0, 0, 0, 0, 0, 0, 0, 0, 0, 1000, 0, 1200, 0, 0],
@@ -446,23 +738,12 @@ const data = {
     settlNDS:        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 914, 402],
     settlOther:      [0, 1680, 0, 7232, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 
-    // Courier/laundry counts
     courierTrips:    [0, 0, 0, 5, 6, 4, 6, 9, 5, 8, 4, 4, 5, 5],
     laundryItems:    [0, 0, 0, 40, 24, 18, 32, 41, 37, 22, 27, 19, 27, 23],
 };
 
-// Totals
-const totals = {
-    revenue: 1455788, nights: 322, occupancy: 76, avgPrice: 4521,
-    totalCosts: 355273, profit: 1100514, agentIncome: 330154, ownerIncome: 770360,
-    toTransfer: 760495,
-    commission: 188791, acquiring: 13309, utilities: 9714, advertising: 22380,
-    laundry: 47750, couriers: 33000, repairs: 800, supplies: 39530,
-    ownerToCompany: 19578, companyToOwner: 9714,
-};
-
-// ============= PERIOD FILTER =============
-function getFilteredIndices(period) {
+// ============= HELPERS =============
+function getIdx(period) {
     if (period === 'all') return months.map((_, i) => i);
     if (period === '2025') return [0,1,2,3,4,5,6,7,8,9,10,11];
     if (period === '2026') return [12,13];
@@ -470,165 +751,326 @@ function getFilteredIndices(period) {
     return months.map((_, i) => i);
 }
 
-function sumFiltered(arr, indices) {
-    return indices.reduce((s, i) => s + (arr[i] || 0), 0);
+function sum(arr, idx) { return idx.reduce((s, i) => s + (arr[i] || 0), 0); }
+function avg(arr, idx) {
+    const v = idx.map(i => arr[i]).filter(x => x > 0);
+    return v.length ? Math.round(v.reduce((a,b) => a+b, 0) / v.length) : 0;
 }
-
-function avgFiltered(arr, indices) {
-    const vals = indices.map(i => arr[i]).filter(v => v > 0);
-    return vals.length ? Math.round(vals.reduce((a,b) => a+b, 0) / vals.length) : 0;
-}
-
-// ============= FORMAT =============
 function fmt(n) {
     if (n === null || n === undefined || n === '') return '—';
     return Number(n).toLocaleString('ru-RU');
 }
-
-function fmtPct(n) {
-    return n + '%';
+function fmtShort(n) {
+    if (n >= 1000000) return (n / 1000000).toFixed(1).replace('.0','') + ' млн';
+    if (n >= 10000) return Math.round(n / 1000) + ' тыс';
+    return fmt(n);
 }
+function f(arr, idx) { return idx.map(i => arr[i]); }
 
-// ============= KPI =============
-function renderKPIs(period) {
-    const idx = getFilteredIndices(period);
-    const rev = sumFiltered(data.revenue, idx);
-    const owner = sumFiltered(data.ownerIncome, idx);
-    const costs = sumFiltered(data.totalCosts, idx);
-    const occ = avgFiltered(data.occupancy, idx);
-    const price = avgFiltered(data.avgPrice, idx);
-    const transfer = sumFiltered(data.toTransfer, idx);
+// ============= HERO =============
+function renderHero(period) {
+    const idx = getIdx(period);
+    const rev = sum(data.revenue, idx);
+    const costs = sum(data.totalCosts, idx);
+    const agentInc = sum(data.agentIncome, idx);
+    const ownerInc = sum(data.ownerIncome, idx);
+    const transfer = sum(data.toTransfer, idx);
+    const isSingle = idx.length === 1;
 
-    const grid = document.getElementById('kpiGrid');
-    grid.innerHTML = `
-        <div class="kpi-card">
-            <div class="label">Выручка</div>
-            <div class="value">${fmt(rev)}</div>
-            <div class="sub">руб.</div>
-        </div>
-        <div class="kpi-card">
-            <div class="label">Доход собственника</div>
-            <div class="value">${fmt(owner)}</div>
-            <div class="sub">руб.</div>
-        </div>
-        <div class="kpi-card">
-            <div class="label">К переводу</div>
-            <div class="value">${fmt(transfer)}</div>
-            <div class="sub">руб.</div>
-        </div>
-        <div class="kpi-card">
-            <div class="label">Ср. заселение</div>
-            <div class="value">${occ}%</div>
-            <div class="sub">за период</div>
-        </div>
-        <div class="kpi-card">
-            <div class="label">Ср. цена / ночь</div>
-            <div class="value">${fmt(price)}</div>
-            <div class="sub">руб.</div>
-        </div>
-        <div class="kpi-card">
-            <div class="label">Себестоимость</div>
-            <div class="value">${fmt(costs)}</div>
-            <div class="sub">${Math.round(costs / rev * 100)}% от выручки</div>
+    // Delta calculation
+    let deltaHTML = '';
+    if (isSingle && idx[0] > 0) {
+        const prev = data.ownerIncome[idx[0] - 1];
+        const curr = data.ownerIncome[idx[0]];
+        if (prev > 0) {
+            const pct = Math.round((curr - prev) / prev * 100);
+            const cls = pct >= 0 ? 'up' : 'down';
+            const arrow = pct >= 0 ? '&#9650;' : '&#9660;';
+            deltaHTML = `<div class="hero-delta ${cls}">${arrow} ${Math.abs(pct)}% vs ${months[idx[0]-1]}</div>`;
+        }
+    }
+
+    const transferNote = transfer !== ownerInc
+        ? `<div class="hero-transfer">К переводу: <strong>${fmt(transfer)} &#8381;</strong></div>`
+        : '';
+
+    // Funnel bars
+    const maxW = rev;
+    const barW = (n) => Math.max(Math.round(n / maxW * 100), 3);
+
+    document.getElementById('heroSection').innerHTML = `
+        <div class="hero-main">
+            <div class="hero-income">
+                <div class="hero-label">Ваш доход</div>
+                <div class="hero-value">${fmt(ownerInc)} <span>&#8381;</span></div>
+                ${transferNote}
+                ${deltaHTML}
+            </div>
+            <div class="hero-funnel">
+                <div class="funnel-row">
+                    <div class="funnel-label">Выручка</div>
+                    <div class="funnel-bar-wrap">
+                        <div class="funnel-bar" style="width:100%;background:var(--green-dark)">${fmt(rev)}</div>
+                    </div>
+                </div>
+                <div class="funnel-row">
+                    <div class="funnel-label">Расходы</div>
+                    <div class="funnel-bar-wrap">
+                        <div class="funnel-bar" style="width:${barW(costs)}%;background:var(--red)">${fmt(costs)} (${Math.round(costs/rev*100)}%)</div>
+                    </div>
+                </div>
+                <div class="funnel-row">
+                    <div class="funnel-label">Агент</div>
+                    <div class="funnel-bar-wrap">
+                        <div class="funnel-bar" style="width:${barW(agentInc)}%;background:var(--amber)">${fmt(agentInc)} (${Math.round(agentInc/rev*100)}%)</div>
+                    </div>
+                </div>
+                <div class="funnel-row">
+                    <div class="funnel-label" style="font-weight:700;color:var(--green-dark)">Вам</div>
+                    <div class="funnel-bar-wrap">
+                        <div class="funnel-bar" style="width:${barW(ownerInc)}%;background:var(--green-accent)">${fmt(ownerInc)} (${Math.round(ownerInc/rev*100)}%)</div>
+                    </div>
+                </div>
+            </div>
         </div>
     `;
 }
 
-// ============= TABLES =============
-function buildTableHTML(headers, rows, monthLabels, showTotal) {
-    const isSingle = monthLabels.length === 1;
-    let html = '<thead><tr><th>' + headers[0] + '</th>';
-    if (showTotal && !isSingle) html += '<th>Итого</th>';
-    monthLabels.forEach(m => { html += `<th>${m}</th>`; });
-    html += '</tr></thead><tbody>';
+// ============= KPIs =============
+function renderKPIs(period) {
+    const idx = getIdx(period);
+    const nights = sum(data.nights, idx);
+    const occ = avg(data.occupancy, idx);
+    const price = avg(data.avgPrice, idx);
+    const trips = sum(data.courierTrips, idx);
 
-    rows.forEach(row => {
-        const cls = row.cls ? ` class="${row.cls}"` : '';
-        html += `<tr${cls}>`;
-        html += `<td>${row.label}</td>`;
-        if (showTotal && !isSingle) html += `<td>${row.total !== undefined ? (row.raw ? row.total : fmt(row.total)) : '—'}</td>`;
-        row.values.forEach(v => {
-            let val;
-            if (v === 0 || v === null || v === undefined) val = '—';
-            else if (row.raw) val = v;
-            else val = fmt(v);
-            html += `<td>${val}</td>`;
-        });
-        html += '</tr>';
+    document.getElementById('kpiGrid').innerHTML = `
+        <div class="kpi-card">
+            <div class="label">Ночей продано</div>
+            <div class="value">${fmt(nights)}</div>
+        </div>
+        <div class="kpi-card">
+            <div class="label">Заселение</div>
+            <div class="value">${occ}%</div>
+            <div class="sub">${occ >= 80 ? 'отличное' : occ >= 60 ? 'хорошее' : 'низкое'}</div>
+        </div>
+        <div class="kpi-card">
+            <div class="label">Ср. цена / ночь</div>
+            <div class="value">${fmt(price)} &#8381;</div>
+        </div>
+        <div class="kpi-card">
+            <div class="label">Выездов курьеров</div>
+            <div class="value">${fmt(trips)}</div>
+        </div>
+    `;
+}
+
+// ============= EXPENSES =============
+const expenseCategories = [
+    { key: 'commission', name: 'Комиссии агентские', color: '#1a5632' },
+    { key: 'laundry', name: 'Прачка', color: '#2d7a4f' },
+    { key: 'supplies', name: 'Расходники', color: '#34a853' },
+    { key: 'couriers', name: 'Курьеры', color: '#059669' },
+    { key: 'advertising', name: 'Реклама', color: '#6dd698' },
+    { key: 'acquiring', name: 'Эквайринг', color: '#86efac' },
+    { key: 'utilities', name: 'Коммунальные', color: '#a7f3d0' },
+    { key: 'repairs', name: 'Мелкий ремонт', color: '#d1fae5' },
+];
+
+let donutChart = null;
+let expandedExpense = null;
+
+function renderExpenses(period) {
+    const idx = getIdx(period);
+    const rev = sum(data.revenue, idx);
+    const totalCosts = sum(data.totalCosts, idx);
+
+    // Sort by amount descending
+    const cats = expenseCategories
+        .map(c => ({ ...c, amount: sum(data[c.key], idx) }))
+        .filter(c => c.amount > 0)
+        .sort((a, b) => b.amount - a.amount);
+
+    // Donut
+    const ctx = document.getElementById('donutChart').getContext('2d');
+    if (donutChart) donutChart.destroy();
+
+    donutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: cats.map(c => c.name),
+            datasets: [{
+                data: cats.map(c => c.amount),
+                backgroundColor: cats.map(c => c.color),
+                borderWidth: 2,
+                borderColor: '#fff',
+                hoverOffset: 6,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            cutout: '62%',
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: (ctx) => {
+                            const val = ctx.raw;
+                            return ` ${ctx.label}: ${fmt(val)} ₽ (${Math.round(val/rev*100)}%)`;
+                        }
+                    }
+                }
+            }
+        }
     });
 
-    html += '</tbody>';
-    return html;
+    document.getElementById('donutTotal').textContent = fmt(totalCosts) + ' ₽';
+
+    // Expense cards
+    const cardsEl = document.getElementById('expenseCards');
+    let html = '';
+    cats.forEach((c, i) => {
+        const pct = (c.amount / rev * 100).toFixed(1);
+        // Mini sparkline as SVG
+        const vals = f(data[c.key], idx);
+        const spark = makeSparkline(vals, c.color);
+
+        html += `
+            <div class="expense-card" data-key="${c.key}" onclick="toggleExpenseDetail('${c.key}')">
+                <div class="expense-dot" style="background:${c.color}"></div>
+                <div class="expense-info">
+                    <div class="expense-name">${c.name}</div>
+                    <div class="expense-amount">${fmt(c.amount)} ₽</div>
+                    <div class="expense-pct">${pct}% от выручки</div>
+                </div>
+                ${vals.length > 1 ? `<div class="expense-sparkline">${spark}</div>` : ''}
+            </div>
+            <div class="expense-detail" id="detail-${c.key}">
+                <div class="expense-detail-grid">
+                    ${idx.map((mi, j) => `
+                        <div class="expense-detail-item">
+                            <span class="month">${months[mi]}</span>
+                            <span class="val">${data[c.key][mi] ? fmt(data[c.key][mi]) : '—'}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    });
+    cardsEl.innerHTML = html;
 }
 
-function renderTables(period) {
-    const idx = getFilteredIndices(period);
-    const ml = idx.map(i => months[i]);
-    const f = (arr) => idx.map(i => arr[i]);
-    const s = (arr) => sumFiltered(arr, idx);
-
-    // Revenue table
-    document.getElementById('revenueTable').innerHTML = buildTableHTML(
-        ['Показатель'], [
-            { label: 'Выручка', values: f(data.revenue), total: s(data.revenue), cls: 'row-total' },
-            { label: 'Кол-во ночей', values: f(data.nights), total: s(data.nights) },
-            { label: 'Заселение, %', values: f(data.occupancy).map(v => v ? v + '%' : null), total: avgFiltered(data.occupancy, idx) + '%', raw: true },
-            { label: 'Ср. цена / ночь', values: f(data.avgPrice), total: Math.round(s(data.revenue) / s(data.nights)) },
-            { label: 'Выездов курьеров', values: f(data.courierTrips), total: s(data.courierTrips) },
-            { label: 'Комплектов белья', values: f(data.laundryItems), total: s(data.laundryItems) },
-        ], ml, true
-    );
-
-    // Costs table
-    document.getElementById('costsTable').innerHTML = buildTableHTML(
-        ['Статья расходов'], [
-            { label: 'Себестоимость', values: f(data.totalCosts), total: s(data.totalCosts), cls: 'row-total' },
-            { label: 'Комиссии агентские', values: f(data.commission), total: s(data.commission), cls: 'row-sub' },
-            { label: 'Эквайринг', values: f(data.acquiring), total: s(data.acquiring), cls: 'row-sub' },
-            { label: 'Коммунальные', values: f(data.utilities), total: s(data.utilities), cls: 'row-sub' },
-            { label: 'Реклама', values: f(data.advertising), total: s(data.advertising), cls: 'row-sub' },
-            { label: 'Прачка', values: f(data.laundry), total: s(data.laundry), cls: 'row-sub' },
-            { label: 'Курьеры', values: f(data.couriers), total: s(data.couriers), cls: 'row-sub' },
-            { label: 'Мелкий ремонт', values: f(data.repairs), total: s(data.repairs), cls: 'row-sub' },
-            { label: 'Расходники', values: f(data.supplies), total: s(data.supplies), cls: 'row-sub' },
-        ], ml, true
-    );
-
-    // Profit table
-    document.getElementById('profitTable').innerHTML = buildTableHTML(
-        ['Показатель'], [
-            { label: 'Прибыль', values: f(data.profit), total: s(data.profit), cls: 'row-total' },
-            { label: 'Доход агента', values: f(data.agentIncome), total: s(data.agentIncome), cls: 'row-sub' },
-            { label: 'Доход собственника', values: f(data.ownerIncome), total: s(data.ownerIncome), cls: 'row-header' },
-        ], ml, true
-    );
-
-    // Settlement table
-    document.getElementById('settlementTable').innerHTML = buildTableHTML(
-        ['Статья'], [
-            { label: 'Собственник → Компании', values: f(data.ownerToCompany), total: s(data.ownerToCompany), cls: 'row-header' },
-            { label: 'Ремонт', values: f(data.settlRepair), total: s(data.settlRepair), cls: 'row-sub' },
-            { label: 'Курьеры', values: f(data.settlCouriers), total: s(data.settlCouriers), cls: 'row-sub' },
-            { label: 'Уборка', values: f(data.settlCleaning), total: s(data.settlCleaning), cls: 'row-sub' },
-            { label: 'Стирка', values: f(data.settlLaundry), total: s(data.settlLaundry), cls: 'row-sub' },
-            { label: 'Расходники', values: f(data.settlSupplies), total: s(data.settlSupplies), cls: 'row-sub' },
-            { label: 'НДС (5% от дохода агента)', values: f(data.settlNDS), total: s(data.settlNDS), cls: 'row-sub' },
-            { label: 'Прочее', values: f(data.settlOther), total: s(data.settlOther), cls: 'row-sub' },
-            { label: 'Компания → Собственнику', values: f(data.companyToOwner), total: s(data.companyToOwner), cls: 'row-header' },
-            { label: 'К переводу', values: f(data.toTransfer), total: s(data.toTransfer), cls: 'row-total' },
-        ], ml, true
-    );
+function makeSparkline(vals, color) {
+    if (vals.length < 2) return '';
+    const max = Math.max(...vals, 1);
+    const w = 60, h = 24, pad = 2;
+    const step = (w - pad * 2) / (vals.length - 1);
+    let path = '';
+    vals.forEach((v, i) => {
+        const x = pad + i * step;
+        const y = h - pad - (v / max) * (h - pad * 2);
+        path += (i === 0 ? 'M' : 'L') + x.toFixed(1) + ',' + y.toFixed(1);
+    });
+    return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><path d="${path}" fill="none" stroke="${color}" stroke-width="1.5" stroke-linecap="round"/></svg>`;
 }
 
-// ============= CHARTS =============
+function toggleExpenseDetail(key) {
+    const el = document.getElementById('detail-' + key);
+    const card = document.querySelector(`.expense-card[data-key="${key}"]`);
+    if (expandedExpense === key) {
+        el.classList.remove('show');
+        card.classList.remove('expanded');
+        expandedExpense = null;
+    } else {
+        // Close previous
+        if (expandedExpense) {
+            document.getElementById('detail-' + expandedExpense)?.classList.remove('show');
+            document.querySelector(`.expense-card[data-key="${expandedExpense}"]`)?.classList.remove('expanded');
+        }
+        el.classList.add('show');
+        card.classList.add('expanded');
+        expandedExpense = key;
+    }
+}
+
+// ============= ADJUSTMENTS =============
+function renderAdjustments(period) {
+    const idx = getIdx(period);
+    const ownerInc = sum(data.ownerIncome, idx);
+    const transfer = sum(data.toTransfer, idx);
+    const o2c = sum(data.ownerToCompany, idx);
+    const c2o = sum(data.companyToOwner, idx);
+
+    const details = [
+        { name: 'Ремонт', val: sum(data.settlRepair, idx) },
+        { name: 'Курьеры', val: sum(data.settlCouriers, idx) },
+        { name: 'Уборка', val: sum(data.settlCleaning, idx) },
+        { name: 'Стирка', val: sum(data.settlLaundry, idx) },
+        { name: 'Расходники', val: sum(data.settlSupplies, idx) },
+        { name: 'НДС (5% от дохода агента)', val: sum(data.settlNDS, idx) },
+        { name: 'Прочее', val: sum(data.settlOther, idx) },
+    ].filter(d => d.val > 0);
+
+    const section = document.getElementById('adjustmentsSection');
+
+    if (details.length === 0 && c2o === 0) {
+        section.innerHTML = '';
+        return;
+    }
+
+    let itemsHTML = details.map(d =>
+        `<li class="adj-item"><span class="adj-name">${d.name}</span><span class="adj-val">-${fmt(d.val)} &#8381;</span></li>`
+    ).join('');
+
+    if (c2o > 0) {
+        itemsHTML += `<li class="adj-item"><span class="adj-name">Возврат от компании</span><span class="adj-val" style="color:#166534">+${fmt(c2o)} &#8381;</span></li>`;
+    }
+
+    section.innerHTML = `
+        <div class="adjustments">
+            <div class="adjustments-title">&#9888;&#65039; Корректировки к переводу</div>
+            <ul class="adj-list">
+                <li class="adj-item"><span class="adj-name">Доход собственника</span><span class="adj-val" style="color:var(--green-dark)">${fmt(ownerInc)} &#8381;</span></li>
+                ${itemsHTML}
+            </ul>
+            <div class="adj-total">
+                <span>Итого к переводу</span>
+                <span>${fmt(transfer)} &#8381;</span>
+            </div>
+        </div>
+    `;
+}
+
+// ============= MAIN CHART =============
 let chartInstance = null;
 
-function renderChart(type, period) {
-    const idx = getFilteredIndices(period);
-    const ml = idx.map(i => months[i]);
-    const f = (arr) => idx.map(i => arr[i]);
-    const ctx = document.getElementById('mainChart').getContext('2d');
+function chartOpts(unit) {
+    return {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    label: (ctx) => `${ctx.dataset.label}: ${Number(ctx.raw).toLocaleString('ru-RU')} ${unit}`
+                }
+            },
+            legend: { position: 'bottom', labels: { boxWidth: 12, padding: 14, font: { size: 11 } } }
+        },
+        scales: {
+            y: {
+                ticks: { callback: (v) => v.toLocaleString('ru-RU'), font: { size: 11 } },
+                grid: { color: '#f0f0f0' }
+            },
+            x: { grid: { display: false }, ticks: { font: { size: 11 } } }
+        }
+    };
+}
 
+function renderChart(type, period) {
+    const idx = getIdx(period);
+    const ml = idx.map(i => months[i]);
+    const ctx = document.getElementById('mainChart').getContext('2d');
     if (chartInstance) chartInstance.destroy();
 
     const configs = {
@@ -637,9 +1079,9 @@ function renderChart(type, period) {
             data: {
                 labels: ml,
                 datasets: [
-                    { label: 'Выручка', data: f(data.revenue), backgroundColor: 'rgba(26,86,50,0.7)', borderRadius: 4, order: 2 },
-                    { label: 'Себестоимость', data: f(data.totalCosts), backgroundColor: 'rgba(239,68,68,0.5)', borderRadius: 4, order: 2 },
-                    { label: 'Доход собственника', data: f(data.ownerIncome), type: 'line', borderColor: '#34a853', backgroundColor: 'rgba(52,168,83,0.1)', borderWidth: 2.5, pointRadius: 4, pointBackgroundColor: '#34a853', fill: true, order: 1 },
+                    { label: 'Выручка', data: f(data.revenue, idx), backgroundColor: 'rgba(26,86,50,0.65)', borderRadius: 4, order: 2 },
+                    { label: 'Себестоимость', data: f(data.totalCosts, idx), backgroundColor: 'rgba(239,68,68,0.45)', borderRadius: 4, order: 2 },
+                    { label: 'Доход собственника', data: f(data.ownerIncome, idx), type: 'line', borderColor: '#34a853', backgroundColor: 'rgba(52,168,83,0.08)', borderWidth: 2.5, pointRadius: 4, pointBackgroundColor: '#34a853', fill: true, order: 1 },
                 ]
             },
             options: chartOpts('руб.')
@@ -650,8 +1092,8 @@ function renderChart(type, period) {
                 labels: ml,
                 datasets: [{
                     label: 'Заселение %',
-                    data: f(data.occupancy),
-                    backgroundColor: f(data.occupancy).map(v => v >= 80 ? 'rgba(52,168,83,0.7)' : v >= 60 ? 'rgba(251,191,36,0.7)' : 'rgba(239,68,68,0.6)'),
+                    data: f(data.occupancy, idx),
+                    backgroundColor: f(data.occupancy, idx).map(v => v >= 80 ? 'rgba(52,168,83,0.7)' : v >= 60 ? 'rgba(251,191,36,0.7)' : 'rgba(239,68,68,0.6)'),
                     borderRadius: 4
                 }]
             },
@@ -663,9 +1105,9 @@ function renderChart(type, period) {
                 labels: ml,
                 datasets: [{
                     label: 'Ср. цена / ночь',
-                    data: f(data.avgPrice),
+                    data: f(data.avgPrice, idx),
                     borderColor: '#1a5632',
-                    backgroundColor: 'rgba(26,86,50,0.1)',
+                    backgroundColor: 'rgba(26,86,50,0.08)',
                     borderWidth: 2.5,
                     pointRadius: 5,
                     pointBackgroundColor: '#1a5632',
@@ -680,12 +1122,12 @@ function renderChart(type, period) {
             data: {
                 labels: ml,
                 datasets: [
-                    { label: 'Комиссии', data: f(data.commission), backgroundColor: '#1a5632' },
-                    { label: 'Прачка', data: f(data.laundry), backgroundColor: '#2d7a4f' },
-                    { label: 'Курьеры', data: f(data.couriers), backgroundColor: '#34a853' },
-                    { label: 'Реклама', data: f(data.advertising), backgroundColor: '#6dd698' },
-                    { label: 'Расходники', data: f(data.supplies), backgroundColor: '#a7f3d0' },
-                    { label: 'Эквайринг', data: f(data.acquiring), backgroundColor: '#d1fae5' },
+                    { label: 'Комиссии', data: f(data.commission, idx), backgroundColor: '#1a5632' },
+                    { label: 'Прачка', data: f(data.laundry, idx), backgroundColor: '#2d7a4f' },
+                    { label: 'Курьеры', data: f(data.couriers, idx), backgroundColor: '#34a853' },
+                    { label: 'Реклама', data: f(data.advertising, idx), backgroundColor: '#6dd698' },
+                    { label: 'Расходники', data: f(data.supplies, idx), backgroundColor: '#a7f3d0' },
+                    { label: 'Эквайринг', data: f(data.acquiring, idx), backgroundColor: '#d1fae5' },
                 ]
             },
             options: { ...chartOpts('руб.'), scales: { ...chartOpts('руб.').scales, x: { stacked: true }, y: { ...chartOpts('руб.').scales.y, stacked: true } } }
@@ -695,38 +1137,103 @@ function renderChart(type, period) {
     chartInstance = new Chart(ctx, configs[type]);
 }
 
-function chartOpts(unit) {
-    return {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            tooltip: {
-                callbacks: {
-                    label: (ctx) => `${ctx.dataset.label}: ${Number(ctx.raw).toLocaleString('ru-RU')} ${unit}`
-                }
-            },
-            legend: { position: 'bottom', labels: { boxWidth: 12, padding: 16 } }
-        },
-        scales: {
-            y: {
-                ticks: {
-                    callback: (v) => v.toLocaleString('ru-RU')
-                },
-                grid: { color: '#f0f0f0' }
-            },
-            x: { grid: { display: false } }
-        }
-    };
+// ============= DETAIL TABLES =============
+function buildTableHTML(headers, rows, monthLabels, showTotal) {
+    const isSingle = monthLabels.length === 1;
+    let html = '<thead><tr><th>' + headers[0] + '</th>';
+    if (showTotal && !isSingle) html += '<th>Итого</th>';
+    monthLabels.forEach(m => { html += `<th>${m}</th>`; });
+    html += '</tr></thead><tbody>';
+
+    rows.forEach(row => {
+        const cls = row.cls ? ` class="${row.cls}"` : '';
+        html += `<tr${cls}><td>${row.label}</td>`;
+        if (showTotal && !isSingle) html += `<td>${row.total !== undefined ? (row.raw ? row.total : fmt(row.total)) : '—'}</td>`;
+        row.values.forEach(v => {
+            let val = (v === 0 || v === null || v === undefined) ? '—' : (row.raw ? v : fmt(v));
+            html += `<td>${val}</td>`;
+        });
+        html += '</tr>';
+    });
+
+    return html + '</tbody>';
 }
+
+function renderTables(period) {
+    const idx = getIdx(period);
+    const ml = idx.map(i => months[i]);
+    const g = (arr) => f(arr, idx);
+    const s = (arr) => sum(arr, idx);
+
+    document.getElementById('revenueTable').innerHTML = buildTableHTML(
+        ['Показатель'], [
+            { label: 'Выручка', values: g(data.revenue), total: s(data.revenue), cls: 'row-total' },
+            { label: 'Кол-во ночей', values: g(data.nights), total: s(data.nights) },
+            { label: 'Заселение, %', values: g(data.occupancy).map(v => v ? v+'%' : null), total: avg(data.occupancy, idx)+'%', raw: true },
+            { label: 'Ср. цена / ночь', values: g(data.avgPrice), total: Math.round(s(data.revenue) / s(data.nights)) },
+            { label: 'Выездов курьеров', values: g(data.courierTrips), total: s(data.courierTrips) },
+            { label: 'Комплектов белья', values: g(data.laundryItems), total: s(data.laundryItems) },
+        ], ml, true
+    );
+
+    document.getElementById('costsTable').innerHTML = buildTableHTML(
+        ['Статья расходов'], [
+            { label: 'Себестоимость', values: g(data.totalCosts), total: s(data.totalCosts), cls: 'row-total' },
+            { label: 'Комиссии агентские', values: g(data.commission), total: s(data.commission), cls: 'row-sub' },
+            { label: 'Эквайринг', values: g(data.acquiring), total: s(data.acquiring), cls: 'row-sub' },
+            { label: 'Коммунальные', values: g(data.utilities), total: s(data.utilities), cls: 'row-sub' },
+            { label: 'Реклама', values: g(data.advertising), total: s(data.advertising), cls: 'row-sub' },
+            { label: 'Прачка', values: g(data.laundry), total: s(data.laundry), cls: 'row-sub' },
+            { label: 'Курьеры', values: g(data.couriers), total: s(data.couriers), cls: 'row-sub' },
+            { label: 'Мелкий ремонт', values: g(data.repairs), total: s(data.repairs), cls: 'row-sub' },
+            { label: 'Расходники', values: g(data.supplies), total: s(data.supplies), cls: 'row-sub' },
+        ], ml, true
+    );
+
+    document.getElementById('profitTable').innerHTML = buildTableHTML(
+        ['Показатель'], [
+            { label: 'Прибыль', values: g(data.profit), total: s(data.profit), cls: 'row-total' },
+            { label: 'Доход агента', values: g(data.agentIncome), total: s(data.agentIncome), cls: 'row-sub' },
+            { label: 'Доход собственника', values: g(data.ownerIncome), total: s(data.ownerIncome), cls: 'row-header' },
+        ], ml, true
+    );
+
+    document.getElementById('settlementTable').innerHTML = buildTableHTML(
+        ['Статья'], [
+            { label: 'Собственник -> Компании', values: g(data.ownerToCompany), total: s(data.ownerToCompany), cls: 'row-header' },
+            { label: 'Ремонт', values: g(data.settlRepair), total: s(data.settlRepair), cls: 'row-sub' },
+            { label: 'Курьеры', values: g(data.settlCouriers), total: s(data.settlCouriers), cls: 'row-sub' },
+            { label: 'Уборка', values: g(data.settlCleaning), total: s(data.settlCleaning), cls: 'row-sub' },
+            { label: 'Стирка', values: g(data.settlLaundry), total: s(data.settlLaundry), cls: 'row-sub' },
+            { label: 'Расходники', values: g(data.settlSupplies), total: s(data.settlSupplies), cls: 'row-sub' },
+            { label: 'НДС (5% от дохода агента)', values: g(data.settlNDS), total: s(data.settlNDS), cls: 'row-sub' },
+            { label: 'Прочее', values: g(data.settlOther), total: s(data.settlOther), cls: 'row-sub' },
+            { label: 'Компания -> Собственнику', values: g(data.companyToOwner), total: s(data.companyToOwner), cls: 'row-header' },
+            { label: 'К переводу', values: g(data.toTransfer), total: s(data.toTransfer), cls: 'row-total' },
+        ], ml, true
+    );
+}
+
+// ============= COLLAPSIBLE =============
+document.getElementById('detailToggle').addEventListener('click', () => {
+    const header = document.getElementById('detailToggle');
+    const body = document.getElementById('detailBody');
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+});
 
 // ============= INIT =============
 let currentChart = 'revenue';
 let currentPeriod = 'all';
 
 function render() {
+    expandedExpense = null;
+    renderHero(currentPeriod);
     renderKPIs(currentPeriod);
-    renderTables(currentPeriod);
     renderChart(currentChart, currentPeriod);
+    renderExpenses(currentPeriod);
+    renderAdjustments(currentPeriod);
+    renderTables(currentPeriod);
 }
 
 document.getElementById('periodSelector').addEventListener('click', (e) => {
