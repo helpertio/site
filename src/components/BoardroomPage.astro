@@ -1,0 +1,100 @@
+---
+import ContactActions from "./ContactActions.astro";
+import ResponsiveImage from "./ResponsiveImage.astro";
+import { contacts, formats, stats, trust } from "@/content/site";
+---
+
+<main class="concept concept-boardroom">
+  <aside class="boardroom-rail">
+    <a href="/" class="boardroom-name">Иван Тихов</a>
+    <nav aria-label="Разделы">
+      <a href="#memo">Memo</a>
+      <a href="#cases">Запросы</a>
+      <a href="#work">Работа</a>
+      <a href="#proof">Опыт</a>
+    </nav>
+    <a href={contacts.telegram}>Telegram</a>
+  </aside>
+
+  <section class="boardroom-hero">
+    <div class="boardroom-label">Private advisory for owners, CEOs and executive teams</div>
+    <h1>Трезвый внешний взгляд, когда цена решения высока</h1>
+    <p>
+      Я работаю с предпринимателями и руководителями в моментах, где нельзя
+      спрятаться за презентацию: кризис, конфликт, рост, партнерская развилка,
+      сложный разговор или решение без очевидно правильного ответа.
+    </p>
+  </section>
+
+  <section class="boardroom-snapshot" id="memo">
+    <div class="boardroom-photo-card">
+      <ResponsiveImage
+        name="stage"
+        alt="Иван Тихов выступает на сцене"
+        class="boardroom-photo"
+        loading="eager"
+        sizes="(min-width: 900px) 42vw, 100vw"
+      />
+    </div>
+    <div class="boardroom-memo">
+      <p class="boardroom-label">Working memo</p>
+      <h2>Задача не в том, чтобы дать быстрый совет. Задача — собрать картину, которую можно выдержать.</h2>
+      <ContactActions tone="dark" />
+    </div>
+  </section>
+
+  <section class="boardroom-grid" aria-label="Факты">
+    {stats.map((item) => (
+      <article>
+        <strong>{item.value}</strong>
+        <span>{item.label}</span>
+      </article>
+    ))}
+  </section>
+
+  <section class="boardroom-section" id="cases">
+    <div class="boardroom-section-title">
+      <span>01</span>
+      <h2>Типовые ситуации</h2>
+    </div>
+    <div class="boardroom-cases">
+      <p>Бизнес вырос быстрее управленческой системы.</p>
+      <p>Партнеры или команда не могут договориться о главном.</p>
+      <p>Руководитель понимает, что прежняя роль больше не работает.</p>
+      <p>Нужно принять решение, где есть риск, люди и долгосрочные последствия.</p>
+      <p>Внутри много шума: факты, эмоции, ожидания, ответственность.</p>
+      <p>Нужен собеседник, который понимает бизнес не по книжкам.</p>
+    </div>
+  </section>
+
+  <section class="boardroom-section boardroom-work" id="work">
+    <div class="boardroom-section-title">
+      <span>02</span>
+      <h2>Форматы работы</h2>
+    </div>
+    <div class="boardroom-work-list">
+      {formats.slice(0, 3).map((item) => (
+        <article>
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="boardroom-proof" id="proof">
+    <div>
+      <p class="boardroom-label">Credibility</p>
+      <h2>{trust.title}</h2>
+    </div>
+    <p>{trust.text}</p>
+    <ul>
+      {trust.items.map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+
+  <section class="boardroom-close">
+    <h2>Если нужно подумать о решении без фасада и спешки — напишите.</h2>
+    <ContactActions tone="dark" />
+  </section>
+</main>

@@ -1,0 +1,207 @@
+---
+import ResponsiveImage from "./ResponsiveImage.astro";
+import {
+  boundaries,
+  contacts,
+  faq,
+  finalCta,
+  formats,
+  hero,
+  process,
+  situations,
+  stats,
+  trust,
+  values,
+  variantCopy
+} from "@/content/site";
+
+type Variant = keyof typeof variantCopy;
+
+interface Props {
+  variant: Variant;
+}
+
+const { variant } = Astro.props;
+const variantData = variantCopy[variant];
+const isEditorial = variant === "c";
+const isWarm = variant === "b" || variant === "main";
+---
+
+<main class={`site variant-${variant}`}>
+  <nav class="topbar" aria-label="Основная навигация">
+    <a class="brand" href="/" aria-label="Иван Тихов, главная">Иван Тихов</a>
+    <div class="navlinks">
+      <a href="#formats">Форматы</a>
+      <a href="#experience">Опыт</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="nav-cta" href={contacts.telegram}>Telegram</a>
+  </nav>
+
+  <section class="hero-section">
+    <div class="hero-copy">
+      <p class="eyebrow">{variantData.label} · {variantData.note}</p>
+      <p class="role">{hero.role}</p>
+      <h1>{hero.title}</h1>
+      <p class="hero-lead">{hero.lead}</p>
+      <p class="hero-text">{hero.text}</p>
+      <div class="cta-row" aria-label="Контакты">
+        <a class="button primary" href={contacts.telegram}>Обсудить запрос в Telegram</a>
+        <a class="button secondary" href={contacts.email}>Написать на email</a>
+      </div>
+      <p class="credibility">{hero.badge}</p>
+    </div>
+    <figure class="hero-media">
+      <ResponsiveImage
+        name="portrait"
+        alt="Иван Тихов"
+        class="hero-photo"
+        loading="eager"
+        sizes="(min-width: 980px) 42vw, 100vw"
+      />
+      <figcaption>{hero.name}</figcaption>
+    </figure>
+  </section>
+
+  <section class="stats-strip" aria-label="Ключевой опыт">
+    {stats.map((item) => (
+      <div class="stat">
+        <strong>{item.value}</strong>
+        <span>{item.label}</span>
+      </div>
+    ))}
+  </section>
+
+  <section class="section situations-section">
+    <div class="section-head">
+      <p class="eyebrow">Когда ко мне приходят</p>
+      <h2>Когда задача сложнее, чем просто выбрать правильный KPI</h2>
+    </div>
+    <div class="situation-grid">
+      {situations.map((item) => (
+        <article class="situation-card">
+          <span aria-hidden="true"></span>
+          <p>{item}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section formats-section" id="formats">
+    <div class="section-head">
+      <p class="eyebrow">Как я могу быть полезен</p>
+      <h2>Форматы для предпринимателей, руководителей и команд</h2>
+    </div>
+    <div class="format-list">
+      {formats.map((item, index) => (
+        <article class="format-card">
+          <span class="number">{String(index + 1).padStart(2, "0")}</span>
+          <div>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section trust-section" id="experience">
+    <div class="trust-media">
+      <ResponsiveImage
+        name={isWarm ? "studio" : "stage"}
+        alt={isWarm ? "Иван Тихов в студии" : "Иван Тихов выступает на сцене"}
+        class="trust-photo"
+        sizes="(min-width: 980px) 38vw, 100vw"
+      />
+    </div>
+    <div class="trust-copy">
+      <p class="eyebrow">Почему мне можно доверять</p>
+      <h2>{trust.title}</h2>
+      <p>{trust.text}</p>
+      <ul class="clean-list">
+        {trust.items.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section values-section">
+    <div class="section-head">
+      <p class="eyebrow">Как я работаю</p>
+      <h2>Без фасада, но с уважением к человеку и реальности бизнеса</h2>
+    </div>
+    <div class="value-grid">
+      {values.map((item) => (
+        <article class="value-card">
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section process-section">
+    <div class="section-head">
+      <p class="eyebrow">Что происходит в работе</p>
+      <h2>От честного разговора к ясным следующим шагам</h2>
+    </div>
+    <ol class="process-list">
+      {process.map((item) => <li>{item}</li>)}
+    </ol>
+  </section>
+
+  <section class="section boundaries-section">
+    <div class="section-head">
+      <p class="eyebrow">С чем я не работаю</p>
+      <h2>Границы важны: они помогают сразу понять, подходим ли мы друг другу</h2>
+    </div>
+    <div class="boundary-grid">
+      {boundaries.map((item) => <p>{item}</p>)}
+    </div>
+  </section>
+
+  {
+    isEditorial && (
+      <section class="quote-section" aria-label="Ключевая мысль">
+        <blockquote>
+          “Иногда руководителю нужен не еще один совет, а пространство, где можно
+          честно додумать сложное.”
+        </blockquote>
+      </section>
+    )
+  }
+
+  <section class="section faq-section" id="faq">
+    <div class="section-head">
+      <p class="eyebrow">FAQ</p>
+      <h2>Частые вопросы перед первой встречей</h2>
+    </div>
+    <div class="faq-list">
+      {faq.map((item) => (
+        <details>
+          <summary>{item.question}</summary>
+          <p>{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div>
+      <p class="eyebrow">Начнем с запроса</p>
+      <h2>{finalCta.title}</h2>
+      <p>{finalCta.text}</p>
+    </div>
+    <div class="cta-row">
+      <a class="button primary" href={contacts.telegram}>Обсудить запрос в Telegram</a>
+      <a class="button secondary" href={contacts.email}>Написать на email</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© {new Date().getFullYear()} Иван Тихов</p>
+    <div>
+      <a href={contacts.telegram}>Telegram</a>
+      <a href={contacts.email}>Email</a>
+    </div>
+  </footer>
+</main>

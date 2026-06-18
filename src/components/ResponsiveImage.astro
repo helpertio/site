@@ -1,0 +1,55 @@
+---
+interface Props {
+  name: "portrait" | "stage" | "studio";
+  alt: string;
+  class?: string;
+  loading?: "eager" | "lazy";
+  sizes?: string;
+}
+
+const {
+  name,
+  alt,
+  class: className,
+  loading = "lazy",
+  sizes = "(min-width: 900px) 45vw, 100vw"
+} = Astro.props;
+
+const imageSets = {
+  portrait: {
+    src: "/images/ivan-tikhov-portrait-760.jpg",
+    srcset:
+      "/images/ivan-tikhov-portrait-480.jpg 480w, /images/ivan-tikhov-portrait-760.jpg 760w, /images/ivan-tikhov-portrait-1100.jpg 1100w",
+    width: 733,
+    height: 1100
+  },
+  stage: {
+    src: "/images/ivan-tikhov-stage-900.jpg",
+    srcset:
+      "/images/ivan-tikhov-stage-560.jpg 560w, /images/ivan-tikhov-stage-900.jpg 900w",
+    width: 796,
+    height: 900
+  },
+  studio: {
+    src: "/images/ivan-tikhov-studio-900.jpg",
+    srcset:
+      "/images/ivan-tikhov-studio-560.jpg 560w, /images/ivan-tikhov-studio-900.jpg 900w",
+    width: 599,
+    height: 900
+  }
+};
+
+const image = imageSets[name];
+---
+
+<img
+  class={className}
+  src={image.src}
+  srcset={image.srcset}
+  sizes={sizes}
+  width={image.width}
+  height={image.height}
+  alt={alt}
+  loading={loading}
+  decoding="async"
+/>

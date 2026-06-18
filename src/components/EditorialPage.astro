@@ -1,0 +1,118 @@
+---
+import ContactActions from "./ContactActions.astro";
+import ResponsiveImage from "./ResponsiveImage.astro";
+import { boundaries, faq, formats, hero, situations, stats, trust, values } from "@/content/site";
+---
+
+<main class="design design-editorial">
+  <header class="editorial-header">
+    <a href="/" class="editorial-brand">Иван Тихов</a>
+    <a href="https://t.me/tikhov">Telegram</a>
+  </header>
+
+  <section class="editorial-hero">
+    <div class="editorial-title-block">
+      <p>Консультант · ментор · executive coach</p>
+      <h1>Сложные решения редко принимаются в одиночку хорошо</h1>
+    </div>
+    <ResponsiveImage
+      name="portrait"
+      alt="Иван Тихов"
+      class="editorial-portrait"
+      loading="eager"
+      sizes="(min-width: 900px) 38vw, 100vw"
+    />
+    <div class="editorial-intro">
+      <p>{hero.lead}</p>
+      <ContactActions />
+    </div>
+  </section>
+
+  <section class="editorial-marquee" aria-label="Ключевой опыт">
+    <span>ex-CEO Додо Пицца</span>
+    <span>франчайзи → CEO</span>
+    <span>300+ в УК</span>
+    <span>30 000+ в сети</span>
+  </section>
+
+  <section class="editorial-essay">
+    <div>
+      <p class="editorial-kicker">Когда приходят</p>
+      <h2>Кризис, рост, конфликт, неопределенность. Момент, когда прежний способ думать уже не помогает.</h2>
+    </div>
+    <div class="editorial-columns">
+      {situations.slice(0, 4).map((item) => <p>{item}</p>)}
+    </div>
+  </section>
+
+  <section class="editorial-photo-story">
+    <ResponsiveImage
+      name="stage"
+      alt="Иван Тихов выступает на сцене"
+      class="editorial-stage"
+      sizes="100vw"
+    />
+    <div>
+      <p class="editorial-kicker">Опыт</p>
+      <h2>{trust.title}</h2>
+      <p>{trust.text}</p>
+    </div>
+  </section>
+
+  <section class="editorial-formats">
+    <p class="editorial-kicker">Форматы</p>
+    {formats.map((item, index) => (
+      <article>
+        <span>{String(index + 1).padStart(2, "0")}</span>
+        <h3>{item.title}</h3>
+        <p>{item.text}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="editorial-values">
+    <blockquote>
+      “Сильный разговор не обязан быть жестким. Он должен быть честным, полезным
+      и достаточно человеческим, чтобы в нем можно было увидеть реальность.”
+    </blockquote>
+    <div>
+      {values.map((item) => (
+        <article>
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="editorial-lists">
+    <div>
+      <p class="editorial-kicker">Факты</p>
+      <ul>
+        {stats.map((item) => <li><strong>{item.value}</strong> {item.label}</li>)}
+        {trust.items.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+    <div>
+      <p class="editorial-kicker">Границы</p>
+      <ul>
+        {boundaries.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="editorial-faq">
+    <p class="editorial-kicker">FAQ</p>
+    {faq.map((item) => (
+      <details>
+        <summary>{item.question}</summary>
+        <p>{item.answer}</p>
+      </details>
+    ))}
+  </section>
+
+  <section class="editorial-contact">
+    <p>Если у вас есть сложная управленческая развилка, кризис, рост или период неопределенности — напишите мне.</p>
+    <ContactActions tone="dark" />
+  </section>
+</main>

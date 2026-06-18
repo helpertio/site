@@ -1,0 +1,135 @@
+---
+import ContactActions from "./ContactActions.astro";
+import ResponsiveImage from "./ResponsiveImage.astro";
+import { boundaries, faq, formats, hero, situations, stats, trust, values } from "@/content/site";
+---
+
+<main class="design design-consulting">
+  <header class="consulting-header">
+    <a href="/" class="consulting-mark">Иван Тихов</a>
+    <nav aria-label="Навигация">
+      <a href="#requests">Запросы</a>
+      <a href="#formats">Форматы</a>
+      <a href="#credentials">Опыт</a>
+      <a href="#contact">Контакт</a>
+    </nav>
+  </header>
+
+  <section class="consulting-hero">
+    <div class="consulting-hero-copy">
+      <p class="consulting-kicker">Independent advisory · executive coaching · mentoring</p>
+      <h1>Внешняя оптика для сложных управленческих решений</h1>
+      <p class="consulting-lead">
+        Для предпринимателей, CEO и управленцев, которые проходят кризис, рост,
+        конфликт или период неопределенности.
+      </p>
+      <ContactActions />
+    </div>
+
+    <aside class="consulting-profile" aria-label="Профиль">
+      <ResponsiveImage
+        name="portrait"
+        alt="Иван Тихов"
+        class="consulting-profile-photo"
+        loading="eager"
+        sizes="(min-width: 900px) 320px, 100vw"
+      />
+      <div class="consulting-profile-body">
+        <p>{hero.role}</p>
+        <strong>{hero.badge}</strong>
+      </div>
+    </aside>
+  </section>
+
+  <section class="consulting-metrics" aria-label="Ключевые факты">
+    {stats.map((item) => (
+      <div>
+        <strong>{item.value}</strong>
+        <span>{item.label}</span>
+      </div>
+    ))}
+  </section>
+
+  <section class="consulting-section consulting-split" id="requests">
+    <div>
+      <p class="consulting-label">Когда есть смысл прийти</p>
+      <h2>Не за готовым ответом, а чтобы лучше увидеть реальность</h2>
+    </div>
+    <ol class="consulting-request-list">
+      {situations.map((item) => <li>{item}</li>)}
+    </ol>
+  </section>
+
+  <section class="consulting-section" id="formats">
+    <div class="consulting-section-title">
+      <p class="consulting-label">Форматы</p>
+      <h2>Работа строится вокруг запроса, а не вокруг универсальной методики</h2>
+    </div>
+    <div class="consulting-format-table">
+      {formats.map((item) => (
+        <article>
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="consulting-section consulting-credentials" id="credentials">
+    <div class="consulting-stage">
+      <ResponsiveImage
+        name="stage"
+        alt="Иван Тихов выступает на сцене"
+        class="consulting-stage-photo"
+        sizes="(min-width: 900px) 42vw, 100vw"
+      />
+    </div>
+    <div>
+      <p class="consulting-label">Почему можно доверять</p>
+      <h2>{trust.title}</h2>
+      <p>{trust.text}</p>
+      <ul>
+        {trust.items.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="consulting-section consulting-principles">
+    {values.map((item) => (
+      <article>
+        <span>{item.title}</span>
+        <p>{item.text}</p>
+      </article>
+    ))}
+  </section>
+
+  <section class="consulting-section consulting-split">
+    <div>
+      <p class="consulting-label">Границы</p>
+      <h2>С чем я не работаю</h2>
+    </div>
+    <ul class="consulting-boundaries">
+      {boundaries.map((item) => <li>{item}</li>)}
+    </ul>
+  </section>
+
+  <section class="consulting-section consulting-faq">
+    <p class="consulting-label">FAQ</p>
+    <div>
+      {faq.map((item) => (
+        <details>
+          <summary>{item.question}</summary>
+          <p>{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="consulting-contact" id="contact">
+    <div>
+      <p class="consulting-label">Контакт</p>
+      <h2>Если есть сложная развилка, начнем с короткого разговора о запросе.</h2>
+    </div>
+    <ContactActions />
+  </section>
+</main>
