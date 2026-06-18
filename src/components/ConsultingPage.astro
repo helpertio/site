@@ -17,7 +17,7 @@ import { boundaries, faq, formats, hero, situations, stats, trust, values } from
 
   <section class="consulting-hero">
     <div class="consulting-hero-copy">
-      <p class="consulting-kicker">Independent advisory · executive coaching · mentoring</p>
+      <p class="consulting-kicker">Для предпринимателей, CEO и управленцев</p>
       <h1>Внешняя оптика для сложных управленческих решений</h1>
       <p class="consulting-lead">
         Для предпринимателей, CEO и управленцев, которые проходят кризис, рост,
@@ -41,7 +41,11 @@ import { boundaries, faq, formats, hero, situations, stats, trust, values } from
     </aside>
   </section>
 
-  <section class="consulting-metrics" aria-label="Ключевые факты">
+  <section class="consulting-metrics" aria-label="Опыт в Додо Пицце">
+    <div class="consulting-metrics-intro">
+      <span>Опыт Додо Пиццы</span>
+      <p>Не как логотип в биографии, а как управленческая школа роста, конфликтов, культуры и ответственности.</p>
+    </div>
     {stats.map((item) => (
       <div>
         <strong>{item.value}</strong>
@@ -105,8 +109,8 @@ import { boundaries, faq, formats, hero, situations, stats, trust, values } from
 
   <section class="consulting-section consulting-split">
     <div>
-      <p class="consulting-label">Границы</p>
-      <h2>С чем я не работаю</h2>
+      <p class="consulting-label">Качество работы</p>
+      <h2>Чтобы встреча не превратилась в красивый разговор ни о чем</h2>
     </div>
     <ul class="consulting-boundaries">
       {boundaries.map((item) => <li>{item}</li>)}

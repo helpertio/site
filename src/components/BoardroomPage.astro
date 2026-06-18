@@ -17,7 +17,7 @@ import { contacts, formats, stats, trust } from "@/content/site";
   </aside>
 
   <section class="boardroom-hero">
-    <div class="boardroom-label">Private advisory for owners, CEOs and executive teams</div>
+    <div class="boardroom-label">Для предпринимателей, CEO и управленческих команд</div>
     <h1>Трезвый внешний взгляд, когда цена решения высока</h1>
     <p>
       Я работаю с предпринимателями и руководителями в моментах, где нельзя
@@ -37,13 +37,18 @@ import { contacts, formats, stats, trust } from "@/content/site";
       />
     </div>
     <div class="boardroom-memo">
-      <p class="boardroom-label">Working memo</p>
+      <p class="boardroom-label">Рабочая позиция</p>
       <h2>Задача не в том, чтобы дать быстрый совет. Задача — собрать картину, которую можно выдержать.</h2>
       <ContactActions tone="dark" />
     </div>
   </section>
 
-  <section class="boardroom-grid" aria-label="Факты">
+  <section class="boardroom-proofline" aria-label="Опыт в Додо Пицце">
+    <p>Этот подход вырос из практики, а не из методички.</p>
+    <span>В Додо Пицце я работал на ролях CEO / CMO и проходил масштабирование изнутри: с командами, партнерами, операционкой, культурой и решениями, которые нельзя принять красиво только на бумаге.</span>
+  </section>
+
+  <section class="boardroom-grid" aria-label="Факты про опыт в Додо Пицце">
     {stats.map((item) => (
       <article>
         <strong>{item.value}</strong>
@@ -84,7 +89,7 @@ import { contacts, formats, stats, trust } from "@/content/site";
 
   <section class="boardroom-proof" id="proof">
     <div>
-      <p class="boardroom-label">Credibility</p>
+      <p class="boardroom-label">Опыт как доказательство</p>
       <h2>{trust.title}</h2>
     </div>
     <p>{trust.text}</p>
@@ -94,7 +99,7 @@ import { contacts, formats, stats, trust } from "@/content/site";
   </section>
 
   <section class="boardroom-close">
-    <h2>Если нужно подумать о решении без фасада и спешки — напишите.</h2>
+    <h2>Если нужно спокойно разобрать решение, которое нельзя принять на автомате, напишите.</h2>
     <ContactActions tone="dark" />
   </section>
 </main>

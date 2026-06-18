@@ -23,6 +23,19 @@ body {
   color: #171714;
 }
 
+body:has(.concept-boardroom) {
+  background: #111513;
+}
+
+body:has(.concept-quiet),
+body:has(.versions-page) {
+  background: #f3eadb;
+}
+
+body:has(.concept-magazine) {
+  background: #f8f0e5;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -255,13 +268,13 @@ details p {
 
 .consulting-metrics {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: minmax(220px, 1.1fr) repeat(4, minmax(0, 1fr));
   border-top: 1px solid #111411;
   border-bottom: 1px solid #d8d3ca;
 }
 
 .consulting-metrics div {
-  min-height: 138px;
+  min-height: 150px;
   padding: 22px 24px;
   border-right: 1px solid #d8d3ca;
 }
@@ -270,17 +283,36 @@ details p {
   border-right: 0;
 }
 
+.consulting-metrics-intro {
+  background: #f0eadf;
+}
+
+.consulting-metrics-intro > span {
+  color: #7c673e;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.consulting-metrics-intro p {
+  margin-top: 18px;
+  color: #3f463e;
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
 .consulting-metrics strong {
   display: block;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.7rem, 2.5vw, 2.7rem);
+  font-size: clamp(1.55rem, 2.2vw, 2.45rem);
   color: #183c35;
 }
 
 .consulting-metrics span {
   display: block;
   max-width: 220px;
-  margin-top: 28px;
+  margin-top: 22px;
   color: #555b53;
   line-height: 1.4;
 }
@@ -1463,6 +1495,7 @@ details p {
 
 .boardroom-hero,
 .boardroom-snapshot,
+.boardroom-proofline,
 .boardroom-grid,
 .boardroom-section,
 .boardroom-proof,
@@ -1491,8 +1524,9 @@ details p {
   max-width: 900px;
   margin-top: 24px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(4rem, 8vw, 8.8rem);
-  line-height: 0.92;
+  font-size: clamp(3.8rem, 6.8vw, 7.6rem);
+  line-height: 0.94;
+  text-wrap: balance;
 }
 
 .boardroom-hero p {
@@ -1533,12 +1567,35 @@ details p {
 .boardroom-memo h2 {
   margin-top: 18px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2rem, 3.2vw, 3.7rem);
+  font-size: clamp(2rem, 2.9vw, 3.25rem);
   line-height: 1.04;
+  text-wrap: balance;
 }
 
 .boardroom-memo .actions {
   margin-top: 34px;
+}
+
+.boardroom-proofline {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.48fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 72px);
+  padding: clamp(36px, 6vw, 64px) 0;
+  border-bottom: 1px solid rgb(239 233 220 / 0.16);
+}
+
+.boardroom-proofline p {
+  color: #efe9dc;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.6rem, 2.3vw, 2.55rem);
+  line-height: 1.08;
+}
+
+.boardroom-proofline span {
+  max-width: 760px;
+  color: rgb(239 233 220 / 0.72);
+  font-size: clamp(1.04rem, 1.4vw, 1.22rem);
+  line-height: 1.62;
 }
 
 .boardroom-grid {
@@ -1548,7 +1605,7 @@ details p {
 }
 
 .boardroom-grid article {
-  min-height: 176px;
+  min-height: 162px;
   padding: 28px 24px;
   border-right: 1px solid rgb(239 233 220 / 0.16);
 }
@@ -1561,14 +1618,15 @@ details p {
   display: block;
   color: #d8c9a1;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.75rem, 2.5vw, 3rem);
+  font-size: clamp(1.65rem, 2.15vw, 2.65rem);
+  line-height: 1.05;
 }
 
 .boardroom-grid span {
   display: block;
-  margin-top: 48px;
+  margin-top: 28px;
   color: rgb(239 233 220 / 0.64);
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 .boardroom-section,
@@ -1594,8 +1652,9 @@ details p {
 .boardroom-section-title h2,
 .boardroom-close h2 {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.3rem, 3.8vw, 4.4rem);
-  line-height: 1.02;
+  font-size: clamp(2.25rem, 3.4vw, 3.9rem);
+  line-height: 1.04;
+  text-wrap: balance;
 }
 
 .boardroom-proof h2 {
@@ -1613,11 +1672,12 @@ details p {
 }
 
 .boardroom-cases p {
-  min-height: 190px;
+  min-height: 164px;
   padding: 24px;
-  color: rgb(239 233 220 / 0.7);
+  color: rgb(239 233 220 / 0.78);
   border-right: 1px solid rgb(239 233 220 / 0.16);
   border-bottom: 1px solid rgb(239 233 220 / 0.16);
+  font-size: clamp(1.02rem, 1.25vw, 1.16rem);
   line-height: 1.55;
 }
 
@@ -1942,6 +2002,7 @@ details p {
 .mag-header,
 .mag-cover,
 .mag-manifesto,
+.mag-strip,
 .mag-feature,
 .mag-index,
 .mag-formats,
@@ -1964,9 +2025,9 @@ details p {
 
 .mag-cover {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.68fr);
   gap: 0;
-  min-height: calc(100vh - 64px);
+  min-height: min(760px, calc(100vh - 64px));
   border-bottom: 3px solid #111111;
 }
 
@@ -1987,16 +2048,17 @@ details p {
 }
 
 .mag-cover h1 {
-  max-width: 820px;
+  max-width: 760px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(4.2rem, 8.5vw, 10rem);
-  line-height: 0.9;
+  font-size: clamp(3.8rem, 5.8vw, 7.4rem);
+  line-height: 0.94;
+  text-wrap: balance;
 }
 
 .mag-cover-photo {
   width: 100%;
   height: 100%;
-  min-height: 640px;
+  min-height: 560px;
   object-fit: cover;
   border-left: 3px solid #111111;
   filter: contrast(1.08) saturate(0.82);
@@ -2012,29 +2074,62 @@ details p {
 }
 
 .mag-manifesto p {
-  max-width: 920px;
+  max-width: 860px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.8rem, 3.2vw, 4rem);
-  line-height: 1.05;
+  font-size: clamp(1.75rem, 2.55vw, 3.2rem);
+  line-height: 1.12;
 }
 
 .mag-strip {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: minmax(250px, 1.1fr) repeat(4, minmax(0, 1fr));
   border-bottom: 3px solid #111111;
 }
 
-.mag-strip span {
-  min-height: 96px;
-  display: flex;
-  align-items: center;
-  padding: 18px;
+.mag-strip-intro,
+.mag-strip article {
+  min-height: 150px;
+  padding: 22px;
   border-right: 3px solid #111111;
   line-height: 1.3;
 }
 
-.mag-strip span:last-child {
+.mag-strip article:last-child {
   border-right: 0;
+}
+
+.mag-strip-intro {
+  background: #fff7ea;
+}
+
+.mag-strip-intro > span {
+  color: #b23e2b;
+  font-size: 0.74rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.mag-strip-intro p {
+  max-width: 320px;
+  margin-top: 18px;
+  color: #333333;
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
+.mag-strip strong {
+  display: block;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.55rem, 2.1vw, 2.45rem);
+  line-height: 1;
+}
+
+.mag-strip article > span {
+  display: block;
+  margin-top: 26px;
+  color: #333333;
+  line-height: 1.45;
 }
 
 .mag-feature {
@@ -2059,8 +2154,9 @@ details p {
 .mag-close h2 {
   margin-top: 14px;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.5rem, 5.3vw, 6.8rem);
-  line-height: 0.95;
+  font-size: clamp(2.35rem, 4.6vw, 5.6rem);
+  line-height: 0.98;
+  text-wrap: balance;
 }
 
 .mag-index {
@@ -2161,6 +2257,7 @@ details p {
 
   .boardroom-hero,
   .boardroom-snapshot,
+  .boardroom-proofline,
   .boardroom-grid,
   .boardroom-section,
   .boardroom-proof,
@@ -2178,6 +2275,7 @@ details p {
   .mag-header,
   .mag-cover,
   .mag-manifesto,
+  .mag-strip,
   .mag-feature,
   .mag-index,
   .mag-formats,
@@ -2187,6 +2285,7 @@ details p {
   }
 
   .boardroom-snapshot,
+  .boardroom-proofline,
   .boardroom-proof,
   .quiet-hero,
   .quiet-dialogue,
@@ -2224,6 +2323,7 @@ details p {
   .boardroom-rail,
   .boardroom-hero,
   .boardroom-snapshot,
+  .boardroom-proofline,
   .boardroom-grid,
   .boardroom-section,
   .boardroom-proof,
@@ -2241,6 +2341,7 @@ details p {
   .mag-header,
   .mag-cover,
   .mag-manifesto,
+  .mag-strip,
   .mag-feature,
   .mag-index,
   .mag-formats,

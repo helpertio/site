@@ -1,0 +1,86 @@
+---
+const currentVersions = [
+  {
+    href: "/variant-a/",
+    title: "A · Boardroom",
+    label: "Строгий управленческий",
+    text:
+      "Темная премиальная версия для собственников, CEO и управленцев. Меньше теплоты, больше статуса и ощущения закрытой управленческой работы."
+  },
+  {
+    href: "/variant-b/",
+    title: "B · Quiet Practice",
+    label: "Теплый личный",
+    text:
+      "Спокойная страница личной практики: меньше презентации, больше доверия, разговора и ощущения безопасного внешнего собеседника."
+  },
+  {
+    href: "/variant-c/",
+    title: "C · Magazine",
+    label: "Журнальный personal brand",
+    text:
+      "Журнальная подача с сильной типографикой, обложкой и более авторским голосом. Самый смелый визуальный вариант."
+  }
+];
+
+const archivedVersions = [
+  {
+    href: "/archive/consulting/",
+    title: "Archive · Consulting",
+    label: "Предыдущая строгая версия"
+  },
+  {
+    href: "/archive/warm/",
+    title: "Archive · Warm",
+    label: "Предыдущий теплый минимализм"
+  },
+  {
+    href: "/archive/editorial/",
+    title: "Archive · Editorial",
+    label: "Предыдущий editorial"
+  }
+];
+---
+
+<main class="versions-page">
+  <header class="versions-hero">
+    <a href="/" class="versions-home">Иван Тихов</a>
+    <p>Рабочая витрина версий</p>
+    <h1>Все варианты сайта</h1>
+    <span>
+      Здесь можно смотреть текущие направления, отправлять ссылки друзьям и
+      сохранять старые версии, пока собирается итоговый сайт.
+    </span>
+  </header>
+
+  <section class="versions-section">
+    <div class="versions-section-head">
+      <p>Current</p>
+      <h2>Новые рабочие версии</h2>
+    </div>
+    <div class="versions-grid">
+      {currentVersions.map((version) => (
+        <a class="version-card" href={version.href}>
+          <span>{version.label}</span>
+          <h3>{version.title}</h3>
+          <p>{version.text}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="versions-section">
+    <div class="versions-section-head">
+      <p>Archive</p>
+      <h2>Сохраненные предыдущие версии</h2>
+    </div>
+    <div class="versions-archive">
+      {archivedVersions.map((version) => (
+        <a href={version.href}>
+          <strong>{version.title}</strong>
+          <span>{version.label}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</main>

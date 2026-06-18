@@ -13,7 +13,7 @@ import { contacts, formats, stats, trust } from "@/content/site";
   <section class="mag-cover">
     <div class="mag-cover-text">
       <p>Issue 01 · decisions / people / business</p>
-      <h1>Хаос не надо побеждать. Его надо разложить.</h1>
+      <h1>Сначала увидеть систему. Потом принимать решение.</h1>
     </div>
     <ResponsiveImage
       name="portrait"
@@ -26,16 +26,23 @@ import { contacts, formats, stats, trust } from "@/content/site";
 
   <section class="mag-manifesto">
     <p>
-      Иван Тихов — консультант, ментор и executive coach для предпринимателей и
-      управленцев. Бывший CEO Додо Пиццы. Человек, который был внутри роста,
-      хаоса, команды, культуры и ответственности.
+      Иван Тихов — консультант и ментор для предпринимателей и управленцев.
+      Бывший CEO / CMO Додо Пиццы. Помогает разложить сложную управленческую
+      ситуацию так, чтобы с ней можно было работать.
     </p>
     <ContactActions />
   </section>
 
-  <section class="mag-strip" aria-label="Факты">
+  <section class="mag-strip" aria-label="Опыт в Додо Пицце">
+    <div class="mag-strip-intro">
+      <span>Опыт Додо Пиццы</span>
+      <p>Цифры здесь не для масштаба ради масштаба. Они объясняют, почему Иван умеет говорить о решениях, людях и росте изнутри.</p>
+    </div>
     {stats.map((item) => (
-      <span><strong>{item.value}</strong> {item.label}</span>
+      <article>
+        <strong>{item.value}</strong>
+        <span>{item.label}</span>
+      </article>
     ))}
   </section>
 
