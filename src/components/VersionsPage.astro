@@ -3,41 +3,20 @@ const currentVersions = [
   {
     href: "/variant-a/",
     title: "A · Boardroom",
-    label: "Строгий управленческий",
+    label: "Премиальность и статус",
     text:
-      "Темная премиальная версия для собственников, CEO и управленцев. Меньше теплоты, больше статуса и ощущения закрытой управленческой работы."
-  },
-  {
-    href: "/variant-b/",
-    title: "B · Quiet Practice",
-    label: "Теплый личный",
-    text:
-      "Спокойная страница личной практики: меньше презентации, больше доверия, разговора и ощущения безопасного внешнего собеседника."
+      "Черный boardroom-формат: закрытая управленческая работа, высокий чек, статус, трезвость и ощущение человека, которого зовут в сложные решения.",
+    concept:
+      "Подходит, если нужно транслировать силу, опыт CEO / CMO, уверенность и право быть внешним собеседником для собственников и топ-команд."
   },
   {
     href: "/variant-c/",
     title: "C · Magazine",
-    label: "Журнальный personal brand",
+    label: "Теплота и бережность",
     text:
-      "Журнальная подача с сильной типографикой, обложкой и более авторским голосом. Самый смелый визуальный вариант."
-  }
-];
-
-const archivedVersions = [
-  {
-    href: "/archive/consulting/",
-    title: "Archive · Consulting",
-    label: "Предыдущая строгая версия"
-  },
-  {
-    href: "/archive/warm/",
-    title: "Archive · Warm",
-    label: "Предыдущий теплый минимализм"
-  },
-  {
-    href: "/archive/editorial/",
-    title: "Archive · Editorial",
-    label: "Предыдущий editorial"
+      "Журнальная версия личного бренда: больше воздуха, человеческого голоса, доверия и ощущения, что сложное можно спокойно разложить.",
+    concept:
+      "Подходит, если нужно показать не только статус, но и способ работы: внимательность, ясность, бережность к людям и реальности бизнеса."
   }
 ];
 ---
@@ -46,17 +25,17 @@ const archivedVersions = [
   <header class="versions-hero">
     <a href="/" class="versions-home">Иван Тихов</a>
     <p>Рабочая витрина версий</p>
-    <h1>Все варианты сайта</h1>
+    <h1>Два направления сайта</h1>
     <span>
-      Здесь можно смотреть текущие направления, отправлять ссылки друзьям и
-      сохранять старые версии, пока собирается итоговый сайт.
+      Оставляем два рабочих полюса и дальше усиливаем их: один про статус и
+      премиальность, второй про личный голос, теплоту и бережную ясность.
     </span>
   </header>
 
   <section class="versions-section">
     <div class="versions-section-head">
       <p>Current</p>
-      <h2>Новые рабочие версии</h2>
+      <h2>Выбери направление для просмотра</h2>
     </div>
     <div class="versions-grid">
       {currentVersions.map((version) => (
@@ -64,21 +43,7 @@ const archivedVersions = [
           <span>{version.label}</span>
           <h3>{version.title}</h3>
           <p>{version.text}</p>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <section class="versions-section">
-    <div class="versions-section-head">
-      <p>Archive</p>
-      <h2>Сохраненные предыдущие версии</h2>
-    </div>
-    <div class="versions-archive">
-      {archivedVersions.map((version) => (
-        <a href={version.href}>
-          <strong>{version.title}</strong>
-          <span>{version.label}</span>
+          <em>{version.concept}</em>
         </a>
       ))}
     </div>
