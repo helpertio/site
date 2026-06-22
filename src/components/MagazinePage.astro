@@ -12,7 +12,7 @@ import { contacts, formats, stats, trust } from "@/content/site";
 
   <section class="mag-cover">
     <div class="mag-cover-text">
-      <p>Выпуск 01 · решения / люди / бизнес</p>
+      <p>Решения / люди / бизнес</p>
       <h1>Хаос не надо побеждать. Его надо разложить.</h1>
     </div>
     <ResponsiveImage
@@ -27,7 +27,7 @@ import { contacts, formats, stats, trust } from "@/content/site";
   <section class="mag-manifesto">
     <p>
       Иван Тихов — консультант и ментор для предпринимателей и управленцев.
-      Бывший CEO / CMO Додо Пиццы. Помогает разложить сложную управленческую
+      Бывший CEO / CMO Додо Пиццы. Помогаю разложить сложную управленческую
       ситуацию так, чтобы с ней можно было работать.
     </p>
     <ContactActions />
@@ -49,7 +49,7 @@ import { contacts, formats, stats, trust } from "@/content/site";
   <section class="mag-feature">
     <ResponsiveImage
       name="stage"
-      alt="Иван Тихов выступает на сцене"
+      alt="Иван Тихов на сцене"
       class="mag-stage"
       sizes="100vw"
     />
@@ -84,10 +84,12 @@ import { contacts, formats, stats, trust } from "@/content/site";
       <p class="mag-kicker">Опыт как доказательство</p>
       <h2>{trust.title}</h2>
     </div>
-    <p>{trust.text}</p>
-    <ul>
-      {trust.items.map((item) => <li>{item}</li>)}
-    </ul>
+    <div class="mag-biography-copy">
+      <p>{trust.text}</p>
+      <ul>
+        {trust.items.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
   </section>
 
   <section class="mag-close">

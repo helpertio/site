@@ -1443,23 +1443,20 @@ details p {
   --action-line: rgb(216 201 161 / 0.32);
   --action-secondary-text: #efe9dc;
   display: block;
-  padding-left: 238px;
   background: #111513;
   color: #efe9dc;
 }
 
-.boardroom-rail {
-  position: fixed;
+.boardroom-topbar {
   z-index: 10;
-  left: 0;
-  top: 0;
-  width: 238px;
-  height: 100vh;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: 34px;
-  padding: 30px 28px;
-  border-right: 1px solid rgb(239 233 220 / 0.16);
+  width: min(1160px, calc(100vw - 56px));
+  min-height: 76px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  border-bottom: 1px solid rgb(239 233 220 / 0.16);
 }
 
 .boardroom-name {
@@ -1468,17 +1465,17 @@ details p {
   font-weight: 700;
 }
 
-.boardroom-rail nav {
-  display: grid;
-  align-content: center;
-  gap: 18px;
+.boardroom-topbar nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 2.4vw, 34px);
   color: rgb(239 233 220 / 0.62);
   font-size: 0.85rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
-.boardroom-rail > a:last-child {
+.boardroom-topbar > a:last-child {
   color: #d8c9a1;
   font-weight: 800;
 }
@@ -1490,12 +1487,12 @@ details p {
 .boardroom-section,
 .boardroom-proof,
 .boardroom-close {
-  width: min(1160px, calc(100vw - 308px));
+  width: min(1160px, calc(100vw - 56px));
   margin-inline: auto;
 }
 
 .boardroom-hero {
-  min-height: 100vh;
+  min-height: calc(100vh - 76px);
   display: grid;
   grid-template-columns: minmax(0, 1fr) clamp(320px, 32vw, 440px);
   gap: clamp(30px, 4vw, 56px);
@@ -1678,18 +1675,29 @@ details p {
 .boardroom-cases {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid rgb(239 233 220 / 0.16);
-  border-left: 1px solid rgb(239 233 220 / 0.16);
+  gap: 14px;
+  counter-reset: boardroom-case;
 }
 
 .boardroom-cases p {
-  min-height: 164px;
+  min-height: 178px;
   padding: 24px;
-  color: rgb(239 233 220 / 0.78);
-  border-right: 1px solid rgb(239 233 220 / 0.16);
-  border-bottom: 1px solid rgb(239 233 220 / 0.16);
-  font-size: clamp(1.02rem, 1.25vw, 1.16rem);
-  line-height: 1.55;
+  color: rgb(239 233 220 / 0.82);
+  background: rgb(239 233 220 / 0.045);
+  border: 1px solid rgb(239 233 220 / 0.13);
+  font-size: clamp(1.08rem, 1.42vw, 1.32rem);
+  line-height: 1.46;
+}
+
+.boardroom-cases p::before {
+  counter-increment: boardroom-case;
+  content: "0" counter(boardroom-case);
+  display: block;
+  margin-bottom: 32px;
+  color: #d8c9a1;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.35rem;
+  line-height: 1;
 }
 
 .boardroom-work-list {
@@ -2045,8 +2053,9 @@ details p {
 .mag-cover-text {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 38px 34px 42px 0;
+  justify-content: center;
+  gap: clamp(54px, 12vh, 110px);
+  padding: clamp(42px, 6vh, 72px) 34px clamp(54px, 7vh, 86px) 0;
 }
 
 .mag-cover-text p,
@@ -2188,12 +2197,12 @@ details p {
 
 .mag-formats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   border-bottom: 3px solid #111111;
 }
 
 .mag-formats article {
-  min-height: 330px;
+  min-height: 282px;
   padding: 24px;
   border-right: 3px solid #111111;
 }
@@ -2218,16 +2227,21 @@ details p {
 
 .mag-biography {
   display: grid;
-  grid-template-columns: 1fr 0.72fr;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.78fr);
   gap: clamp(30px, 6vw, 86px);
+  align-items: start;
   padding: clamp(68px, 10vw, 130px) 0;
   border-bottom: 3px solid #111111;
 }
 
-.mag-biography ul {
-  grid-column: 2;
+.mag-biography-copy {
+  max-width: 680px;
+}
+
+.mag-biography-copy ul {
   display: grid;
   gap: 12px;
+  margin-top: 28px;
   padding-left: 20px;
 }
 
@@ -2249,23 +2263,16 @@ details p {
     padding-left: 0;
   }
 
-  .boardroom-rail {
-    position: static;
+  .boardroom-topbar {
     width: min(720px, calc(100vw - 32px));
-    height: auto;
-    margin-inline: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 22px 0;
-    border-right: 0;
-    border-bottom: 1px solid rgb(239 233 220 / 0.16);
+    min-height: 70px;
   }
 
-  .boardroom-rail nav {
+  .boardroom-topbar nav {
     display: none;
   }
 
+  .boardroom-topbar,
   .boardroom-hero,
   .boardroom-snapshot,
   .boardroom-proofline,
@@ -2343,14 +2350,13 @@ details p {
     border-right: 0;
   }
 
-  .boardroom-proof ul,
-  .mag-biography ul {
+  .boardroom-proof ul {
     grid-column: auto;
   }
 }
 
 @media (max-width: 640px) {
-  .boardroom-rail,
+  .boardroom-topbar,
   .boardroom-hero,
   .boardroom-snapshot,
   .boardroom-proofline,
@@ -2383,6 +2389,11 @@ details p {
   .boardroom-hero {
     min-height: auto;
     padding: 28px 0 68px;
+  }
+
+  .boardroom-topbar {
+    min-height: auto;
+    padding: 18px 0;
   }
 
   .boardroom-hero h1,
@@ -2443,5 +2454,10 @@ details p {
   .mag-index,
   .mag-biography {
     gap: 28px;
+  }
+
+  .mag-cover-text {
+    gap: 40px;
+    padding: 32px 0 42px;
   }
 }

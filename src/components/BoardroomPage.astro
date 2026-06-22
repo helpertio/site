@@ -5,7 +5,7 @@ import { contacts, formats, stats, trust } from "@/content/site";
 ---
 
 <main class="concept concept-boardroom">
-  <aside class="boardroom-rail">
+  <header class="boardroom-topbar">
     <a href="/" class="boardroom-name">Иван Тихов</a>
     <nav aria-label="Разделы">
       <a href="#memo">Позиция</a>
@@ -14,7 +14,7 @@ import { contacts, formats, stats, trust } from "@/content/site";
       <a href="#proof">Опыт</a>
     </nav>
     <a href={contacts.telegram}>Telegram</a>
-  </aside>
+  </header>
 
   <section class="boardroom-hero">
     <div class="boardroom-hero-copy">
@@ -29,7 +29,7 @@ import { contacts, formats, stats, trust } from "@/content/site";
     <figure class="boardroom-hero-media">
       <ResponsiveImage
         name="stage"
-        alt="Иван Тихов выступает на сцене"
+        alt="Иван Тихов на сцене"
         class="boardroom-hero-photo"
         loading="eager"
         sizes="(min-width: 900px) 34vw, 100vw"
