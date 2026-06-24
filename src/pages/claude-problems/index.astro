@@ -250,26 +250,35 @@ ul,ol{list-style:none}
   color:var(--sage);
   font-style:italic;
 }
+.section--scenario{
+  padding-top:clamp(56px, 7vw, 92px);
+}
+.section--scenario .section__head{
+  margin-bottom:clamp(24px, 4vw, 44px);
+}
+.section--scenario .section__title{
+  max-width:760px;
+  font-size:clamp(1.95rem, 3.15vw, 3.35rem);
+  line-height:1.06;
+}
 
 .scenario-shell{
   display:grid;
-  grid-template-columns:minmax(220px, .36fr) minmax(0, 1fr);
-  gap:clamp(28px, 5vw, 70px);
+  gap:14px;
   align-items:start;
 }
 .scenario-nav{
-  position:sticky;
-  top:22px;
   display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
   gap:8px;
 }
 .scenario-nav button{
-  min-height:58px;
+  min-height:48px;
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:18px;
-  padding:0 16px;
+  justify-content:flex-start;
+  gap:10px;
+  padding:0 14px;
   border:1px solid var(--rule);
   border-radius:8px;
   background:transparent;
@@ -285,6 +294,7 @@ ul,ol{list-style:none}
   color:var(--paper);
 }
 .scenario-nav span{
+  flex:0 0 auto;
   color:var(--sage);
   font-family:var(--mono);
   font-size:10px;
@@ -575,14 +585,12 @@ ul,ol{list-style:none}
 
 @media (max-width: 1020px){
   .hero,
-  .scenario-shell,
   .scenario-hero,
   .proof{
     grid-template-columns:1fr;
   }
   .hero{min-height:auto}
   .scenario-nav{
-    position:static;
     grid-template-columns:repeat(2, minmax(0, 1fr));
   }
   .scenario-hero img{
@@ -629,9 +637,11 @@ ul,ol{list-style:none}
     max-width:9.8ch;
     font-size:clamp(3rem, 16vw, 5.2rem);
   }
-  .problem-grid,
-  .scenario-nav{
+  .problem-grid{
     grid-template-columns:1fr;
+  }
+  .scenario-nav{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
   }
   .problem-card{
     min-height:190px;
@@ -641,6 +651,9 @@ ul,ol{list-style:none}
   }
   .section__title{
     font-size:clamp(2.15rem, 12vw, 3.7rem);
+  }
+  .section--scenario .section__title{
+    font-size:clamp(1.95rem, 9vw, 3rem);
   }
   .scenario-hero{
     padding:24px;
@@ -719,18 +732,18 @@ ul,ol{list-style:none}
       </div>
     </section>
 
-    <section class="section" id="scenario">
+    <section class="section section--scenario" id="scenario">
       <div class="section__head">
         <span class="section__mark"><em>I</em>Сценарий</span>
-        <h2 class="section__title">Провалиться не в форму заявки, а <em>в свою управленческую реальность</em>.</h2>
+        <h2 class="section__title">Выберите ситуацию — ниже откроется <em>разбор</em>.</h2>
       </div>
 
       <div class="scenario-shell">
         <div class="scenario-nav" aria-label="Переключение сценариев">
-          <button class="is-active" type="button" data-problem="growth" aria-pressed="true"><span>I</span>Рост системы</button>
-          <button type="button" data-problem="partners" aria-pressed="false"><span>II</span>Партнеры и команда</button>
-          <button type="button" data-problem="fork" aria-pressed="false"><span>III</span>Стратегическая развилка</button>
-          <button type="button" data-problem="alone" aria-pressed="false"><span>IV</span>Одиночество роли</button>
+          <button class="is-active" type="button" data-problem="growth" aria-pressed="true"><span>I</span>Рост</button>
+          <button type="button" data-problem="partners" aria-pressed="false"><span>II</span>Партнеры</button>
+          <button type="button" data-problem="fork" aria-pressed="false"><span>III</span>Развилка</button>
+          <button type="button" data-problem="alone" aria-pressed="false"><span>IV</span>Одиночество</button>
         </div>
 
         <article class="scenario-panel" data-panel="growth">
