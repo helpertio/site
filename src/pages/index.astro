@@ -4,7 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Иван Тихов — Доверенный советник</title>
-<meta name="description" content="Когда все вокруг ждут от тебя ответов — нужен тот, с кем можно обдумать вопрос. Консультант, ментор и executive coach. ex-CEO Додо Пицца.">
+<meta name="description" content="Доверенный советник и коуч для лидеров бизнеса. ex-CEO «Додо Пиццы», программа Executive Coaching в Сколково. Помогаю увидеть картину целиком и принять решения — в стратегии, в кризисе или в себе.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0908'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-style='italic' fill='%23c8a45e' text-anchor='middle'%3ET%3C/text%3E%3C/svg%3E">
+<link rel="canonical" href="https://tikhov.org">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Иван Тихов">
+<meta property="og:url" content="https://tikhov.org">
+<meta property="og:title" content="Иван Тихов — доверенный советник и коуч для лидеров бизнеса">
+<meta property="og:description" content="Доверенный советник и коуч для лидеров бизнеса. ex-CEO «Додо Пиццы», программа Executive Coaching в Сколково. Помогаю увидеть картину целиком и принять решения — в стратегии, в кризисе или в себе.">
+<meta property="og:image" content="https://tikhov.org/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Иван Тихов — коуч и советник для лидеров бизнеса">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Иван Тихов — доверенный советник и коуч для лидеров бизнеса">
+<meta name="twitter:description" content="Доверенный советник и коуч для лидеров бизнеса. ex-CEO «Додо Пиццы», программа Executive Coaching в Сколково. Помогаю увидеть картину целиком и принять решения — в стратегии, в кризисе или в себе.">
+<meta name="twitter:image" content="https://tikhov.org/og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -278,170 +296,6 @@ ul,ol{list-style:none}
   color: var(--paper-mute);
 }
 
-/* ── Cases ───────────────────────────────────── */
-.cases{
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0;
-}
-.case{
-  padding: 36px clamp(20px, 3vw, 40px) 36px 0;
-  border-top: 1px solid var(--rule);
-  display: grid;
-  grid-template-columns: 50px 1fr;
-  gap: 24px;
-}
-.case:nth-child(odd){ border-right: 1px solid var(--rule); padding-right: clamp(30px, 4vw, 56px); }
-.case:nth-child(even){ padding-left: clamp(30px, 4vw, 56px); }
-.case:last-child, .case:nth-last-child(2){ border-bottom: 1px solid var(--rule); }
-.case__num{
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  color: var(--paper-mute);
-  padding-top: 4px;
-}
-.case__text{
-  font-family: var(--serif);
-  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
-  line-height: 1.45;
-  color: var(--paper);
-}
-
-/* ── Formats ─────────────────────────────────── */
-.formats{
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-}
-.format{
-  padding: clamp(28px, 3.5vw, 44px) clamp(20px, 2.5vw, 32px);
-  display: flex;
-  flex-direction: column;
-}
-.format + .format{ border-left: 1px solid var(--rule); }
-.format__tag{
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 18px;
-}
-.format__title{
-  font-family: var(--serif);
-  font-weight: 500;
-  font-size: clamp(1.3rem, 1.8vw, 1.55rem);
-  line-height: 1.2;
-  color: var(--paper);
-  margin-bottom: 18px;
-  letter-spacing: -0.005em;
-}
-.format__body{
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--paper-dim);
-}
-
-/* ── Proof ───────────────────────────────────── */
-.proof{
-  display: grid;
-  grid-template-columns: minmax(300px, .58fr) minmax(0, 1fr);
-  gap: clamp(36px, 6vw, 92px);
-  align-items: center;
-}
-.proof__photo img{
-  width: 100%;
-  border: 1px solid var(--rule-strong);
-  filter: grayscale(0.3) contrast(1.05) brightness(0.9);
-}
-.proof__text{
-  display: grid;
-  gap: 24px;
-}
-.proof__text p{
-  font-family: var(--serif);
-  font-size: clamp(1.08rem, 1.45vw, 1.25rem);
-  line-height: 1.6;
-  color: var(--paper-dim);
-  max-width: 600px;
-}
-.proof__text p strong{ color: var(--paper); font-weight: 500; }
-.proof-closing{
-  font-family: var(--serif);
-  font-size: clamp(20px, 2.5vw, 26px);
-  line-height: 1.4;
-  color: var(--gold);
-  margin-top: 40px;
-  border-top: 1px solid var(--rule);
-  padding-top: 32px;
-}
-
-.stats{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  margin-top: clamp(56px, 7vw, 90px);
-  border-top: 1px solid var(--rule-strong);
-  border-bottom: 1px solid var(--rule-strong);
-}
-.stat{
-  padding: clamp(24px, 3vw, 36px) clamp(14px, 2vw, 24px);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.stat + .stat{ border-left: 1px solid var(--rule); }
-.stat__value{
-  font-family: var(--serif);
-  font-weight: 500;
-  font-size: clamp(1.5rem, 2.4vw, 2rem);
-  line-height: 1;
-  color: var(--paper);
-  letter-spacing: -0.01em;
-}
-.stat__label{
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--paper-mute);
-  line-height: 1.4;
-}
-
-/* ── Final CTA ───────────────────────────────── */
-.final{
-  padding: clamp(100px, 14vw, 180px) 0 clamp(80px, 10vw, 140px);
-  text-align: center;
-}
-.final__lede{
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 28px;
-}
-.final__title{
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(2rem, 4.2vw, 3.4rem);
-  line-height: 1.15;
-  color: var(--paper);
-  letter-spacing: -0.01em;
-  max-width: 24ch;
-  margin: 0 auto 56px;
-}
-.final__title em{ font-style: italic; color: var(--gold); }
-.final__ctas{
-  display: inline-flex;
-  flex-direction: column;
-  gap: 14px;
-  align-items: stretch;
-}
-
 /* ── Footer ──────────────────────────────────── */
 .foot{
   padding: 36px 0 56px;
@@ -459,7 +313,8 @@ ul,ol{list-style:none}
 
 /* ── Responsive ──────────────────────────────── */
 @media (max-width: 800px){
-  .topbar__nav{ display: none; }
+  .topbar__nav a:not(:last-child){ display: none; }
+  .topbar__brand em{ display: none; }
   .hero{
     grid-template-columns: 1fr;
     gap: 50px;
@@ -467,16 +322,6 @@ ul,ol{list-style:none}
   }
   .hero__photo{ order: -1; max-width: 360px; }
   .section__head{ grid-template-columns: 1fr; gap: 16px; }
-  .cases{ grid-template-columns: 1fr; }
-  .case:nth-child(odd){ border-right: none; padding-right: 0; }
-  .case:nth-child(even){ padding-left: 0; }
-  .case:nth-last-child(2){ border-bottom: none; }
-  .formats{ grid-template-columns: 1fr; }
-  .format + .format{ border-left: none; border-top: 1px solid var(--rule); }
-  .proof{ grid-template-columns: 1fr; gap: 50px; }
-  .stats{ grid-template-columns: repeat(2, 1fr); }
-  .stat:nth-child(2n+1){ border-left: none; }
-  .stat:nth-child(n+3){ border-top: 1px solid var(--rule); }
   .foot{ flex-direction: column; }
 }
 
@@ -573,16 +418,30 @@ ul,ol{list-style:none}
 
 /* ── Как я работаю ─────────────────────────── */
 .how-head{
-  margin-bottom: 64px;
+  margin-bottom: 52px;
 }
-.how-intro{
-  max-width: 62ch;
-  margin-bottom: 80px;
+.how-opener{
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(40px, 6vw, 80px);
+  align-items: start;
+  margin-bottom: clamp(72px, 9vw, 100px);
 }
+.how-epigraph{
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(26px, 3.6vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--paper);
+  margin: 0;
+}
+.how-epigraph em{ font-style: italic; color: var(--gold); }
+.how-intro{ margin: 0; padding-top: 6px; }
 .how-intro p{
   font-family: var(--serif);
-  font-size: clamp(20px, 2.5vw, 26px);
-  line-height: 1.5;
+  font-size: clamp(18px, 1.6vw, 22px);
+  line-height: 1.62;
   color: var(--paper);
   margin: 0;
 }
@@ -618,84 +477,6 @@ ul,ol{list-style:none}
 @media(max-width:980px){
   .principles__grid{ grid-template-columns:1fr; gap:40px; }
 }
-
-/* ── Variant label bar ─────────────────────── */
-.vlabel{
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  padding: 8px 0;
-  border-top: 1px solid var(--rule-strong);
-  border-bottom: 1px solid var(--rule-strong);
-  margin-bottom: 80px;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-.vlabel em{
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 15px;
-  color: var(--paper-mute);
-  letter-spacing: .02em;
-  text-transform: none;
-}
-
-/* ── Вариант Б — Строки ────────────────────── */
-.vb-head{
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 80px;
-  align-items: start;
-  margin-bottom: 96px;
-}
-.vb-head__title{
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(32px, 5vw, 54px);
-  line-height: 1.05;
-  letter-spacing: -.01em;
-  margin: 0;
-  max-width: 20ch;
-  color: var(--paper);
-}
-.vb-head__title em{ font-style:italic; color:var(--gold); }
-
-.vb-row{
-  display: grid;
-  grid-template-columns: 80px 280px 1fr;
-  gap: 48px;
-  padding: 48px 0;
-  border-top: 1px solid var(--rule);
-  align-items: baseline;
-}
-.vb-row--first{ border-top-color: var(--rule-strong); }
-.vb-row--last{ border-bottom: 1px solid var(--rule); }
-.vb-num{
-  font-family: var(--mono);
-  font-size: 13px;
-  letter-spacing: .16em;
-  color: var(--gold);
-}
-.vb-name{
-  font-family: var(--serif);
-  font-weight: 500;
-  font-size: clamp(20px, 2.2vw, 26px);
-  line-height: 1.2;
-  color: var(--paper);
-  margin: 0;
-}
-.vb-text{
-  font-family: var(--serif);
-  font-size: 19px;
-  line-height: 1.6;
-  color: var(--paper);
-  margin: 0;
-  max-width: 62ch;
-}
-.vb-dim{ color: var(--paper-dim); }
 
 /* ── Вариант В — Эссе ──────────────────────── */
 .vv-head{
@@ -751,12 +532,6 @@ ul,ol{list-style:none}
 }
 .vv-dim{ color: var(--paper-dim); }
 
-@media(max-width:980px){
-  .vb-head{ grid-template-columns:1fr; gap:24px; margin-bottom:56px; }
-  .vb-row{ grid-template-columns:1fr; gap:16px; }
-  .vlabel{ flex-direction:column; gap:4px; }
-}
-
 /* ── Variant label shared ──────────────────── */
 .section__mark-inline{
   font-family: var(--serif);
@@ -790,397 +565,6 @@ ul,ol{list-style:none}
   margin: 80px 0 0;
   padding-top: 40px;
   border-top: 1px solid var(--rule);
-}
-
-/* ── Variant 1 — Разворот ──────────────────── */
-.v1-head{
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 80px;
-  align-items: start;
-  margin-bottom: 96px;
-}
-.v1-head__title{
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(32px, 5vw, 54px);
-  line-height: 1.05;
-  letter-spacing: -.01em;
-  margin: 0;
-  max-width: 20ch;
-  color: var(--paper);
-}
-.v1-head__title em{
-  font-style: italic;
-  color: var(--gold);
-}
-.v1-row{
-  display: grid;
-  grid-template-columns: 64px 1fr 1fr;
-  gap: 56px;
-  padding: 44px 0;
-  border-top: 1px solid var(--rule-mid);
-  align-items: start;
-}
-.v1-row:last-child{
-  border-bottom: 1px solid var(--rule-mid);
-}
-.v1-num{
-  font-family: var(--mono);
-  font-size: 13px;
-  letter-spacing: .16em;
-  color: var(--gold);
-  padding-top: 8px;
-}
-.v1-desc h3{
-  font-family: var(--serif);
-  font-weight: 500;
-  font-size: clamp(20px, 2.5vw, 28px);
-  line-height: 1.15;
-  color: var(--paper);
-  margin: 0 0 22px;
-  max-width: 22ch;
-}
-.v1-desc p{
-  font-family: var(--serif);
-  font-size: 18px;
-  line-height: 1.55;
-  color: var(--paper-dim);
-  margin: 0;
-  max-width: 38ch;
-}
-.v1-how{
-  border-left: 1px solid var(--gold);
-  padding-left: 32px;
-}
-.v1-how p{
-  font-family: var(--sans);
-  font-size: 16px;
-  line-height: 1.65;
-  color: var(--paper);
-  margin: 0;
-  max-width: 42ch;
-}
-
-/* ── Variant 2 — Содержание ────────────────── */
-.v2-head{
-  margin-bottom: 80px;
-}
-.v2-head__title{
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(32px, 5vw, 54px);
-  line-height: 1.05;
-  letter-spacing: -.01em;
-  margin: 24px 0 0;
-  max-width: 20ch;
-  color: var(--paper);
-}
-.v2-head__title em{
-  font-style: italic;
-  color: var(--gold);
-}
-.v2-split{
-  display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: 80px;
-  border-top: 1px solid var(--rule-mid);
-  padding-top: 48px;
-}
-.v2-toc{
-  display: flex;
-  flex-direction: column;
-}
-.v2-toc__item{
-  display: grid;
-  grid-template-columns: 36px 1fr;
-  gap: 18px;
-  padding: 18px 0;
-  border-bottom: 1px solid var(--rule);
-  align-items: start;
-  text-decoration: none;
-  color: inherit;
-  opacity: .55;
-  transition: opacity .25s;
-  cursor: pointer;
-}
-.v2-toc__item.is-active{
-  opacity: 1;
-}
-.v2-toc__item:hover{
-  opacity: 1;
-}
-.v2-toc__num{
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: .16em;
-  color: var(--paper-mute);
-  padding-top: 6px;
-}
-.v2-toc__item.is-active .v2-toc__num{
-  color: var(--gold);
-}
-.v2-toc__label{
-  font-family: var(--serif);
-  font-size: 22px;
-  line-height: 1.2;
-  color: var(--paper);
-  font-weight: 500;
-}
-.v2-toc__arrow{
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-top: 10px;
-  display: none;
-}
-.v2-toc__item.is-active .v2-toc__arrow{
-  display: block;
-}
-
-.v2-body__badge{
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 18px;
-}
-.v2-body h3{
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(28px, 4vw, 42px);
-  line-height: 1.1;
-  color: var(--paper);
-  margin: 0 0 36px;
-  max-width: 18ch;
-}
-.v2-body__what-label,
-.v2-body__how-label{
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--paper-mute);
-  margin-bottom: 10px;
-}
-.v2-body__how-label{
-  color: var(--gold);
-}
-.v2-body__what{
-  margin-bottom: 28px;
-}
-.v2-body__what p{
-  font-family: var(--serif);
-  font-size: 20px;
-  line-height: 1.55;
-  color: var(--paper);
-  margin: 0;
-}
-.v2-body__how-box{
-  background: rgba(200,164,94,.06);
-  padding: 30px 32px;
-  border: 1px solid var(--rule);
-}
-.v2-body__how-box p{
-  font-family: var(--sans);
-  font-size: 17px;
-  line-height: 1.7;
-  color: var(--paper-dim);
-  margin: 0;
-}
-
-@media(max-width:980px){
-  .v1-head{ grid-template-columns:1fr; gap:24px; margin-bottom:56px; }
-  .v1-row{ grid-template-columns:1fr; gap:24px; }
-  .v1-num{ padding:0; }
-  .v1-how{ border-left:0; padding-left:0; border-top:1px solid var(--gold); padding-top:20px; }
-  .v2-split{ grid-template-columns:1fr; gap:40px; }
-}
-
-/* ── Topics (С чем работаю) ──────────────────── */
-.topics{
-  display: flex;
-  flex-direction: column;
-}
-.topic{
-  display: grid;
-  grid-template-columns: minmax(180px, .32fr) minmax(0, 1fr);
-  gap: clamp(28px, 4vw, 64px);
-  padding: clamp(36px, 4.5vw, 56px) 0;
-  border-top: 1px solid var(--rule-mid);
-}
-.topic:last-child{
-  border-bottom: 1px solid var(--rule-mid);
-}
-.topic__num{
-  display: block;
-  color: var(--gold);
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: .16em;
-  margin-bottom: 16px;
-}
-.topic__title{
-  font-family: var(--serif);
-  font-size: clamp(1.35rem, 2vw, 1.75rem);
-  font-weight: 500;
-  line-height: 1.15;
-  color: var(--paper);
-}
-.topic__right{
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.topic__right p{
-  color: var(--paper-dim);
-  font-size: 1rem;
-  line-height: 1.65;
-  max-width: 620px;
-}
-.topic__how{
-  color: var(--paper-mute) !important;
-  padding-left: 20px;
-  border-left: 1px solid var(--gold);
-}
-.topics__coda{
-  margin-top: clamp(48px, 6vw, 80px);
-  font-family: var(--serif);
-  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
-  font-weight: 400;
-  font-style: italic;
-  line-height: 1.2;
-  color: var(--gold);
-  text-align: center;
-}
-
-@media(max-width:980px){
-  .topic{
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-}
-
-/* ── Situations (4-col grid) ─────────────────── */
-.situations{
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  border: 1px solid var(--rule);
-  background: rgba(21, 18, 14, 0.64);
-}
-.situation{
-  min-height: 260px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 28px;
-  border-right: 1px solid var(--rule);
-  transition: background-color .18s;
-}
-.situation:last-child{ border-right: 0; }
-.situation:hover{ background: rgba(200, 164, 94, 0.1); }
-.situation span{
-  color: var(--gold);
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-}
-.situation h3{
-  margin-top: 24px;
-  font-family: var(--serif);
-  font-size: clamp(1.35rem, 2vw, 1.8rem);
-  font-weight: 500;
-  line-height: 1.14;
-  color: var(--paper);
-}
-.situation p{
-  margin-top: 24px;
-  color: var(--paper-dim);
-  line-height: 1.62;
-}
-
-/* ── Position (quote + copy) ─────────────────── */
-.position-block{
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, .72fr);
-  gap: clamp(34px, 6vw, 86px);
-  align-items: end;
-}
-.position-quote{
-  max-width: 820px;
-  color: var(--paper);
-  font-family: var(--serif);
-  font-size: clamp(2rem, 4.5vw, 4.6rem);
-  line-height: 1.02;
-}
-.position-quote em{
-  color: var(--gold);
-  font-style: italic;
-}
-.position-copy{
-  color: var(--paper-dim);
-  font-size: 1.02rem;
-  line-height: 1.72;
-}
-.position-copy p + p{ margin-top: 18px; }
-.position-copy strong{ color: var(--paper); font-weight: 500; }
-
-/* ── Proof (photo + text) ────────────────────── */
-.proof-block{
-  display: grid;
-  grid-template-columns: minmax(300px, .58fr) minmax(0, 1fr);
-  gap: clamp(38px, 6vw, 92px);
-  align-items: center;
-}
-.proof-photo img{
-  width: 100%;
-  height: min(68vh, 620px);
-  object-fit: cover;
-  object-position: center top;
-  border: 1px solid var(--rule-strong);
-  filter: grayscale(.22) saturate(.82) contrast(1.06) brightness(.9);
-}
-.proof-text{ display: grid; gap: 28px; }
-.proof-text > p{
-  max-width: 660px;
-  color: var(--paper-dim);
-  font-size: clamp(1.08rem, 1.45vw, 1.25rem);
-  line-height: 1.68;
-}
-.proof-text > p strong{ color: var(--paper); font-weight: 500; }
-.proof-stats{
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid var(--rule-strong);
-  border-bottom: 1px solid var(--rule-strong);
-}
-.proof-stats li{
-  min-height: 170px;
-  padding: 22px;
-  border-right: 1px solid var(--rule);
-}
-.proof-stats li:last-child{ border-right: 0; }
-.proof-stats b{
-  display: block;
-  color: var(--paper);
-  font-family: var(--serif);
-  font-size: 1.45rem;
-  font-weight: 500;
-  line-height: 1.1;
-}
-.proof-stats span{
-  display: block;
-  margin-top: 14px;
-  color: var(--paper-mute);
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: .12em;
-  line-height: 1.5;
-  text-transform: uppercase;
 }
 
 /* ── Format cards ────────────────────────────── */
@@ -1229,6 +613,23 @@ ul,ol{list-style:none}
   text-transform: uppercase;
 }
 
+/* ── CTA (mid-page) ──────────────────────────── */
+.cta-mid{
+  text-align: center;
+  padding: clamp(64px, 9vw, 104px) 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.cta-mid__text{
+  font-family: var(--serif);
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.3;
+  color: var(--paper);
+  margin: 0 auto 32px;
+  max-width: 26ch;
+}
+.cta-mid__text em{ font-style: italic; color: var(--gold); }
+
 /* ── CTA section ─────────────────────────────── */
 .cta-section{
   padding: clamp(92px, 13vw, 168px) 0 clamp(74px, 10vw, 118px);
@@ -1274,15 +675,9 @@ ul,ol{list-style:none}
 
 /* ── Responsive overrides for new sections ──── */
 @media (max-width: 980px){
-  .position-block, .proof-block{ grid-template-columns: 1fr; }
-  .situations, .formats-grid, .proof-stats{ grid-template-columns: 1fr; }
-  .situation, .proof-stats li{
-    min-height: auto;
-    border-right: 0;
-    border-bottom: 1px solid var(--rule);
-  }
-  .situation:last-child, .proof-stats li:last-child{ border-bottom: 0; }
+  .formats-grid{ grid-template-columns: 1fr; }
   .format-card{ min-height: auto; }
+  .how-opener{ grid-template-columns: 1fr; gap: 36px; }
 }
 @media (max-width: 680px){
   .cta-actions{ display: grid; }
@@ -1328,44 +723,8 @@ ul,ol{list-style:none}
   </section>
 
   
-  <!-- ══════════ ВАРИАНТ Б — «Строки» ══════════ -->
+  <!-- ── §I · С чем я работаю ─────────────────── -->
   <section class="section" id="pain">
-    <div class="vb-head">
-      <div class="vb-head__left">
-        <em class="section__mark-inline">§ I</em>
-        <span class="section__label">С чем я работаю</span>
-      </div>
-      <h2 class="vb-head__title">Четыре разговора, в&nbsp;которых я&nbsp;<em>буду полезен</em></h2>
-    </div>
-
-    <div class="vb-topics">
-      <article class="vb-row vb-row--first">
-        <span class="vb-num">01</span>
-        <h3 class="vb-name">Потеря смысла, выгорание, одиночество</h3>
-        <p class="vb-text">Вы&nbsp;нужны всем: команде, партнёрам, семье. Все ждут решений и&nbsp;определённости. Но&nbsp;внутри&nbsp;— пустота, драйв ушёл, смысл поблёк. <span class="vb-dim">Смотрим, что за&nbsp;этим стоит&nbsp;— усталость, потеря ориентиров или что-то глубже. Я&nbsp;задаю вопросы, которые помогают думать, а&nbsp;не&nbsp;защищаться&nbsp;— так рождается ясность и&nbsp;точка опоры.</span></p>
-      </article>
-      <article class="vb-row">
-        <span class="vb-num">02</span>
-        <h3 class="vb-name">Кризис</h3>
-        <p class="vb-text">Падение выручки, кассовый разрыв, потеря ключевого клиента. Привычные сценарии не&nbsp;работают, решать нужно быстро. <span class="vb-dim">Проговариваем сценарии, отделяем панику от&nbsp;реальности, видим варианты там, где их&nbsp;кажется нет&nbsp;— возвращается способность действовать, а&nbsp;не&nbsp;замирать.</span></p>
-      </article>
-      <article class="vb-row">
-        <span class="vb-num">03</span>
-        <h3 class="vb-name">Стратегия «куда дальше»</h3>
-        <p class="vb-text">Компания выросла, рынок изменился, хочется нового. Масштабирование, продажа, смена роли, новый проект. <span class="vb-dim">Не&nbsp;ищем готовых ответов&nbsp;— задаём вопросы, которые показывают картину целиком: рынок, команду, свои желания и&nbsp;ограничения. Решение становится осознанным, а&nbsp;не&nbsp;импульсивным.</span></p>
-      </article>
-      <article class="vb-row vb-row--last">
-        <span class="vb-num">04</span>
-        <h3 class="vb-name">Партнёры и&nbsp;команда</h3>
-        <p class="vb-text">Партнёрство похоже на&nbsp;брак, команда&nbsp;— на&nbsp;детей. Сложные разговоры откладываются годами: цена ошибки слишком высока. <span class="vb-dim">Проговариваем отношения до&nbsp;того, как идти в&nbsp;реальный диалог&nbsp;— отделяем факты от&nbsp;обид, страх от&nbsp;интуиции. Входите в&nbsp;разговор с&nbsp;ясностью.</span></p>
-      </article>
-    </div>
-
-    <p class="v-coda" style="margin-top:120px">Это разговор, который возвращает способность думать ясно</p>
-  </section>
-
-  <!-- ══════════ ВАРИАНТ В — «Эссе» ══════════ -->
-  <section class="section" style="border-top:1px solid var(--rule)">
     <div class="vv-head">
       <div class="section__label" style="margin-bottom:18px">§ I · С&nbsp;чем я&nbsp;работаю</div>
       <h2 class="vv-head__title">Четыре разговора, в&nbsp;которых я&nbsp;<em>буду полезен</em></h2>
@@ -1414,8 +773,11 @@ ul,ol{list-style:none}
       </div>
     </div>
 
-    <div class="how-intro">
-      <p>Это разговор, в&nbsp;котором вы&nbsp;думаете вслух, а&nbsp;я&nbsp;удерживаю фокус на&nbsp;главном, подсвечиваю слепые зоны и&nbsp;иногда делюсь наблюдениями. К&nbsp;концу встречи ситуация выглядит иначе&nbsp;— вы&nbsp;смотрите на&nbsp;неё по-новому и&nbsp;сами видите, куда двигаться.</p>
+    <div class="how-opener">
+      <blockquote class="how-epigraph">Моя работа&nbsp;— быть <em>доверенным лицом</em> в&nbsp;решениях, где обычного совета недостаточно</blockquote>
+      <div class="how-intro">
+        <p>Это разговор, в&nbsp;котором вы&nbsp;думаете вслух, а&nbsp;я&nbsp;удерживаю фокус на&nbsp;главном, подсвечиваю слепые зоны и&nbsp;иногда делюсь наблюдениями. К&nbsp;концу встречи ситуация выглядит иначе&nbsp;— вы&nbsp;смотрите на&nbsp;неё по-новому и&nbsp;сами видите, куда двигаться.</p>
+      </div>
     </div>
 
     <div class="principles">
@@ -1464,17 +826,10 @@ ul,ol{list-style:none}
 
   </section>
 
-  <!-- ── Position ────────────────────────────── -->
-  <section class="section">
-    <div class="position-block">
-      <blockquote class="position-quote">
-        Моя работа — быть <em>доверенным лицом</em> в решениях, где обычного совета недостаточно.
-      </blockquote>
-      <div class="position-copy">
-        <p><strong>Я не прихожу с готовой схемой, которую нужно натянуть на ваш бизнес.</strong> Я помогаю вынести сложное на стол, отделить факты от шума, увидеть интересы людей и собрать решение, с которым можно жить дальше.</p>
-        <p>В таких разговорах важны не громкие ответы, а точность: что на самом деле происходит, где ясность пока не складывается, какую цену несёт каждый выбор и какой следующий шаг честный.</p>
-      </div>
-    </div>
+  <!-- ── CTA (mid-page) ──────────────────────── -->
+  <section class="cta-mid">
+    <p class="cta-mid__text">Если узнали свою ситуацию&nbsp;— <em>давайте поговорим</em></p>
+    <a class="btn" href="https://t.me/tikhov">Написать мне в&nbsp;Telegram</a>
   </section>
 
   <!-- ── Proof ───────────────────────────────── -->
@@ -1504,7 +859,7 @@ ul,ol{list-style:none}
         <article class="tl-item">
           <div class="tl-item__marker">
             <span class="tl-item__num">03</span>
-            <span class="tl-item__label">СКОЛКОВО</span>
+            <span class="tl-item__label">Сколково</span>
           </div>
           <p class="tl-item__text">Пошёл учиться Executive Coaching уже после ухода. Главное открытие: самый мощный инструмент&nbsp;— это внимательное присутствие другого человека. Умение слушать и&nbsp;задавать вопросы, которые помогают найти собственные ответы, а&nbsp;не&nbsp;подсказывать чужие.</p>
         </article>
@@ -1528,7 +883,7 @@ ul,ol{list-style:none}
   <!-- ── CTA ─────────────────────────────────── -->
   <section class="cta-section" id="contact">
     <p class="cta-eyebrow">§ IV · Личный вход</p>
-    <h2 class="cta-title">Вы не обязаны додумывать это <em>в одиночку</em>.</h2>
+    <h2 class="cta-title">Вы не обязаны додумывать это <em>в одиночку</em></h2>
     <p class="cta-desc">Напишите мне в Telegram. Расскажите о чём хотите поговорить или сразу договоримся на встречу.</p>
     <div class="cta-actions">
       <a class="btn" href="https://t.me/tikhov">Написать мне лично</a>
@@ -1542,8 +897,6 @@ ul,ol{list-style:none}
   </footer>
 
 </div>
-
-
 
 </body>
 </html>
