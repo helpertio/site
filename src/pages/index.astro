@@ -114,6 +114,53 @@ ul,ol{list-style:none}
   border-color: var(--gold);
 }
 
+/* ── Slim reveal nav ─────────────────────────── */
+.slimnav{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 60;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  height: 58px;
+  padding: 0 clamp(20px, 4vw, 56px);
+  background: rgba(10, 9, 8, 0.82);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+  transform: translateY(-100%);
+  transition: transform .32s ease;
+  will-change: transform;
+}
+.slimnav.is-visible{ transform: translateY(0); }
+.slimnav__brand{
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--paper);
+}
+.slimnav__nav{ display: flex; gap: 18px; align-items: center; }
+.slimnav__nav a{
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--paper-dim);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 3px;
+  transition: color .18s, border-color .18s;
+}
+.slimnav__nav a:hover{ color: var(--gold); border-color: var(--gold); }
+.slimnav__cta{
+  color: var(--paper) !important;
+  border-bottom: 1px solid var(--rule-strong) !important;
+}
+.slimnav__cta:hover{ color: var(--gold) !important; border-color: var(--gold) !important; }
+@media (max-width: 800px){
+  .slimnav__nav a:not(.slimnav__cta){ display: none; }
+}
+
 /* ── Hero ────────────────────────────────────── */
 .hero{
   display: grid;
@@ -446,6 +493,17 @@ ul,ol{list-style:none}
   color: var(--paper);
   margin: 0;
 }
+.how-offline{
+  margin-top: 40px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.5;
+  color: var(--paper);
+}
+.cta-mark{
+  margin-bottom: clamp(24px, 3.4vw, 34px);
+}
 .principles{
   border-top: 1px solid var(--rule-strong);
   padding-top: 48px;
@@ -657,21 +715,24 @@ ul,ol{list-style:none}
   font-weight: 400;
   line-height: 1;
   color: var(--paper);
+  text-wrap: balance;
 }
 .cta-title em{ color: var(--gold); font-style: italic; }
 .cta-desc{
-  max-width: 600px;
+  max-width: 540px;
   margin: 28px auto 0;
   color: var(--paper-dim);
   font-size: 1.08rem;
   line-height: 1.7;
+  text-wrap: balance;
 }
 .cta-actions{
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: stretch;
   gap: 12px;
-  margin-top: 34px;
+  margin: 34px auto 0;
+  max-width: 320px;
 }
 
 /* ── Responsive overrides for new sections ──── */
@@ -680,17 +741,24 @@ ul,ol{list-style:none}
   .format-card{ min-height: auto; }
   .how-opener{ grid-template-columns: 1fr; gap: 36px; }
 }
-@media (max-width: 680px){
-  .cta-actions{ display: grid; }
-}
-
 </style>
 </head>
 <body>
 
 <div class="page">
 
-  <header class="topbar">
+  <!-- ── Slim reveal nav (appears on scroll-up) ── -->
+  <nav class="slimnav" id="slimnav" aria-hidden="true">
+    <a class="slimnav__brand" href="#top">Иван&nbsp;Тихов</a>
+    <div class="slimnav__nav">
+      <a href="#pain">С чем я работаю</a>
+      <a href="#format">Как я работаю</a>
+      <a href="#proof">Мой опыт</a>
+      <a class="slimnav__cta" href="https://t.me/tikhov">Написать мне</a>
+    </div>
+  </nav>
+
+  <header class="topbar" id="top">
     <span class="topbar__brand">Иван&nbsp;Тихов <em>Доверенный советник и коуч для лидеров бизнеса</em></span>
     <nav class="topbar__nav">
       <a href="#pain">С чем я работаю</a>
@@ -705,17 +773,17 @@ ul,ol{list-style:none}
     <div>
       
       <h1 class="hero__headline">
-        Чем больше ответственности&nbsp;— тем меньше людей, с&nbsp;кем можно <em>подумать&nbsp;вслух</em>. Со&nbsp;мной&nbsp;— можно
+        Чем больше ответственности&nbsp;— тем меньше людей, с&nbsp;кем можно <em>подумать&nbsp;вслух</em>
       </h1>
       
       <p class="hero__deck">
         Я&nbsp;помогаю собственникам и&nbsp;управленцам увидеть картину целиком
-        и&nbsp;принять решения&nbsp;— в&nbsp;стратегии, в&nbsp;кризисе или в&nbsp;себе.
+        и&nbsp;принимать решения&nbsp;— в&nbsp;стратегии, в&nbsp;кризисе или в&nbsp;себе.
         Конфиденциально и&nbsp;честно, без готовых ответов.
       </p>
-      <p class="hero__byline">8&nbsp;лет в&nbsp;«Додо&nbsp;Пицце»&nbsp;— прошёл путь от&nbsp;франчайзи до&nbsp;CEO сети. Закончил программу Executive&nbsp;Coaching в&nbsp;Сколково, чтобы эффективно помогать тем, кто стоит у&nbsp;руля.</p>
+      <p class="hero__byline">Ex-CEO «Додо&nbsp;Пиццы»&nbsp;— прошёл путь от&nbsp;пиццерии по&nbsp;франшизе до&nbsp;управления сетью с&nbsp;выручкой 50+&nbsp;млрд рублей в&nbsp;год. Закончил программу Executive&nbsp;Coaching в&nbsp;Сколково, чтобы эффективно помогать тем, кто стоит у&nbsp;руля.</p>
       <div class="hero__actions">
-        <a class="btn" href="https://t.me/tikhov">Написать мне лично</a>
+        <a class="btn" href="https://t.me/tikhov">Написать мне в&nbsp;Telegram</a>
       </div>
     </div>
     <figure class="hero__photo">
@@ -727,42 +795,41 @@ ul,ol{list-style:none}
   <!-- ── §I · С чем я работаю ─────────────────── -->
   <section class="section" id="pain">
     <div class="vv-head">
-      <div class="section__label" style="margin-bottom:18px">§ I · С&nbsp;чем я&nbsp;работаю</div>
-      <h2 class="vv-head__title">Четыре разговора, в&nbsp;которых я&nbsp;<em>буду полезен</em></h2>
+      <em class="section__mark-inline">§ I</em>
+      <span class="section__label">С&nbsp;чем я&nbsp;работаю</span>
+      <h2 class="vv-head__title" style="margin-top:24px">Четыре разговора, в&nbsp;которых я&nbsp;<em>буду полезен</em></h2>
     </div>
 
     <div class="vv-essays">
       <article class="vv-item">
         <div class="vv-item__head">
           <span class="vv-dash">— 01 —</span>
-          <h3>Потеря смысла, выгорание, одиночество</h3>
+          <h3>Куда дальше?</h3>
         </div>
-        <p>Вы&nbsp;нужны всем: команде, партнёрам, семье. Все ждут от&nbsp;вас решений и&nbsp;определённости. Но&nbsp;внутри&nbsp;— пустота, драйв ушёл, смысл поблёк, а&nbsp;обсудить это не&nbsp;с&nbsp;кем. <span class="vv-dim">Смотрим, что за&nbsp;этим стоит&nbsp;— усталость, потеря ориентиров или что-то глубже. Я&nbsp;удерживаю фокус и&nbsp;задаю вопросы, которые помогают думать, а&nbsp;не&nbsp;защищаться&nbsp;— так рождается ясность и&nbsp;собственная точка опоры.</span></p>
+        <p>Компания выросла, рынок изменился, хочется нового&nbsp;— но&nbsp;куда? Масштабировать, продать, сменить роль, начать новый проект. Вариантов много, а&nbsp;обсудить их&nbsp;по-настоящему не&nbsp;с&nbsp;кем: в&nbsp;бизнесе от&nbsp;вас ждут определённости. <span class="vv-dim">Задаю вопросы, чтобы исследовать всю картину целиком: рынок, ресурсы, команду, ваши желания и&nbsp;ограничения. Трезво взвешиваете варианты и&nbsp;выбираете направление, в&nbsp;котором уверены.</span></p>
       </article>
       <article class="vv-item">
         <div class="vv-item__head">
           <span class="vv-dash">— 02 —</span>
-          <h3>Кризис</h3>
+          <h3>Новая роль</h3>
         </div>
-        <p>Падение выручки, кассовый разрыв, потеря ключевого клиента&nbsp;— привычные сценарии не&nbsp;работают, а&nbsp;решать нужно быстро. <span class="vv-dim">Проговариваем сценарии, отделяем панику от&nbsp;реальности, видим варианты там, где кажется, что их&nbsp;нет&nbsp;— возвращается способность действовать, а&nbsp;не&nbsp;замирать.</span></p>
+        <p>Собственник выходит из&nbsp;операционки. Топ-менеджер берёт новую роль или уходит из&nbsp;найма. Серьёзное изменение роли&nbsp;— это всегда вызов. <span class="vv-dim">Сопровождаю, пока вы&nbsp;входите в&nbsp;новую роль: разбираем, чего она требует на&nbsp;самом деле, где прежние привычки мешают, какие решения теперь только ваши.</span></p>
       </article>
       <article class="vv-item">
         <div class="vv-item__head">
           <span class="vv-dash">— 03 —</span>
-          <h3>Стратегия «куда дальше»</h3>
+          <h3>Кризис в&nbsp;бизнесе</h3>
         </div>
-        <p>Компания выросла, рынок изменился, хочется нового&nbsp;— но&nbsp;куда? С&nbsp;командой нельзя: они ждут определённости. С&nbsp;семьёй&nbsp;— слишком дорого ошибиться. <span class="vv-dim">Не&nbsp;ищем готовых ответов&nbsp;— задаём вопросы, которые показывают картину целиком: рынок, команду, свои желания и&nbsp;ограничения. Решение становится осознанным.</span></p>
+        <p>Резкое падение выручки, кассовый разрыв, уход ключевого клиента или сотрудника. Знакомые сценарии перестают работать, а&nbsp;решать нужно быстро&nbsp;— и&nbsp;груз ложится на&nbsp;вас одного. <span class="vv-dim">Проговариваем ситуацию, отделяем панику от&nbsp;реальности, находим варианты там, где их&nbsp;поначалу не&nbsp;видно. Прояснение картины позволяет действовать эффективно.</span></p>
       </article>
       <article class="vv-item">
         <div class="vv-item__head">
           <span class="vv-dash">— 04 —</span>
-          <h3>Партнёры и&nbsp;команда</h3>
+          <h3>Потеря смысла, выгорание, одиночество лидера</h3>
         </div>
-        <p>Партнёрство похоже на&nbsp;брак, команда&nbsp;— на&nbsp;детей. Сложные разговоры откладываются годами&nbsp;— цена ошибки слишком высока. <span class="vv-dim">Проговариваем отношения до&nbsp;того, как идти в&nbsp;реальный диалог. Отделяем факты от&nbsp;обид, страх от&nbsp;интуиции&nbsp;— входите с&nbsp;ясностью, а&nbsp;не&nbsp;с&nbsp;комом в&nbsp;горле.</span></p>
+        <p>Вы&nbsp;нужны всем&nbsp;— команде, партнёрам, близким. Все ждут решений и&nbsp;определённости. А&nbsp;внутри&nbsp;— пустота: драйв ушёл, смысл поблёк, и&nbsp;поделиться этим не&nbsp;с&nbsp;кем. <span class="vv-dim">Смотрим, что за&nbsp;этим стоит: усталость, потеря ориентиров или что-то глубже. Я&nbsp;удерживаю фокус и&nbsp;задаю вопросы, на&nbsp;которые хочется отвечать честно,&nbsp;— так возвращается ясность и&nbsp;внутренняя опора.</span></p>
       </article>
     </div>
-
-    <p class="v-coda" style="margin-top:140px">Это разговор, который возвращает способность думать ясно</p>
   </section>
 
   <!-- ── Как я работаю ──────────────────────── -->
@@ -777,7 +844,8 @@ ul,ol{list-style:none}
     <div class="how-opener">
       <blockquote class="how-epigraph">Моя работа&nbsp;— быть <em>доверенным лицом</em> в&nbsp;решениях, где обычного совета недостаточно</blockquote>
       <div class="how-intro">
-        <p>Это разговор, в&nbsp;котором вы&nbsp;думаете вслух, а&nbsp;я&nbsp;удерживаю фокус на&nbsp;главном, подсвечиваю слепые зоны и&nbsp;иногда делюсь наблюдениями. К&nbsp;концу встречи ситуация выглядит иначе&nbsp;— вы&nbsp;смотрите на&nbsp;неё по-новому и&nbsp;сами видите, куда двигаться.</p>
+        <p>Это разговор, в&nbsp;котором вы&nbsp;думаете вслух, а&nbsp;я&nbsp;удерживаю фокус на&nbsp;главном, подсвечиваю слепые зоны и&nbsp;иногда делюсь наблюдениями. Появляются новые перспективы и&nbsp;первые шаги&nbsp;— и&nbsp;вы&nbsp;понимаете, куда двигаться.</p>
+        <p class="how-offline">Работать я&nbsp;предпочитаю вживую: личное присутствие меняет качество разговора и&nbsp;влияет на&nbsp;результат. Онлайн&nbsp;— по&nbsp;необходимости.</p>
       </div>
     </div>
 
@@ -788,39 +856,38 @@ ul,ol{list-style:none}
       <div class="principles__grid">
         <article class="principle">
           <h3>Человечность</h3>
-          <p>Для меня управление&nbsp;— это прежде всего про людей, а&nbsp;не&nbsp;про функции, должности и&nbsp;KPI. Я&nbsp;вижу человека целиком: его роль, историю, ограничения, желания. На&nbsp;встречах есть место и&nbsp;бизнесу, и&nbsp;личному, если оно влияет на&nbsp;решения.</p>
+          <p>Для меня управление&nbsp;— не&nbsp;только про стратегию, цели и&nbsp;KPI, но&nbsp;и&nbsp;про людей, их&nbsp;надежды и&nbsp;мечты. На&nbsp;встречах есть место и&nbsp;бизнесу, и&nbsp;личному, если оно влияет на&nbsp;решения.</p>
         </article>
         <article class="principle">
           <h3>Польза</h3>
-          <p>Мне важно, чтобы результаты нашей работы были применимы: в&nbsp;решениях, целях, разговорах, действиях или внутреннем состоянии. После каждой встречи должно оставаться что-то полезное&nbsp;— ясность, структура, следующий шаг.</p>
+          <p>Мне важно, чтобы результаты нашей работы были применимы: в&nbsp;решениях, действиях или внутреннем состоянии. После каждой встречи должно оставаться что-то полезное&nbsp;— ясность, структура, следующий шаг.</p>
         </article>
         <article class="principle">
           <h3>Честность</h3>
-          <p>Я&nbsp;называю вещи своими именами и&nbsp;задаю вопросы, которые помогают увидеть реальность. Стараюсь говорить прямо и&nbsp;ожидаю честности в&nbsp;ответ. Это не&nbsp;всегда просто, но&nbsp;иначе вся эта работа не&nbsp;имеет смысла.</p>
+          <p>Я&nbsp;стараюсь называть вещи своими именами, задаю вопросы, которые помогают увидеть реальность, и&nbsp;ожидаю честности в&nbsp;ответ. Это не&nbsp;всегда просто, но&nbsp;иначе вся эта работа не&nbsp;имеет никакого смысла.</p>
         </article>
       </div>
     </div>
 
     <div class="how-formats" style="margin-top:96px; border-top:1px solid var(--rule-strong); padding-top:56px">
-      <h2 class="section__title" style="font-size:clamp(24px,3.5vw,42px); margin-bottom:56px">Формат выбирается не из меню, а&nbsp;<em>из вашей ситуации</em></h2>
       <div class="formats-grid">
         <article class="format-card">
-          <span>Разовый вход</span>
-          <h3>Глубокий разговор на один сложный вопрос</h3>
+          <span>Разовая сессия</span>
+          <h3>Глубокий разбор ситуации</h3>
           <p>Подходит, когда нужно быстро разложить ситуацию, увидеть скрытые напряжения и принять ближайшее решение без лишней драматизации.</p>
           <small>Выход: ясная карта вопроса, варианты, риски, следующий шаг.</small>
         </article>
         <article class="format-card">
           <span>Регулярная работа</span>
-          <h3>Личное 1-на-1 сопровождение руководителя</h3>
+          <h3>Личное сопровождение руководителя</h3>
           <p>Подходит, когда решений много, ставки высокие, а внутри роли почти нет места, где можно думать вслух и без защиты.</p>
           <small>Выход: ритм мышления, честная обратная связь, управленческая опора.</small>
         </article>
         <article class="format-card">
           <span>Команда</span>
-          <h3>Стратегические и командные сессии</h3>
+          <h3>Стратегические сессии</h3>
           <p>Подходит, когда вопрос живёт не в голове одного человека, а между партнёрами, функциями или топ-командой.</p>
-          <small>Выход: общий язык, договорённости, решение, которое выдерживает людей.</small>
+          <small>Выход: общий язык, договорённости, слаженная команда.</small>
         </article>
       </div>
     </div>
@@ -853,23 +920,16 @@ ul,ol{list-style:none}
         <article class="tl-item">
           <div class="tl-item__marker">
             <span class="tl-item__num">02</span>
-            <span class="tl-item__label">Кризис</span>
+            <span class="tl-item__label">Сколково</span>
           </div>
-          <p class="tl-item__text">Уход из&nbsp;компании совпал с&nbsp;личным кризисом: депрессия, потеря идентичности. Всё, что строил годами, осталось в&nbsp;прошлом. Опыт тяжёлый, но&nbsp;он&nbsp;научил принимать всерьёз то, с&nbsp;чем люди обычно остаются один на&nbsp;один.</p>
+          <p class="tl-item__text">Пошёл учиться на&nbsp;программу Executive Coaching &amp; Mentoring после ухода из&nbsp;компании. Убедился на&nbsp;практике, насколько мощный эффект в&nbsp;развитии может давать внимательное присутствие другого человека. Укрепил навыки слушать и&nbsp;задавать вопросы, которые помогают найти собственные ответы.</p>
         </article>
         <article class="tl-item">
           <div class="tl-item__marker">
             <span class="tl-item__num">03</span>
-            <span class="tl-item__label">Сколково</span>
-          </div>
-          <p class="tl-item__text">Пошёл учиться Executive Coaching уже после ухода. Главное открытие: самый мощный инструмент&nbsp;— это внимательное присутствие другого человека. Умение слушать и&nbsp;задавать вопросы, которые помогают найти собственные ответы, а&nbsp;не&nbsp;подсказывать чужие.</p>
-        </article>
-        <article class="tl-item">
-          <div class="tl-item__marker">
-            <span class="tl-item__num">04</span>
             <span class="tl-item__label">Сегодня</span>
           </div>
-          <p class="tl-item__text">Доверенный советник и&nbsp;коуч для первых лиц, сочетаю в&nbsp;работе коучинг, менторинг, трекинг и&nbsp;консалтинг. Задаю вопросы, вскрывающие суть. Делюсь опытом. Говорю прямо, делюсь наблюдениями. Поддерживаю в&nbsp;поиске и&nbsp;реализации конкретных решений. Опыт CEO помогает понимать бизнес-контекст без долгих объяснений.</p>
+          <p class="tl-item__text">Доверенный советник и&nbsp;коуч для первых лиц, сочетаю в&nbsp;работе коучинг, менторинг, трекинг и&nbsp;консалтинг. Задаю вопросы, вскрывающие суть. Делюсь опытом. Говорю прямо, делюсь наблюдениями. Поддерживаю в&nbsp;поиске и&nbsp;реализации конкретных решений. Опыт в&nbsp;бизнесе помогает понимать контекст без долгих объяснений.</p>
         </article>
       </div>
       <div class="proof-v2__photo">
@@ -877,27 +937,53 @@ ul,ol{list-style:none}
       </div>
       </div>
 
-      <p class="proof-v2__coda">Говорю с&nbsp;руководителями на&nbsp;одном языке. Помогаю находить решения&nbsp;— в&nbsp;бизнесе и&nbsp;в&nbsp;себе</p>
     </div>
   </section>
 
   <!-- ── CTA ─────────────────────────────────── -->
   <section class="cta-section" id="contact">
-    <p class="cta-eyebrow">§ IV · Личный вход</p>
-    <h2 class="cta-title">Вы не обязаны додумывать это <em>в одиночку</em></h2>
-    <p class="cta-desc">Напишите мне в Telegram. Расскажите о чём хотите поговорить или сразу договоримся на встречу.</p>
+    <div class="cta-mark">
+      <em class="section__mark-inline">§ IV</em>
+      <span class="section__label">Первый разговор</span>
+    </div>
+    <h2 class="cta-title">Вы не обязаны оставаться с&nbsp;проблемой <em>в&nbsp;одиночку</em></h2>
+    <p class="cta-desc">Расскажите, о&nbsp;чём хотите поговорить, или сразу договоримся на&nbsp;встречу.</p>
     <div class="cta-actions">
-      <a class="btn" href="https://t.me/tikhov">Написать мне лично</a>
+      <a class="btn" href="https://t.me/tikhov">Написать мне в&nbsp;Telegram</a>
       <a class="btn btn--ghost" href="mailto:tikhov@gmail.com">Написать на email</a>
     </div>
   </section>
 
   <footer class="foot">
     <span>Tikhov.org</span>
-    <span>© 2026 · Личная практика</span>
+    <span>© 2026 · Доверенный советник</span>
   </footer>
 
 </div>
 
+<script>
+(function(){
+  const slim = document.getElementById('slimnav');
+  if(!slim) return;
+  var lastY = window.pageYOffset || 0;
+  var threshold = 560;
+  var ticking = false;
+  function update(){
+    var y = window.pageYOffset || 0;
+    if(y < threshold){
+      slim?.classList.remove('is-visible');
+    } else if(y < lastY - 4){
+      slim?.classList.add('is-visible');      // scrolling up
+    } else if(y > lastY + 4){
+      slim?.classList.remove('is-visible');   // scrolling down
+    }
+    lastY = y;
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if(!ticking){ window.requestAnimationFrame(update); ticking = true; }
+  }, {passive:true});
+})();
+</script>
 </body>
 </html>
