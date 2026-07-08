@@ -66,10 +66,11 @@ ul,ol{list-style:none}
 
 /* ── Topbar ──────────────────────────────────── */
 .topbar{
-  min-height: 72px;
+  padding-top: 26px;
+  padding-bottom: 26px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   gap: 24px;
   border-bottom: 1px solid var(--rule);
   font-family: var(--mono);
@@ -78,20 +79,31 @@ ul,ol{list-style:none}
   text-transform: uppercase;
   color: var(--paper-dim);
 }
-.topbar__brand{ color: var(--paper); }
-.topbar__brand em{
+.topbar__brand{
+  color: var(--paper);
   font-family: var(--serif);
   font-style: italic;
-  font-size: 14px;
+  font-size: 19px;
   letter-spacing: 0;
   text-transform: none;
+  display: flex;
+  align-items: baseline;
+}
+.topbar__brand em{
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
   color: var(--gold);
-  margin-left: 10px;
+  margin-left: 18px;
+  padding-left: 18px;
+  border-left: 1px solid var(--rule-strong);
 }
 .topbar__nav{
   display: flex;
   gap: 16px;
-  align-items: center;
+  align-items: baseline;
 }
 .topbar__nav a{
   border-bottom: 1px solid transparent;
@@ -128,17 +140,32 @@ ul,ol{list-style:none}
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--rule);
-  transform: translateY(-100%);
-  transition: transform .32s ease;
-  will-change: transform;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .2s ease;
 }
-.slimnav.is-visible{ transform: translateY(0); }
+.slimnav.is-visible{ opacity: 1; visibility: visible; pointer-events: auto; }
 .slimnav__brand{
   font-family: var(--serif);
   font-style: italic;
   font-size: 16px;
   color: var(--paper);
+  text-decoration: none;
 }
+.slimnav__id{ display: flex; align-items: center; }
+.slimnav__role{
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 10px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-left: 15px;
+  padding-left: 15px;
+  border-left: 1px solid var(--rule-strong);
+}
+@media (max-width: 980px){ .slimnav__role{ display: none; } }
 .slimnav__nav{ display: flex; gap: 18px; align-items: center; }
 .slimnav__nav a{
   font-family: var(--mono);
@@ -147,6 +174,7 @@ ul,ol{list-style:none}
   text-transform: uppercase;
   color: var(--paper-dim);
   border-bottom: 1px solid transparent;
+  padding-top: 3px;
   padding-bottom: 3px;
   transition: color .18s, border-color .18s;
 }
@@ -201,14 +229,7 @@ ul,ol{list-style:none}
   color: var(--paper);
   margin-bottom: clamp(24px, 3vw, 36px);
 }
-.hero__deck{
-  font-family: var(--serif);
-  font-size: clamp(1.05rem, 1.4vw, 1.22rem);
-  line-height: 1.5;
-  color: var(--paper-dim);
-  max-width: 44ch;
-  margin-bottom: clamp(28px, 3vw, 40px);
-}
+
 .hero__answer{
   font-family: var(--serif);
   font-size: clamp(1.5rem, 2.8vw, 2.2rem);
@@ -216,24 +237,16 @@ ul,ol{list-style:none}
   color: var(--paper);
   margin-bottom: clamp(24px, 3vw, 36px);
 }
-.hero__deck{
-  font-family: var(--serif);
-  font-size: clamp(1.05rem, 1.4vw, 1.22rem);
-  line-height: 1.5;
-  color: var(--paper-dim);
-  max-width: 44ch;
-  margin-bottom: clamp(28px, 3.5vw, 44px);
-}
 .hero__byline{
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--paper-dim);
-  padding-top: 18px;
-  border-top: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 1rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #c9bb9f;
   line-height: 1.6;
+  max-width: 54ch;
 }
+.hero__byline .hl{ color: var(--gold); font-weight: 600; }
 .hero__actions{
   display: flex;
   flex-wrap: wrap;
@@ -424,7 +437,7 @@ ul,ol{list-style:none}
   border-top: 1px solid var(--rule);
   align-items: baseline;
 }
-.tl-item:last-child{ border-bottom: 1px solid var(--rule); }
+
 .tl-item__marker{ display: flex; gap: 16px; align-items: baseline; }
 .tl-item__num{
   font-family: var(--mono);
@@ -439,14 +452,15 @@ ul,ol{list-style:none}
   line-height: 1.2;
   color: var(--paper);
 }
-.tl-item__text{
+.tl-item__text{ max-width: 58ch; }
+.tl-item__text p{
   font-family: var(--serif);
   font-size: 18px;
   line-height: 1.6;
   color: var(--paper-dim);
-  margin: 0;
-  max-width: 58ch;
+  margin: 0 0 16px;
 }
+.tl-item__text p:last-child{ margin-bottom: 0; }
 .proof-v2__coda{
   font-family: var(--serif);
   font-style: italic;
@@ -493,13 +507,14 @@ ul,ol{list-style:none}
   margin: 0;
 }
 .how-offline{
-  margin-top: 40px;
+  margin-top: 48px;
   font-family: var(--serif);
   font-style: italic;
   font-size: clamp(17px, 1.4vw, 20px);
   line-height: 1.5;
-  color: var(--paper);
+  color: var(--paper-dim);
 }
+.how-offline b{ color: var(--gold); font-weight: 600; }
 .cta-mark{
   margin-bottom: clamp(24px, 3.4vw, 34px);
 }
@@ -632,7 +647,6 @@ ul,ol{list-style:none}
   gap: 16px;
 }
 .format-card{
-  min-height: 350px;
   display: flex;
   flex-direction: column;
   padding: 28px;
@@ -748,7 +762,10 @@ ul,ol{list-style:none}
 
   <!-- ── Slim reveal nav (appears on scroll-up) ── -->
   <nav class="slimnav" id="slimnav" aria-hidden="true">
-    <a class="slimnav__brand" href="#top">Иван&nbsp;Тихов</a>
+    <div class="slimnav__id">
+      <a class="slimnav__brand" href="#top">Иван&nbsp;Тихов</a>
+      <em class="slimnav__role">Ментор предпринимателей и управленцев</em>
+    </div>
     <div class="slimnav__nav">
       <a href="#pain">С чем я работаю</a>
       <a href="#format">Как я работаю</a>
@@ -758,7 +775,7 @@ ul,ol{list-style:none}
   </nav>
 
   <header class="topbar" id="top">
-    <span class="topbar__brand">Иван&nbsp;Тихов <em>Доверенный советник и коуч для лидеров бизнеса</em></span>
+    <span class="topbar__brand">Иван&nbsp;Тихов <em>Ментор предпринимателей и управленцев</em></span>
     <nav class="topbar__nav">
       <a href="#pain">С чем я работаю</a>
       <a href="#format">Как я работаю</a>
@@ -775,12 +792,7 @@ ul,ol{list-style:none}
         Чем больше ответственности&nbsp;— тем меньше людей, с&nbsp;кем можно <em>подумать&nbsp;вслух</em>
       </h1>
       
-      <p class="hero__deck">
-        Я&nbsp;помогаю собственникам и&nbsp;управленцам увидеть картину целиком
-        и&nbsp;принимать решения&nbsp;— в&nbsp;стратегии, в&nbsp;кризисе или в&nbsp;себе.
-        Конфиденциально и&nbsp;честно, без готовых ответов.
-      </p>
-      <p class="hero__byline">Ex-CEO «Додо&nbsp;Пиццы»&nbsp;— прошёл путь от&nbsp;пиццерии по&nbsp;франшизе до&nbsp;управления сетью с&nbsp;выручкой 50+&nbsp;млрд рублей в&nbsp;год. Закончил программу Executive&nbsp;Coaching в&nbsp;Сколково, чтобы эффективно помогать тем, кто стоит у&nbsp;руля.</p>
+      <p class="hero__byline"><b class="hl">Ex-CEO «Додо&nbsp;Пиццы»&nbsp;— прошёл путь</b> от&nbsp;пиццерии по&nbsp;франшизе до&nbsp;управления сетью с&nbsp;выручкой 50+&nbsp;млрд&nbsp;₽ в&nbsp;год. Закончил Executive&nbsp;Coaching в&nbsp;Сколково, <b class="hl">чтобы эффективнее помогать тем, кто стоит у&nbsp;руля</b>. Обладаю глубокой экспертизой во&nbsp;франчайзинге, менеджменте и&nbsp;развитии организаций.</p>
       <div class="hero__actions">
         <a class="btn" href="https://t.me/tikhov">Написать мне в&nbsp;Telegram</a>
       </div>
@@ -796,7 +808,7 @@ ul,ol{list-style:none}
     <div class="vv-head">
       <em class="section__mark-inline">§ I</em>
       <span class="section__label">С&nbsp;чем я&nbsp;работаю</span>
-      <h2 class="vv-head__title" style="margin-top:24px">Четыре разговора, в&nbsp;которых я&nbsp;<em>буду полезен</em></h2>
+      <h2 class="vv-head__title" style="margin-top:24px">Примеры запросов, с&nbsp;которыми я&nbsp;<em>буду полезен</em></h2>
     </div>
 
     <div class="vv-essays">
@@ -805,28 +817,35 @@ ul,ol{list-style:none}
           <span class="vv-dash">— 01 —</span>
           <h3>Куда дальше?</h3>
         </div>
-        <p>Компания выросла, рынок изменился, хочется нового&nbsp;— но&nbsp;куда? Масштабировать, продать, сменить роль, начать новый проект. Вариантов много, а&nbsp;обсудить их&nbsp;по-настоящему не&nbsp;с&nbsp;кем: в&nbsp;бизнесе от&nbsp;вас ждут определённости. <span class="vv-dim">Задаю вопросы, чтобы исследовать всю картину целиком: рынок, ресурсы, команду, ваши желания и&nbsp;ограничения. Трезво взвешиваете варианты и&nbsp;выбираете направление, в&nbsp;котором уверены.</span></p>
+        <p>Компания выросла, рынок изменился или просто хочется нового&nbsp;— но&nbsp;зачем и&nbsp;куда? Масштабироваться, продать, сменить роль, начать новый проект или запустить новый бизнес&nbsp;— вариантов много, и&nbsp;от&nbsp;этого ещё сложнее. <span class="vv-dim">Задаю вопросы, чтобы собрать и&nbsp;исследовать всю картину целиком&nbsp;— рынок, ресурсы, желания и&nbsp;ограничения. В&nbsp;процессе разговора мы&nbsp;распутываем клубок неопределённости, и&nbsp;вам становится легче выбрать направление и&nbsp;сделать первые шаги.</span></p>
       </article>
       <article class="vv-item">
         <div class="vv-item__head">
           <span class="vv-dash">— 02 —</span>
-          <h3>Новая роль</h3>
+          <h3>Кризис в&nbsp;бизнесе</h3>
         </div>
-        <p>Собственник выходит из&nbsp;операционки. Топ-менеджер берёт новую роль или уходит из&nbsp;найма. Серьёзное изменение роли&nbsp;— это всегда вызов. <span class="vv-dim">Сопровождаю, пока вы&nbsp;входите в&nbsp;новую роль: разбираем, чего она требует на&nbsp;самом деле, где прежние привычки мешают, какие решения теперь только ваши.</span></p>
+        <p>Падает выручка, кассовые разрывы, ушёл ключевой клиент или разбежалась команда. Что делать? По-старому уже не&nbsp;работает, а&nbsp;как по-новому&nbsp;— ещё непонятно. При этом решать нужно быстро, а&nbsp;весь груз ответственности давит на&nbsp;ваши плечи. <span class="vv-dim">Обсуждаем ситуацию, отделяем факты от&nbsp;эмоций и&nbsp;находим варианты действий, даже когда приходится выбирать лучшее из&nbsp;худшего. Мы&nbsp;не&nbsp;занимаемся самоуспокоением, а&nbsp;разрабатываем план действий, которые необходимо предпринять после сессии.</span></p>
       </article>
       <article class="vv-item">
         <div class="vv-item__head">
           <span class="vv-dash">— 03 —</span>
-          <h3>Кризис в&nbsp;бизнесе</h3>
+          <h3>Новая роль</h3>
         </div>
-        <p>Резкое падение выручки, кассовый разрыв, уход ключевого клиента или сотрудника. Знакомые сценарии перестают работать, а&nbsp;решать нужно быстро&nbsp;— и&nbsp;груз ложится на&nbsp;вас одного. <span class="vv-dim">Проговариваем ситуацию, отделяем панику от&nbsp;реальности, находим варианты там, где их&nbsp;поначалу не&nbsp;видно. Прояснение картины позволяет действовать эффективно.</span></p>
+        <p>Вы&nbsp;выходите из&nbsp;операционки, берёте новую роль или запускаете новый бизнес. Серьёзное изменение роли&nbsp;— это всегда личный вызов в&nbsp;борьбе с&nbsp;неизвестностью. <span class="vv-dim">Сопровождаю, пока вы&nbsp;входите в&nbsp;новую роль: разбираем, чего она требует на&nbsp;самом деле, а&nbsp;где старые паттерны работают по&nbsp;инерции. Видим не&nbsp;только границы ваших изменений, но&nbsp;и&nbsp;то, как это влияет на&nbsp;систему в&nbsp;целом. Всё это позволяет адаптироваться быстрее и&nbsp;эффективнее.</span></p>
       </article>
       <article class="vv-item">
         <div class="vv-item__head">
           <span class="vv-dash">— 04 —</span>
           <h3>Потеря смысла, выгорание, одиночество лидера</h3>
         </div>
-        <p>Вы&nbsp;нужны всем&nbsp;— команде, партнёрам, близким. Все ждут решений и&nbsp;определённости. А&nbsp;внутри&nbsp;— пустота: драйв ушёл, смысл поблёк, и&nbsp;поделиться этим не&nbsp;с&nbsp;кем. <span class="vv-dim">Смотрим, что за&nbsp;этим стоит: усталость, потеря ориентиров или что-то глубже. Я&nbsp;удерживаю фокус и&nbsp;задаю вопросы, на&nbsp;которые хочется отвечать честно,&nbsp;— так возвращается ясность и&nbsp;внутренняя опора.</span></p>
+        <p>Вы&nbsp;нужны всем&nbsp;— команде, партнёрам, близким. Все ждут решений и&nbsp;определённости, а&nbsp;внутри&nbsp;— пустота: драйв ушёл, смысл поблёк, и&nbsp;поделиться этим не&nbsp;с&nbsp;кем. <span class="vv-dim">Смотрим, что за&nbsp;этим стоит: усталость, потеря ориентиров или что-то глубже. Я&nbsp;помогаю удерживать фокус на&nbsp;смыслах и&nbsp;действиях, которые возвращают опору под ногами.</span></p>
+      </article>
+      <article class="vv-item">
+        <div class="vv-item__head">
+          <span class="vv-dash">— 05 —</span>
+          <h3>Франчайзинг и&nbsp;управление бизнесом</h3>
+        </div>
+        <p>Может быть, вы&nbsp;давно работаете на&nbsp;франчайзинговом рынке или только хотите купить франшизу, но&nbsp;у&nbsp;вас куча вопросов: как запустить и&nbsp;масштабировать этот бизнес и&nbsp;как им&nbsp;управлять, какие решения принимать на&nbsp;стратегических развилках и&nbsp;как настроить операционку. <span class="vv-dim">Здесь я&nbsp;могу занять роль бизнес-консультанта и&nbsp;делиться своим опытом и&nbsp;экспертизой. Благодаря опыту в&nbsp;«Додо» я&nbsp;понимаю франчайзинг со&nbsp;всех сторон и&nbsp;имею достаточный управленческий опыт, чтобы вместе с&nbsp;вами разобраться в&nbsp;любой ситуации.</span></p>
       </article>
     </div>
   </section>
@@ -844,7 +863,7 @@ ul,ol{list-style:none}
       <blockquote class="how-epigraph">Моя работа&nbsp;— быть <em>доверенным лицом</em> в&nbsp;решениях, где обычного совета недостаточно</blockquote>
       <div class="how-intro">
         <p>Это разговор, в&nbsp;котором вы&nbsp;думаете вслух, а&nbsp;я&nbsp;удерживаю фокус на&nbsp;главном, подсвечиваю слепые зоны и&nbsp;иногда делюсь наблюдениями. Появляются новые перспективы и&nbsp;первые шаги&nbsp;— и&nbsp;вы&nbsp;понимаете, куда двигаться.</p>
-        <p class="how-offline">Работать я&nbsp;предпочитаю вживую: личное присутствие меняет качество разговора и&nbsp;влияет на&nbsp;результат. Онлайн&nbsp;— по&nbsp;необходимости.</p>
+        <p class="how-offline">Работать я&nbsp;предпочитаю <b>вживую</b>: личное присутствие меняет качество разговора и&nbsp;влияет на&nbsp;результат. Онлайн&nbsp;— по&nbsp;необходимости.</p>
       </div>
     </div>
 
@@ -859,7 +878,7 @@ ul,ol{list-style:none}
         </article>
         <article class="principle">
           <h3>Польза</h3>
-          <p>Мне важно, чтобы результаты нашей работы были применимы: в&nbsp;решениях, действиях или внутреннем состоянии. После каждой встречи должно оставаться что-то полезное&nbsp;— ясность, структура, следующий шаг.</p>
+          <p>Мне важно, чтобы результаты нашей работы были применимы: в&nbsp;решениях, действиях или внутреннем состоянии. После каждой встречи должно оставаться что-то полезное&nbsp;— инсайты, структура, следующий шаг.</p>
         </article>
         <article class="principle">
           <h3>Честность</h3>
@@ -872,21 +891,18 @@ ul,ol{list-style:none}
       <div class="formats-grid">
         <article class="format-card">
           <span>Разовая сессия</span>
-          <h3>Глубокий разбор ситуации</h3>
-          <p>Подходит, когда нужно быстро разложить ситуацию, увидеть скрытые напряжения и принять ближайшее решение без лишней драматизации.</p>
-          <small>Выход: ясная карта вопроса, варианты, риски, следующий шаг.</small>
+          <h3>Глубокий разбор вашей ситуации</h3>
+          <p>Мы&nbsp;встречаемся, чтобы подробно разобрать ваш вопрос. Иногда уже этого достаточно, чтобы наметить план и&nbsp;дальнейшие шаги.</p>
         </article>
         <article class="format-card">
           <span>Регулярная работа</span>
           <h3>Личное сопровождение руководителя</h3>
-          <p>Подходит, когда решений много, ставки высокие, а внутри роли почти нет места, где можно думать вслух и без защиты.</p>
-          <small>Выход: ритм мышления, честная обратная связь, управленческая опора.</small>
+          <p>Определяем необходимое количество сессий и&nbsp;временной горизонт, чтобы внедрить системные изменения по&nbsp;направлению к&nbsp;вашим целям.</p>
         </article>
         <article class="format-card">
           <span>Команда</span>
           <h3>Стратегические сессии</h3>
-          <p>Подходит, когда вопрос живёт не в голове одного человека, а между партнёрами, функциями или топ-командой.</p>
-          <small>Выход: общий язык, договорённости, слаженная команда.</small>
+          <p>Подходит, когда для реализации запроса нужно вовлечь всю команду&nbsp;— одному или вместе с&nbsp;партнёрами. Я&nbsp;помогу организовать стратегическую сессию любого уровня сложности.</p>
         </article>
       </div>
     </div>
@@ -914,21 +930,29 @@ ul,ol{list-style:none}
             <span class="tl-item__num">01</span>
             <span class="tl-item__label">Додо</span>
           </div>
-          <p class="tl-item__text">Пришёл, когда в&nbsp;сети было меньше 20&nbsp;пиццерий. За&nbsp;8&nbsp;лет с&nbsp;командой построили ~900&nbsp;точек и&nbsp;58&nbsp;млрд&nbsp;руб. выручки. Прошёл путь от&nbsp;франчайзи до&nbsp;CEO: качество, системы управления, операции, маркетинг. Принимал решения, от&nbsp;которых зависели десятки тысяч сотрудников и&nbsp;миллионы клиентов.</p>
+          <div class="tl-item__text">
+            <p>Я&nbsp;пришёл в&nbsp;компанию в&nbsp;2014 году, чтобы открыть пиццерию по&nbsp;франшизе в&nbsp;подмосковных Химках. Я&nbsp;последовательно руководил функциями контроля качества, корпоративным университетом, стал директором по&nbsp;маркетингу, а&nbsp;после&nbsp;— взял на&nbsp;себя роль CEO «Додо&nbsp;Пиццы» в&nbsp;России и&nbsp;СНГ. Принимал решения, от&nbsp;которых зависели десятки тысяч сотрудников и&nbsp;миллионы клиентов&nbsp;— знаю, чего стоит ответственность за&nbsp;такие решения.</p>
+          </div>
         </article>
         <article class="tl-item">
           <div class="tl-item__marker">
             <span class="tl-item__num">02</span>
             <span class="tl-item__label">Сколково</span>
           </div>
-          <p class="tl-item__text">Пошёл учиться на&nbsp;программу Executive Coaching &amp; Mentoring после ухода из&nbsp;компании. Убедился на&nbsp;практике, насколько мощный эффект в&nbsp;развитии может давать внимательное присутствие другого человека. Укрепил навыки слушать и&nbsp;задавать вопросы, которые помогают найти собственные ответы.</p>
+          <div class="tl-item__text">
+            <p>Чтобы научиться помогать и&nbsp;передавать свой опыт другим, я&nbsp;закончил длительную программу Executive Coaching &amp; Mentoring в&nbsp;лучшей бизнес-школе страны. Там я&nbsp;окончательно убедился, насколько мощным эффектом в&nbsp;развитии может обладать внимательное присутствие другого человека. Благодаря программе я&nbsp;освоил компетенции ментора, укрепил навыки слушать и&nbsp;задавать вопросы, которые помогают находить лучшие решения для конкретного человека в&nbsp;его ситуации.</p>
+          </div>
         </article>
         <article class="tl-item">
           <div class="tl-item__marker">
             <span class="tl-item__num">03</span>
-            <span class="tl-item__label">Сегодня</span>
+            <span class="tl-item__label">Миссия</span>
           </div>
-          <p class="tl-item__text">Доверенный советник и&nbsp;коуч для первых лиц, сочетаю в&nbsp;работе коучинг, менторинг, трекинг и&nbsp;консалтинг. Задаю вопросы, вскрывающие суть. Делюсь опытом. Говорю прямо, делюсь наблюдениями. Поддерживаю в&nbsp;поиске и&nbsp;реализации конкретных решений. Опыт в&nbsp;бизнесе помогает понимать контекст без долгих объяснений.</p>
+          <div class="tl-item__text">
+            <p>Я&nbsp;верю, что, работая в&nbsp;«Додо», объединившей сотни предпринимателей, мы&nbsp;не&nbsp;просто продавали пиццу&nbsp;— мы&nbsp;по-настоящему «меняли мир» и&nbsp;развивали предпринимательство в&nbsp;нашей стране.</p>
+            <p>Я&nbsp;решил, что хочу продолжать эту миссию собственным делом, помогая предпринимателям и&nbsp;управленцам расти и&nbsp;развиваться, масштабируя лучшие практики и&nbsp;достигая успехов в&nbsp;бизнесе.</p>
+            <p>Сегодня я&nbsp;— ментор для предпринимателей и&nbsp;руководителей. В&nbsp;работе сочетаю инструменты коучинга, менторинга, трекинга и&nbsp;консалтинга, опираясь на&nbsp;здравый смысл, свой жизненный и&nbsp;управленческий опыт.</p>
+          </div>
         </article>
       </div>
       <div class="proof-v2__photo">
@@ -955,30 +979,28 @@ ul,ol{list-style:none}
 
   <footer class="foot">
     <span>Tikhov.org</span>
-    <span>© 2026 · Доверенный советник</span>
+    <span>© 2026 · Ментор предпринимателей и управленцев</span>
   </footer>
 
 </div>
 
 <script>
 (function(){
-  const slim = document.getElementById('slimnav');
+  var slim = document.getElementById('slimnav');
   if(!slim) return;
-  var lastY = window.pageYOffset || 0;
-  var threshold = 560;
+  var threshold = 100;
   var ticking = false;
   function update(){
+    if(!slim){ ticking = false; return; }
     var y = window.pageYOffset || 0;
-    if(y < threshold){
-      slim?.classList.remove('is-visible');
-    } else if(y < lastY - 4){
-      slim?.classList.add('is-visible');      // scrolling up
-    } else if(y > lastY + 4){
-      slim?.classList.remove('is-visible');   // scrolling down
+    if(y > threshold){
+      slim.classList.add('is-visible');      // stick once past the top
+    } else {
+      slim.classList.remove('is-visible');   // hide at very top (full header shows)
     }
-    lastY = y;
     ticking = false;
   }
+  update();
   window.addEventListener('scroll', function(){
     if(!ticking){ window.requestAnimationFrame(update); ticking = true; }
   }, {passive:true});
