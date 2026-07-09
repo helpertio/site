@@ -85,7 +85,7 @@ ul,ol{list-style:none}
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   gap: clamp(28px, 4vw, 72px);
-  padding: clamp(60px, 9vw, 120px) 0 clamp(60px, 8vw, 110px);
+  padding: clamp(32px, 4vw, 60px) 0 clamp(32px, 4vw, 56px);
   border-bottom: 1.5px solid var(--rule);
   position: relative;
 }
@@ -114,7 +114,7 @@ ul,ol{list-style:none}
 .hero__headline{
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(2.4rem, 5.8vw, 4.8rem);
+  font-size: clamp(2.2rem, 4.4vw, 3.7rem);
   line-height: 1.02;
   letter-spacing: -0.02em;
   color: var(--ink);
@@ -459,6 +459,7 @@ ul,ol{list-style:none}
 @media (prefers-reduced-motion: reduce){
   *{ animation: none !important; transition: none !important; }
 }
+.hero__headline em,.position__body em,.final__title em{ color: #a8442a; }
 </style>
 </head>
 <body>
@@ -491,6 +492,7 @@ ul,ol{list-style:none}
           <dt>Практика</dt><dd>Консультирование · менторинг · коучинг</dd>
           <dt>Формат</dt><dd>Вживую · онлайн по&nbsp;необходимости</dd>
         </dl>
+        <a class="btn" href="https://t.me/tikhov" style="margin-top:22px">Написать мне в&nbsp;Telegram</a>
       </div>
     </div>
     <div class="hero__right">
