@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Иван Тихов — Ментор предпринимателей и управленцев</title>
 <meta name="description" content="Ментор для предпринимателей и управленцев. ex-CEO «Додо Пиццы», программа Executive Coaching в Сколково. Помогаю увидеть картину целиком и принять решения — в стратегии, в кризисе или в себе.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%232f5c4f'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='16' font-weight='700' fill='%23f4f1ea' text-anchor='middle'%3EТ%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23c15f3c'/%3E%3Ctext x='16' y='22' font-family='Arial,sans-serif' font-size='16' font-weight='700' fill='%23f4f1ea' text-anchor='middle'%3EТ%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -17,9 +17,9 @@
   --ink:       #2a2320;
   --ink-soft:  #6a5f54;
   --ink-faint: #9d9284;
-  /* accent: deep pine green — keeps the warm paper palette but avoids the terracotta/Dodo orange */
-  --graphite:  #2f5c4f;
-  --graphite-2:#264a40;
+  /* accent reworked from cold graphite to warm terracotta (clay / plaster) */
+  --graphite:  #c15f3c;
+  --graphite-2:#a94e2f;
   --line:      rgba(42, 35, 32, 0.16);
   --line-2:    rgba(42, 35, 32, 0.30);
   --sans: "Golos Text", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -490,11 +490,43 @@ ul,ol{list-style:none}
   <a href="warm-editorial.html">А Тёплый</a>
   <a href="warm-lux.html">Б Люкс</a>
   <a href="studio.html">В Бюро</a>
-  <a href="studio-pine.html" class="is-active">Г Бюро 2</a>
-  <a href="light-executive.html">Д Лайт</a>
-  <a href="paper.html">Е Бумага</a>
-  <a href="noir.html">Ж Нуар</a>
+  <a href="studio-palettes.html" class="is-active" style="background:#2f5c4f;color:#f4f0e7;">Цвет Бюро</a>
+  <a href="light-executive.html">Г Лайт</a>
+  <a href="paper.html">Д Бумага</a>
+  <a href="noir.html">Е Нуар</a>
 </div>
+
+<div id="accent-panel" style="position:fixed;left:clamp(16px,3vw,32px);bottom:clamp(16px,3vw,32px);z-index:90;display:flex;flex-direction:column;gap:2px;padding:8px;background:#2a2320;border:1px solid rgba(244,241,234,.22);box-shadow:0 8px 30px rgba(42,35,32,.35);font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,241,234,.88);min-width:200px">
+  <span style="padding:6px 10px 8px;font-size:10px;letter-spacing:.14em;color:rgba(244,241,234,.5)">Акцент</span>
+  <button data-a="#2f5c4f" data-b="#264a40" style="display:flex;align-items:center;gap:10px;padding:7px 10px;background:transparent;border:0;color:inherit;font:inherit;cursor:pointer;text-align:left;border-radius:6px"><span style="flex:none;width:14px;height:14px;border-radius:50%;background:#2f5c4f"></span>Хвоя · по умолчанию</button>
+  <button data-a="#c15f3c" data-b="#a94e2f" style="display:flex;align-items:center;gap:10px;padding:7px 10px;background:transparent;border:0;color:inherit;font:inherit;cursor:pointer;text-align:left;border-radius:6px"><span style="flex:none;width:14px;height:14px;border-radius:50%;background:#c15f3c"></span>Терракота</button>
+  <button data-a="#3b3835" data-b="#26231f" style="display:flex;align-items:center;gap:10px;padding:7px 10px;background:transparent;border:0;color:inherit;font:inherit;cursor:pointer;text-align:left;border-radius:6px"><span style="flex:none;width:14px;height:14px;border-radius:50%;background:#3b3835;border:1px solid rgba(244,241,234,.3)"></span>Графит</button>
+  <button data-a="#35506d" data-b="#2a4158" style="display:flex;align-items:center;gap:10px;padding:7px 10px;background:transparent;border:0;color:inherit;font:inherit;cursor:pointer;text-align:left;border-radius:6px"><span style="flex:none;width:14px;height:14px;border-radius:50%;background:#35506d"></span>Чернила</button>
+  <button data-a="#22646d" data-b="#1b4f57" style="display:flex;align-items:center;gap:10px;padding:7px 10px;background:transparent;border:0;color:inherit;font:inherit;cursor:pointer;text-align:left;border-radius:6px"><span style="flex:none;width:14px;height:14px;border-radius:50%;background:#22646d"></span>Петроль</button>
+  <button data-a="#7a333c" data-b="#632a31" style="display:flex;align-items:center;gap:10px;padding:7px 10px;background:transparent;border:0;color:inherit;font:inherit;cursor:pointer;text-align:left;border-radius:6px"><span style="flex:none;width:14px;height:14px;border-radius:50%;background:#7a333c"></span>Бордо</button>
+  <button data-a="#4f5233" data-b="#3e4128" style="display:flex;align-items:center;gap:10px;padding:7px 10px;background:transparent;border:0;color:inherit;font:inherit;cursor:pointer;text-align:left;border-radius:6px"><span style="flex:none;width:14px;height:14px;border-radius:50%;background:#4f5233"></span>Олива</button>
+  <button data-a="#4b3529" data-b="#3a2a20" style="display:flex;align-items:center;gap:10px;padding:7px 10px;background:transparent;border:0;color:inherit;font:inherit;cursor:pointer;text-align:left;border-radius:6px"><span style="flex:none;width:14px;height:14px;border-radius:50%;background:#4b3529"></span>Шоколад</button>
+</div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var btns = document.querySelectorAll('#accent-panel button');
+  function apply(a, b){
+    root.style.setProperty('--graphite', a);
+    root.style.setProperty('--graphite-2', b);
+    btns.forEach(function(x){ x.style.background = x.dataset.a === a ? 'rgba(244,241,234,.16)' : 'transparent'; });
+    try{ localStorage.setItem('studio-accent', a + '|' + b); }catch(e){}
+  }
+  btns.forEach(function(x){
+    x.addEventListener('click', function(){ apply(x.dataset.a, x.dataset.b); });
+  });
+  var saved = null;
+  try{ saved = localStorage.getItem('studio-accent'); }catch(e){}
+  if(saved && saved.indexOf('|') > -1){ var p = saved.split('|'); apply(p[0], p[1]); }
+  else{ apply('#2f5c4f', '#264a40'); }
+})();
+</script>
 
 <script>
 (function(){
